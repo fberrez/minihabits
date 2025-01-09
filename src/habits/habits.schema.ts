@@ -15,6 +15,15 @@ export class Habit {
 
   @Prop({ required: true })
   userId: Types.ObjectId;
+
+  @Prop({ type: Map, of: Number, default: new Map() })
+  completedDates: Map<string, number>;
+
+  @Prop({ default: 0 })
+  currentStreak: number;
+
+  @Prop({ default: 0 })
+  longestStreak: number;
 }
 
 export const HabitSchema = SchemaFactory.createForClass(Habit);

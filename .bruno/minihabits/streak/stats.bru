@@ -1,0 +1,21 @@
+meta {
+  name: stats
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{host}}/habits
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "name": "running"
+  }
+}

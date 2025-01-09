@@ -1,0 +1,25 @@
+meta {
+  name: streak
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{host}}/habits/:id/streak
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "name": "running"
+  }
+}

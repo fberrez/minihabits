@@ -1,0 +1,25 @@
+meta {
+  name: untrack
+  type: http
+  seq: 2
+}
+
+delete {
+  url: {{host}}/habits/:id/track
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 677fa9cc962c98a375ccf1a2
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "name": "running"
+  }
+}

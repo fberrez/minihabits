@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { Habit } from './habits.schema';
 import { CreateHabitDto } from './dto/create.dto';
 import { UpdateHabitDto } from './dto/update.dto';
+import * as moment from 'moment';
 
 @Injectable()
 export class HabitsService {
@@ -44,5 +45,94 @@ export class HabitsService {
       throw new NotFoundException('Habit not found');
     }
     return habit;
+  }
+
+  async trackHabit(id: string, userId: string) {
+    const habit = await this.habitModel.findOne({ _id: id, userId });
+    if (!habit) {
+      throw new NotFoundException('Habit not found');
+    }
+
+    const today = moment().startOf('day').format('YYYY-MM-DD');
+
+    // Check if already tracked today
+    if (habit.completedDates.get(today) === 1) {
+      return habit;
+    }
+
+    // Set today as completed
+    habit.completedDates.set(today, 1);
+
+    // Update streaks
+    const yesterday = moment().subtract(1, 'day').format('YYYY-MM-DD');
+    const hasYesterday = habit.completedDates.get(yesterday) === 1;
+
+    if (hasYesterday) {
+      habit.currentStreak++;
+      habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
+    } else {
+      habit.currentStreak = 1;
+    }
+
+    return habit.save();
+  }
+
+  async untrackHabit(id: string, userId: string) {
+    const habit = await this.habitModel.findOne({ _id: id, userId });
+    if (!habit) {
+      throw new NotFoundException('Habit not found');
+    }
+
+    const today = moment().startOf('day').format('YYYY-MM-DD');
+
+    // Remove today's completion
+    habit.completedDates.delete(today);
+
+    // Update current streak if necessary
+    if (habit.currentStreak > 0) {
+      habit.currentStreak--;
+    }
+
+    return habit.save();
+  }
+
+  async getStreak(id: string, userId: string) {
+    const habit = await this.habitModel.findOne({ _id: id, userId });
+    if (!habit) {
+      throw new NotFoundException('Habit not found');
+    }
+
+    return {
+      currentStreak: habit.currentStreak,
+      longestStreak: habit.longestStreak,
+    };
+  }
+
+  async getStats(userId: string) {
+    const habits = await this.habitModel.find({ userId });
+
+    const totalHabits = habits.length;
+    const totalCompletions = habits.reduce(
+      (sum, habit) =>
+        sum +
+        Array.from(habit.completedDates.values()).filter((v) => v === 1).length,
+      0,
+    );
+    const averageStreak =
+      habits.reduce((sum, habit) => sum + habit.currentStreak, 0) / totalHabits;
+
+    return {
+      totalHabits,
+      totalCompletions,
+      averageStreak: Math.round(averageStreak * 10) / 10,
+      habits: habits.map((habit) => ({
+        name: habit.name,
+        currentStreak: habit.currentStreak,
+        longestStreak: habit.longestStreak,
+        completions: Array.from(habit.completedDates.values()).filter(
+          (v) => v === 1,
+        ).length,
+      })),
+    };
   }
 }

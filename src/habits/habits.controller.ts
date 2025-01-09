@@ -43,4 +43,24 @@ export class HabitsController {
   ) {
     return this.habitsService.updateHabit(id, updateHabitDto, req.user.sub);
   }
+
+  @Post(':id/track')
+  async trackHabit(@Param('id') id: string, @Req() req: AuthRequest) {
+    return this.habitsService.trackHabit(id, req.user.sub);
+  }
+
+  @Delete(':id/track')
+  async untrackHabit(@Param('id') id: string, @Req() req: AuthRequest) {
+    return this.habitsService.untrackHabit(id, req.user.sub);
+  }
+
+  @Get(':id/streak')
+  async getStreak(@Param('id') id: string, @Req() req: AuthRequest) {
+    return this.habitsService.getStreak(id, req.user.sub);
+  }
+
+  @Get('stats')
+  async getStats(@Req() req: AuthRequest) {
+    return this.habitsService.getStats(req.user.sub);
+  }
 }
