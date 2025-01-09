@@ -47,6 +47,23 @@ export class HabitsService {
     return habit;
   }
 
+  private calculateStreak(completedDates: Map<string, number>): number {
+    const today = moment().startOf('day');
+    let currentDate = today;
+    let streak = 0;
+
+    while (true) {
+      const dateStr = currentDate.format('YYYY-MM-DD');
+      if (completedDates.get(dateStr) !== 1) {
+        break;
+      }
+      streak++;
+      currentDate = currentDate.subtract(1, 'day');
+    }
+
+    return streak;
+  }
+
   async trackHabit(id: string, date: string, userId: string) {
     const habit = await this.habitModel.findOne({ _id: id, userId });
     if (!habit) {
@@ -63,16 +80,9 @@ export class HabitsService {
     // Set target date as completed
     habit.completedDates.set(targetDate, 1);
 
-    // Update streaks
-    const previousDay = moment(date).subtract(1, 'day').format('YYYY-MM-DD');
-    const hasPreviousDay = habit.completedDates.get(previousDay) === 1;
-
-    if (hasPreviousDay) {
-      habit.currentStreak++;
-      habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
-    } else {
-      habit.currentStreak = 1;
-    }
+    // Recalculate streak
+    habit.currentStreak = this.calculateStreak(habit.completedDates);
+    habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
     return habit.save();
   }
@@ -88,10 +98,8 @@ export class HabitsService {
     // Remove target date completion
     habit.completedDates.delete(targetDate);
 
-    // Update current streak if necessary
-    if (habit.currentStreak > 0) {
-      habit.currentStreak--;
-    }
+    // Recalculate streak
+    habit.currentStreak = this.calculateStreak(habit.completedDates);
 
     return habit.save();
   }
