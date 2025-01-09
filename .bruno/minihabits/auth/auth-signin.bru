@@ -1,0 +1,24 @@
+meta {
+  name: auth-signin
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{host}}/auth/signin
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "joedoe@host.io",
+    "password": "changeme"
+  }
+}
+
+script:post-response {
+  let data = res.getBody();
+  bru.setEnvVar("accessToken",data.access_token);
+  bru.setEnvVar("refreshToken",data.refresh_token)
+}

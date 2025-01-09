@@ -1,0 +1,24 @@
+meta {
+  name: auth-signup
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{host}}/auth/signup
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "joedoe@host.io",
+    "password": "changeme"
+  }
+}
+
+script:post-response {
+  let data = res.getBody();
+  bru.setEnvVar("accessToken",data.access_token);
+  bru.setEnvVar("refreshToken",data.refresh_token)
+}
