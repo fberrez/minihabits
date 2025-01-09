@@ -1,17 +1,34 @@
 version: '3.8'
 
 services:
+  api:
+    build: .
+    container_name: minihabits-api
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://admin:pwd@mongodb:27017/minihabits
+      - JWT_SECRET=your-jwt-secret
+      - JWT_EXPIRATION_TIME=24h
+      - JWT_REFRESH_SECRET=your-jwt-refresh-secret
+      - JWT_REFRESH_EXPIRATION_TIME=7d
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
   mongodb:
     image: mongo:latest
-    container_name: mongodb
-    restart: always
+    container_name: minihabits-mongodb
     ports:
       - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=minihabits
     volumes:
       - mongodb_data:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
+    restart: unless-stopped
 
 volumes:
   mongodb_data:

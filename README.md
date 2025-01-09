@@ -56,10 +56,10 @@ Habits Routes
 - [x] DELETE /habits/:id - Delete a habit
 
 Habit Tracking Routes
-- [ ] POST /habits/:id/track - Track a habit for today
-- [ ] DELETE /habits/:id/track - Untrack a habit for today
-- [ ] GET /habits/:id/streak - Get streak information
-- [ ] GET /habits/stats - Get overall statistics
+- [x] POST /habits/:id/track - Track a habit for today
+- [x] DELETE /habits/:id/track - Untrack a habit for today
+- [x] GET /habits/:id/streak - Get streak information
+- [x] GET /habits/stats - Get overall statistics
 
 User Routes
 - [ ] GET /users/me - Get current user profile
