@@ -1,0 +1,25 @@
+meta {
+  name: update
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{host}}/habits/:id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: 
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "name": "running"
+  }
+}

@@ -23,4 +23,8 @@ export class UsersService {
     const user = await this.userModel.findOne({ email }).lean().exec();
     return user as User;
   }
+
+  async findById(id: string): Promise<User | null> {
+    return this.userModel.findById(id).lean().exec();
+  }
 }

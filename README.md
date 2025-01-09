@@ -49,11 +49,11 @@ Authentication Routes
 - [x] POST /auth/refresh - Refresh JWT token
 
 Habits Routes
-- [ ] GET /habits - Get all habits for the authenticated user
-- [ ] POST /habits - Create a new habit
+- [x] GET /habits - Get all habits for the authenticated user
+- [x] POST /habits - Create a new habit
 - [ ] GET /habits/:id - Get a specific habit details
-- [ ] PATCH /habits/:id - Update a habit
-- [ ] DELETE /habits/:id - Delete a habit
+- [x] PATCH /habits/:id - Update a habit
+- [x] DELETE /habits/:id - Delete a habit
 
 Habit Tracking Routes
 - [ ] POST /habits/:id/track - Track a habit for today

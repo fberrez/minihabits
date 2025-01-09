@@ -12,6 +12,7 @@ import { AuthGuard } from './auth.guard';
 import { Public } from './auth.decorator';
 import { SignInDto } from './dto/sign-in.dto';
 import { SignUpDto } from './dto/sign-up.dto';
+import { AuthRequest } from './interfaces/request.interface';
 
 @Controller('auth')
 export class AuthController {
@@ -34,7 +35,7 @@ export class AuthController {
   @Post('refresh')
   @UseGuards(AuthGuard)
   @HttpCode(HttpStatus.OK)
-  refreshToken(@Request() req) {
+  refreshToken(@Request() req: AuthRequest) {
     return this.authService.refreshToken(req.user.sub);
   }
 }
