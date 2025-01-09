@@ -47,27 +47,27 @@ export class HabitsService {
     return habit;
   }
 
-  async trackHabit(id: string, userId: string) {
+  async trackHabit(id: string, date: string, userId: string) {
     const habit = await this.habitModel.findOne({ _id: id, userId });
     if (!habit) {
       throw new NotFoundException('Habit not found');
     }
 
-    const today = moment().startOf('day').format('YYYY-MM-DD');
+    const targetDate = moment(date).startOf('day').format('YYYY-MM-DD');
 
-    // Check if already tracked today
-    if (habit.completedDates.get(today) === 1) {
+    // Check if already tracked for target date
+    if (habit.completedDates.get(targetDate) === 1) {
       return habit;
     }
 
-    // Set today as completed
-    habit.completedDates.set(today, 1);
+    // Set target date as completed
+    habit.completedDates.set(targetDate, 1);
 
     // Update streaks
-    const yesterday = moment().subtract(1, 'day').format('YYYY-MM-DD');
-    const hasYesterday = habit.completedDates.get(yesterday) === 1;
+    const previousDay = moment(date).subtract(1, 'day').format('YYYY-MM-DD');
+    const hasPreviousDay = habit.completedDates.get(previousDay) === 1;
 
-    if (hasYesterday) {
+    if (hasPreviousDay) {
       habit.currentStreak++;
       habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
     } else {
@@ -77,16 +77,16 @@ export class HabitsService {
     return habit.save();
   }
 
-  async untrackHabit(id: string, userId: string) {
+  async untrackHabit(id: string, date: string, userId: string) {
     const habit = await this.habitModel.findOne({ _id: id, userId });
     if (!habit) {
       throw new NotFoundException('Habit not found');
     }
 
-    const today = moment().startOf('day').format('YYYY-MM-DD');
+    const targetDate = moment(date).startOf('day').format('YYYY-MM-DD');
 
-    // Remove today's completion
-    habit.completedDates.delete(today);
+    // Remove target date completion
+    habit.completedDates.delete(targetDate);
 
     // Update current streak if necessary
     if (habit.currentStreak > 0) {

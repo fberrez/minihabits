@@ -12,6 +12,7 @@ import { HabitsService } from './habits.service';
 import { CreateHabitDto } from './dto/create.dto';
 import { AuthRequest } from '../auth/interfaces/request.interface';
 import { UpdateHabitDto } from './dto/update.dto';
+import { TrackHabitDto } from './dto/track.dto';
 
 @Controller('habits')
 export class HabitsController {
@@ -45,13 +46,25 @@ export class HabitsController {
   }
 
   @Post(':id/track')
-  async trackHabit(@Param('id') id: string, @Req() req: AuthRequest) {
-    return this.habitsService.trackHabit(id, req.user.sub);
+  async trackHabit(
+    @Param('id') id: string,
+    @Body() trackHabitDto: TrackHabitDto,
+    @Req() req: AuthRequest,
+  ) {
+    return this.habitsService.trackHabit(id, trackHabitDto.date, req.user.sub);
   }
 
   @Delete(':id/track')
-  async untrackHabit(@Param('id') id: string, @Req() req: AuthRequest) {
-    return this.habitsService.untrackHabit(id, req.user.sub);
+  async untrackHabit(
+    @Param('id') id: string,
+    @Body() trackHabitDto: TrackHabitDto,
+    @Req() req: AuthRequest,
+  ) {
+    return this.habitsService.untrackHabit(
+      id,
+      trackHabitDto.date,
+      req.user.sub,
+    );
   }
 
   @Get(':id/streak')
