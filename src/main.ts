@@ -6,7 +6,7 @@ async function bootstrap() {
 
   // Configure CORS
   app.enableCors({
-    origin: ['https://minihabits-web-production.up.railway.app'],
+    origin: process.env.CORS_ORIGIN.split(','),
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
   });
