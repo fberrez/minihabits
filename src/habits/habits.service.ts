@@ -151,15 +151,6 @@ export class HabitsService {
       { length: daysInCurrentMonth },
       (_, i) => startOfMonth.clone().add(i, 'days').format('YYYY-MM-DD'),
     );
-    const completionsCurrentMonth = habits.reduce((sum, habit) => {
-      return (
-        sum +
-        currentMonthDays.filter((date) => habit.completedDates.get(date) === 1)
-          .length
-      );
-    }, 0);
-    const completionRateMonth =
-      (completionsCurrentMonth / (totalHabits * daysInCurrentMonth)) * 100;
 
     // Calculate completion rate for current year
     const startOfYear = today.clone().startOf('year');
