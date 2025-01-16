@@ -3,6 +3,8 @@ import { HydratedDocument, Types } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
 
+export class UserSettings {}
+
 @Schema()
 export class User {
   _id: Types.ObjectId;
@@ -12,6 +14,9 @@ export class User {
 
   @Prop({ required: true })
   password: string;
+
+  @Prop({ required: false, default: {} })
+  settings: UserSettings;
 
   @Prop({ default: Date.now })
   createdAt: Date;

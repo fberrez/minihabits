@@ -25,6 +25,6 @@ export class UsersService {
   }
 
   async findById(id: string): Promise<User | null> {
-    return this.userModel.findById(id).lean().exec();
+    return this.userModel.findById(id).select('-password').lean().exec();
   }
 }
