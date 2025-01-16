@@ -2,14 +2,14 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 
 export enum HabitColor {
-  RED = '#ff8c82',
-  BLUE = '#99c1f1',
-  GREEN = '#8ff0a4',
-  YELLOW = '#f9c74f',
-  PURPLE = '#dc8add',
-  ORANGE = '#ffa94d',
-  PINK = '#ffadc6',
-  TEAL = '#94ebcd',
+  RED = '#e57373',
+  BLUE = '#64b5f6',
+  GREEN = '#81c784',
+  YELLOW = '#ffd54f',
+  PURPLE = '#ba68c8',
+  ORANGE = '#ffb74d',
+  PINK = '#f06292',
+  TEAL = '#4db6ac',
 }
 
 export type HabitDocument = HydratedDocument<Habit>;
