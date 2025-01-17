@@ -1,5 +1,5 @@
 import { IsString, IsEnum, IsOptional } from 'class-validator';
-import { HabitColor } from '../habits.schema';
+import { HabitColor, HabitType } from '../habits.schema';
 
 export class CreateHabitDto {
   @IsString()
@@ -8,4 +8,11 @@ export class CreateHabitDto {
   @IsOptional()
   @IsEnum(HabitColor)
   color?: HabitColor;
+
+  @IsOptional()
+  @IsEnum(HabitType)
+  type?: HabitType;
+
+  @IsOptional()
+  targetCounter?: number;
 }

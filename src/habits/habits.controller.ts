@@ -23,6 +23,16 @@ export class HabitsController {
     return this.habitsService.getHabits(req.user.sub);
   }
 
+  @Get('types')
+  getHabitTypes() {
+    return this.habitsService.getHabitTypes();
+  }
+
+  @Get('stats')
+  async getStats(@Req() req: AuthRequest) {
+    return this.habitsService.getStats(req.user.sub);
+  }
+
   @Post()
   async createHabit(
     @Body() createHabitDto: CreateHabitDto,
@@ -72,8 +82,29 @@ export class HabitsController {
     return this.habitsService.getStreak(id, req.user.sub);
   }
 
-  @Get('stats')
-  async getStats(@Req() req: AuthRequest) {
-    return this.habitsService.getStats(req.user.sub);
+  @Post(':id/increment')
+  async incrementHabit(
+    @Param('id') id: string,
+    @Body() trackHabitDto: TrackHabitDto,
+    @Req() req: AuthRequest,
+  ) {
+    return this.habitsService.incrementHabit(
+      id,
+      trackHabitDto.date,
+      req.user.sub,
+    );
+  }
+
+  @Post(':id/decrement')
+  async decrementHabit(
+    @Param('id') id: string,
+    @Body() trackHabitDto: TrackHabitDto,
+    @Req() req: AuthRequest,
+  ) {
+    return this.habitsService.decrementHabit(
+      id,
+      trackHabitDto.date,
+      req.user.sub,
+    );
   }
 }

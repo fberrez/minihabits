@@ -12,6 +12,11 @@ export enum HabitColor {
   TEAL = '#4db6ac',
 }
 
+export enum HabitType {
+  BOOLEAN = 'boolean',
+  COUNTER = 'counter',
+}
+
 export type HabitDocument = HydratedDocument<Habit>;
 
 @Schema()
@@ -43,6 +48,29 @@ export class Habit {
 
   @Prop({ default: 0 })
   longestStreak: number;
+
+  @Prop({
+    type: String,
+    enum: HabitType,
+    default: HabitType.BOOLEAN,
+    required: true,
+  })
+  type: HabitType;
+
+  @Prop({
+    default: 0,
+    validate: {
+      validator: function (value: number) {
+        // Only require targetCounter > 0 for counter type habits
+        if (this.type === HabitType.COUNTER) {
+          return value > 0;
+        }
+        return true;
+      },
+      message: 'Target counter must be greater than 0 for counter type habits',
+    },
+  })
+  targetCounter: number;
 }
 
 export const HabitSchema = SchemaFactory.createForClass(Habit);
