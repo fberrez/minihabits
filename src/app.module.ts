@@ -9,6 +9,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
 import { HabitsModule } from './habits/habits.module';
 import { HealthcheckModule } from './healthcheck/healthcheck.module';
+import { StatsModule } from './stats/stats.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { HealthcheckModule } from './healthcheck/healthcheck.module';
     MongooseModule.forRoot(process.env.MONGODB_URI),
     HabitsModule,
     HealthcheckModule,
+    StatsModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: AuthGuard }],

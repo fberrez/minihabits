@@ -7,6 +7,7 @@ import { UpdateHabitDto } from './dto/update.dto';
 import * as moment from 'moment';
 import { HabitsCounterService } from './services/habits.counter';
 import { HabitsBooleanService } from './services/habits.boolean';
+import { StatsService } from '../stats/stats.service';
 
 @Injectable()
 export class HabitsService {
@@ -14,6 +15,7 @@ export class HabitsService {
     @InjectModel(Habit.name) private habitModel: Model<Habit>,
     private readonly counterService: HabitsCounterService,
     private readonly booleanService: HabitsBooleanService,
+    private readonly statsService: StatsService,
   ) {}
 
   async getHabits(userId: string) {
@@ -59,11 +61,8 @@ export class HabitsService {
       throw new NotFoundException('Habit not found');
     }
 
-    if (habit.type === HabitType.COUNTER) {
-      return this.counterService.incrementHabit(id, date, userId);
-    } else {
-      return this.booleanService.trackHabit(id, date, userId);
-    }
+    await this.booleanService.trackHabit(id, date, userId);
+    await this.statsService.incrementTotalCompleted();
   }
 
   async untrackHabit(id: string, date: string, userId: string) {
@@ -72,11 +71,8 @@ export class HabitsService {
       throw new NotFoundException('Habit not found');
     }
 
-    if (habit.type === HabitType.COUNTER) {
-      return this.counterService.decrementHabit(id, date, userId);
-    } else {
-      return this.booleanService.untrackHabit(id, date, userId);
-    }
+    await this.booleanService.untrackHabit(id, date, userId);
+    await this.statsService.decrementTotalCompleted();
   }
 
   async getStreak(id: string, userId: string) {
@@ -218,10 +214,16 @@ export class HabitsService {
   }
 
   async incrementHabit(id: string, date: string, userId: string) {
-    return this.counterService.incrementHabit(id, date, userId);
+    const value = await this.counterService.incrementHabit(id, date, userId);
+    if (value === 1) {
+      await this.statsService.incrementTotalCompleted();
+    }
   }
 
   async decrementHabit(id: string, date: string, userId: string) {
-    return this.counterService.decrementHabit(id, date, userId);
+    const value = await this.counterService.decrementHabit(id, date, userId);
+    if (value === 0) {
+      await this.statsService.decrementTotalCompleted();
+    }
   }
 }

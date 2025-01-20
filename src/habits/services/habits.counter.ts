@@ -28,7 +28,8 @@ export class HabitsCounterService {
     );
     habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
-    return habit.save();
+    await habit.save();
+    return currentValue + 1;
   }
 
   async decrementHabit(id: string, date: string, userId: string) {
@@ -55,7 +56,8 @@ export class HabitsCounterService {
     );
     habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
-    return habit.save();
+    await habit.save();
+    return currentValue - 1;
   }
 
   private calculateStreak(
