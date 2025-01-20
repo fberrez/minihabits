@@ -159,9 +159,16 @@ export class HabitsService {
     // Find longest streak across all habits
     const maxStreak = Math.max(...habits.map((habit) => habit.longestStreak));
 
+    // Calculate habits completed today
+    const todayStr = today.format('YYYY-MM-DD');
+    const habitsCompletedToday = habits.filter((habit) =>
+      isHabitCompletedForDate(habit, todayStr),
+    ).length;
+
     return {
       totalHabits,
       totalCompletions,
+      habitsCompletedToday,
       averageStreak: Math.round(averageStreak * 10) / 10,
       completionRate7Days: Math.round(completionRate7Days * 10) / 10,
       completionRateYear: Math.round(completionRateYear * 10) / 10,
