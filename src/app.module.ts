@@ -10,16 +10,18 @@ import { AuthGuard } from './auth/auth.guard';
 import { HabitsModule } from './habits/habits.module';
 import { HealthcheckModule } from './healthcheck/healthcheck.module';
 import { StatsModule } from './stats/stats.module';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
-    AuthModule,
-    UsersModule,
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.MONGODB_URI),
+    AuthModule,
+    UsersModule,
     HabitsModule,
     HealthcheckModule,
     StatsModule,
+    EmailModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: AuthGuard }],

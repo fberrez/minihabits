@@ -14,5 +14,6 @@ import { StatsModule } from '../stats/stats.module';
   ],
   providers: [HabitsService, HabitsCounterService, HabitsBooleanService],
   controllers: [HabitsController],
+  exports: [HabitsService],
 })
 export class HabitsModule {}

@@ -1,0 +1,118 @@
+# Account Management API Documentation
+
+## Password Recovery
+
+### Request Password Reset
+Initiates the password reset process by sending a reset link via email.
+
+```
+POST /users/forgot-password
+```
+
+Request Body:
+```json
+{
+  "email": "user@example.com"  // User's registered email
+}
+```
+
+Response (200 OK):
+```json
+{
+  "message": "Password reset email sent"
+}
+```
+
+Possible Errors:
+- 404 Not Found: User with the provided email does not exist
+
+### Reset Password
+Resets the user's password using the token received via email.
+
+```
+POST /users/reset-password
+```
+
+Request Body:
+```json
+{
+  "token": "123e4567-e89b-12d3-a456-426614174000",  // Token received via email
+  "newPassword": "newPassword123"                    // New password (min 8 characters)
+}
+```
+
+Response (200 OK):
+```json
+{
+  "message": "Password reset successful"
+}
+```
+
+Possible Errors:
+- 401 Unauthorized: Invalid or expired reset token
+
+## Email Management
+
+### Update Email Address
+Updates the user's email address. Requires password verification.
+
+```
+PATCH /users/email
+```
+
+Authentication: Bearer Token Required
+
+Request Body:
+```json
+{
+  "newEmail": "newemail@example.com",  // New email address
+  "password": "currentPassword123"      // Current password for verification
+}
+```
+
+Response (200 OK):
+Returns updated user profile
+
+Possible Errors:
+- 401 Unauthorized: Invalid password
+- 409 Conflict: Email already exists
+- 404 Not Found: User not found
+
+## Account Deletion
+
+### Delete Account
+Permanently deletes the user's account. Requires password verification.
+
+```
+DELETE /users
+```
+
+Authentication: Bearer Token Required
+
+Request Body:
+```json
+{
+  "password": "currentPassword123"  // Current password for verification
+}
+```
+
+Response (204 No Content)
+
+Possible Errors:
+- 401 Unauthorized: Invalid password
+- 404 Not Found: User not found
+
+## Email Notifications
+
+The system sends email notifications for the following events:
+1. Password reset link (when requesting password reset)
+2. Email address change confirmation (to both old and new email addresses)
+3. Account deletion confirmation
+
+## Security Notes
+
+1. All routes requiring authentication expect a valid JWT Bearer token in the Authorization header
+2. Password operations require the current password for verification
+3. Password reset tokens expire after 30 minutes
+4. Email change notifications are sent to both old and new email addresses
+5. Account deletion is permanent and cannot be undone 

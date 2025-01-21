@@ -233,4 +233,8 @@ export class HabitsService {
       await this.statsService.decrementTotalCompleted();
     }
   }
+
+  async deleteAllHabits(userId: string) {
+    await this.habitModel.deleteMany({ userId });
+  }
 }
