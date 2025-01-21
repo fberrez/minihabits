@@ -113,36 +113,4 @@ export class HabitsController {
   async getStreak(@Param('id') id: string, @Req() req: AuthRequest) {
     return this.habitsService.getStreak(id, req.user.sub);
   }
-
-  @Post(':id/increment')
-  @ApiOperation({ summary: 'Increment counter for a counter-type habit' })
-  @ApiParam({ name: 'id', description: 'Habit ID' })
-  @ApiResponse({ status: 200, description: 'Counter incremented successfully' })
-  async incrementHabit(
-    @Param('id') id: string,
-    @Body() trackHabitDto: TrackHabitDto,
-    @Req() req: AuthRequest,
-  ) {
-    return this.habitsService.incrementHabit(
-      id,
-      trackHabitDto.date,
-      req.user.sub,
-    );
-  }
-
-  @Post(':id/decrement')
-  @ApiOperation({ summary: 'Decrement counter for a counter-type habit' })
-  @ApiParam({ name: 'id', description: 'Habit ID' })
-  @ApiResponse({ status: 200, description: 'Counter decremented successfully' })
-  async decrementHabit(
-    @Param('id') id: string,
-    @Body() trackHabitDto: TrackHabitDto,
-    @Req() req: AuthRequest,
-  ) {
-    return this.habitsService.decrementHabit(
-      id,
-      trackHabitDto.date,
-      req.user.sub,
-    );
-  }
 }

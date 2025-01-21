@@ -61,8 +61,14 @@ export class HabitsService {
       throw new NotFoundException('Habit not found');
     }
 
-    await this.booleanService.trackHabit(id, date, userId);
-    await this.statsService.incrementTotalCompleted();
+    switch (habit.type) {
+      case HabitType.BOOLEAN:
+        await this.booleanService.trackHabit(habit, date);
+        break;
+      case HabitType.COUNTER:
+        await this.counterService.incrementHabit(habit, date);
+        break;
+    }
   }
 
   async untrackHabit(id: string, date: string, userId: string) {
@@ -71,8 +77,14 @@ export class HabitsService {
       throw new NotFoundException('Habit not found');
     }
 
-    await this.booleanService.untrackHabit(id, date, userId);
-    await this.statsService.decrementTotalCompleted();
+    switch (habit.type) {
+      case HabitType.BOOLEAN:
+        await this.booleanService.untrackHabit(habit, date);
+        break;
+      case HabitType.COUNTER:
+        await this.counterService.decrementHabit(habit, date);
+        break;
+    }
   }
 
   async getStreak(id: string, userId: string) {
@@ -218,20 +230,6 @@ export class HabitsService {
       type,
       label: type.charAt(0).toUpperCase() + type.slice(1),
     }));
-  }
-
-  async incrementHabit(id: string, date: string, userId: string) {
-    const value = await this.counterService.incrementHabit(id, date, userId);
-    if (value === 1) {
-      await this.statsService.incrementTotalCompleted();
-    }
-  }
-
-  async decrementHabit(id: string, date: string, userId: string) {
-    const value = await this.counterService.decrementHabit(id, date, userId);
-    if (value === 0) {
-      await this.statsService.decrementTotalCompleted();
-    }
   }
 
   async deleteAllHabits(userId: string) {

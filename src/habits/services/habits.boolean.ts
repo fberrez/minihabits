@@ -1,19 +1,13 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Habit, HabitType } from '../habits.schema';
+import { Injectable } from '@nestjs/common';
+import { HabitDocument, HabitType } from '../habits.schema';
 import * as moment from 'moment';
+import { StatsService } from '../../stats/stats.service';
 
 @Injectable()
 export class HabitsBooleanService {
-  constructor(@InjectModel(Habit.name) private habitModel: Model<Habit>) {}
+  constructor(private readonly statsService: StatsService) {}
 
-  async trackHabit(id: string, date: string, userId: string) {
-    const habit = await this.habitModel.findOne({ _id: id, userId });
-    if (!habit) {
-      throw new NotFoundException('Habit not found');
-    }
-
+  async trackHabit(habit: HabitDocument, date: string) {
     if (habit.type !== HabitType.BOOLEAN) {
       throw new Error('This habit is not a boolean type');
     }
@@ -28,15 +22,11 @@ export class HabitsBooleanService {
     habit.currentStreak = this.calculateStreak(habit.completedDates);
     habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
-    return habit.save();
+    await habit.save();
+    await this.statsService.incrementTotalCompleted(date);
   }
 
-  async untrackHabit(id: string, date: string, userId: string) {
-    const habit = await this.habitModel.findOne({ _id: id, userId });
-    if (!habit) {
-      throw new NotFoundException('Habit not found');
-    }
-
+  async untrackHabit(habit: HabitDocument, date: string) {
     if (habit.type !== HabitType.BOOLEAN) {
       throw new Error('This habit is not a boolean type');
     }
@@ -45,8 +35,10 @@ export class HabitsBooleanService {
     habit.completedDates.delete(targetDate);
 
     habit.currentStreak = this.calculateStreak(habit.completedDates);
+    habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
-    return habit.save();
+    await habit.save();
+    await this.statsService.decrementTotalCompleted(date);
   }
 
   private calculateStreak(completedDates: Map<string, number>): number {

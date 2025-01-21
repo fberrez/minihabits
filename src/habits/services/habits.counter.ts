@@ -1,19 +1,13 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Habit, HabitType } from '../habits.schema';
+import { Injectable } from '@nestjs/common';
+import { HabitDocument, HabitType } from '../habits.schema';
 import * as moment from 'moment';
+import { StatsService } from '../../stats/stats.service';
 
 @Injectable()
 export class HabitsCounterService {
-  constructor(@InjectModel(Habit.name) private habitModel: Model<Habit>) {}
+  constructor(private readonly statsService: StatsService) {}
 
-  async incrementHabit(id: string, date: string, userId: string) {
-    const habit = await this.habitModel.findOne({ _id: id, userId });
-    if (!habit) {
-      throw new NotFoundException('Habit not found');
-    }
-
+  async incrementHabit(habit: HabitDocument, date: string) {
     if (habit.type !== HabitType.COUNTER) {
       throw new Error('This habit is not a counter type');
     }
@@ -29,15 +23,12 @@ export class HabitsCounterService {
     habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
     await habit.save();
-    return currentValue + 1;
+    if (currentValue + 1 === 1) {
+      await this.statsService.incrementTotalCompleted(date);
+    }
   }
 
-  async decrementHabit(id: string, date: string, userId: string) {
-    const habit = await this.habitModel.findOne({ _id: id, userId });
-    if (!habit) {
-      throw new NotFoundException('Habit not found');
-    }
-
+  async decrementHabit(habit: HabitDocument, date: string) {
     if (habit.type !== HabitType.COUNTER) {
       throw new Error('This habit is not a counter type');
     }
@@ -57,7 +48,9 @@ export class HabitsCounterService {
     habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
     await habit.save();
-    return currentValue - 1;
+    if (currentValue - 1 === 0) {
+      await this.statsService.decrementTotalCompleted(date);
+    }
   }
 
   private calculateStreak(

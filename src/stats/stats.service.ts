@@ -20,14 +20,23 @@ export class StatsService {
     };
   }
 
+  private getDateComponents(date: string) {
+    const dateComponents = moment(date).startOf('day');
+    return {
+      year: dateComponents.year(),
+      month: dateComponents.month() + 1,
+      day: dateComponents.date(),
+    };
+  }
+
   async getHomeStats() {
     const dateComponents = this.getTodayDateComponents();
     const stats = await this.statsModel.findOne(dateComponents);
     return stats;
   }
 
-  private async updateStats(value: number) {
-    const dateComponents = this.getTodayDateComponents();
+  private async updateStats(value: number, date: string) {
+    const dateComponents = this.getDateComponents(date);
     let stats = await this.statsModel.findOne(dateComponents);
 
     if (!stats) {
@@ -43,17 +52,17 @@ export class StatsService {
     }
   }
 
-  async incrementTotalCompleted() {
+  async incrementTotalCompleted(date: string) {
     try {
-      this.updateStats(1);
+      this.updateStats(1, date);
     } catch (error) {
       this.logger.error('Error incrementing total completed', error);
     }
   }
 
-  async decrementTotalCompleted() {
+  async decrementTotalCompleted(date: string) {
     try {
-      this.updateStats(-1);
+      this.updateStats(-1, date);
     } catch (error) {
       this.logger.error('Error decrementing total completed', error);
     }
