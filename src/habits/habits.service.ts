@@ -7,6 +7,7 @@ import { UpdateHabitDto } from './dto/update.dto';
 import * as moment from 'moment';
 import { HabitsCounterService } from './services/habits.counter';
 import { HabitsBooleanService } from './services/habits.boolean';
+import { HabitsTaskService } from './services/habits.task';
 import { StatsService } from '../stats/stats.service';
 
 @Injectable()
@@ -15,6 +16,7 @@ export class HabitsService {
     @InjectModel(Habit.name) private habitModel: Model<Habit>,
     private readonly counterService: HabitsCounterService,
     private readonly booleanService: HabitsBooleanService,
+    private readonly taskService: HabitsTaskService,
     private readonly statsService: StatsService,
   ) {}
 
@@ -68,6 +70,9 @@ export class HabitsService {
       case HabitType.COUNTER:
         await this.counterService.incrementHabit(habit, date);
         break;
+      case HabitType.TASK:
+        await this.taskService.trackHabit(habit, date);
+        break;
     }
   }
 
@@ -83,6 +88,9 @@ export class HabitsService {
         break;
       case HabitType.COUNTER:
         await this.counterService.decrementHabit(habit, date);
+        break;
+      case HabitType.TASK:
+        await this.taskService.untrackHabit(habit, date);
         break;
     }
   }

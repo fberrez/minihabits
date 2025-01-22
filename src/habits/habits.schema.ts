@@ -15,6 +15,7 @@ export enum HabitColor {
 export enum HabitType {
   BOOLEAN = 'boolean',
   COUNTER = 'counter',
+  TASK = 'task',
 }
 
 export type HabitDocument = HydratedDocument<Habit>;
@@ -26,6 +27,9 @@ export class Habit {
   @Prop({ required: true })
   name: string;
 
+  @Prop({ required: true })
+  userId: Types.ObjectId;
+
   @Prop({
     type: String,
     enum: HabitColor,
@@ -36,9 +40,6 @@ export class Habit {
 
   @Prop({ default: Date.now })
   createdAt: Date;
-
-  @Prop({ required: true })
-  userId: Types.ObjectId;
 
   @Prop({ type: Map, of: Number, default: new Map() })
   completedDates: Map<string, number>;
@@ -71,6 +72,12 @@ export class Habit {
     },
   })
   targetCounter: number;
+
+  @Prop({ type: String, required: false })
+  description?: string;
+
+  @Prop({ type: Date, required: false })
+  deadline?: Date;
 }
 
 export const HabitSchema = SchemaFactory.createForClass(Habit);
