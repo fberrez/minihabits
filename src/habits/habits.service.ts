@@ -46,11 +46,30 @@ export class HabitsService {
     updateHabitDto: UpdateHabitDto,
     userId: string,
   ) {
+    // Separate null values that need to be unset
+    const unsetFields = {};
+    const updateFields = { ...updateHabitDto };
+
+    // Check for null values and move them to unset object
+    if (updateHabitDto.description === null) {
+      unsetFields['description'] = '';
+      delete updateFields.description;
+    }
+    if (updateHabitDto.deadline === null) {
+      unsetFields['deadline'] = '';
+      delete updateFields.deadline;
+    }
+
+    // Perform the update with both $set and $unset operations if needed
     const habit = await this.habitModel.findOneAndUpdate(
       { _id: id, userId },
-      updateHabitDto,
+      {
+        ...(Object.keys(updateFields).length > 0 && { $set: updateFields }),
+        ...(Object.keys(unsetFields).length > 0 && { $unset: unsetFields }),
+      },
       { new: true },
     );
+
     if (!habit) {
       throw new NotFoundException('Habit not found');
     }
