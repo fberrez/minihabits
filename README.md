@@ -35,7 +35,24 @@ cd minihabits
 pnpm install
 ```
 
-3. Start the development server:
+3. Create a `.env` file in the root of the project with the following variables:
+
+```bash
+CORS_ORIGIN="http://localhost:5173"
+FRONTEND_URL="http://localhost:5173"
+JWT_EXPIRATION_TIME="7d"
+JWT_REFRESH_EXPIRATION_TIME="30d"
+JWT_REFRESH_SECRET="refresh_secret"
+JWT_SECRET="secret"
+MONGODB_URI="mongodb://admin:password@localhost:27017/minihabits"
+NODE_ENV="development"
+PORT="3000"
+RESEND_API_KEY="re_11234"
+RESEND_FROM="Minihabits <youraddres@host.co>"
+
+```
+
+4. Start the development server:
 
 ```bash
 npm run start:dev
