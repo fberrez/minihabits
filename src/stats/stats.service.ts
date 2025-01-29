@@ -4,12 +4,16 @@ import { Model } from 'mongoose';
 import * as moment from 'moment';
 import { Stats } from './stats.schema';
 import { Logger } from '@nestjs/common';
+import { User } from 'src/users/users.schema';
 
 @Injectable()
 export class StatsService {
   private readonly logger = new Logger(StatsService.name);
 
-  constructor(@InjectModel(Stats.name) private statsModel: Model<Stats>) {}
+  constructor(
+    @InjectModel(Stats.name) private statsModel: Model<Stats>,
+    @InjectModel(User.name) private usersModel: Model<User>,
+  ) {}
 
   private getTodayDateComponents() {
     const today = moment().utc();
@@ -31,8 +35,11 @@ export class StatsService {
 
   async getHomeStats() {
     const dateComponents = this.getTodayDateComponents();
-    const stats = await this.statsModel.findOne(dateComponents);
-    return stats;
+    const [stats, usersCount] = await Promise.all([
+      this.statsModel.findOne(dateComponents),
+      this.usersModel.countDocuments(),
+    ]);
+    return { stats, usersCount };
   }
 
   private async updateStats(value: number, date: string) {
