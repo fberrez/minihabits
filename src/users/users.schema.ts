@@ -5,6 +5,13 @@ export type UserDocument = HydratedDocument<User>;
 
 export class UserSettings {}
 
+export enum SubscriptionTier {
+  FREE = 'FREE',
+  MONTHLY = 'MONTHLY',
+  YEARLY = 'YEARLY',
+  LIFETIME = 'LIFETIME',
+}
+
 @Schema()
 export class User {
   _id: Types.ObjectId;
@@ -26,6 +33,22 @@ export class User {
 
   @Prop()
   passwordResetExpires?: Date;
+
+  @Prop({
+    type: String,
+    enum: SubscriptionTier,
+    default: SubscriptionTier.FREE,
+  })
+  subscriptionTier: SubscriptionTier;
+
+  @Prop()
+  subscriptionExpiresAt?: Date;
+
+  @Prop()
+  stripeCustomerId?: string;
+
+  @Prop()
+  stripeSubscriptionId?: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

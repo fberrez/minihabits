@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -11,10 +9,13 @@ import { HabitsModule } from './habits/habits.module';
 import { HealthcheckModule } from './healthcheck/healthcheck.module';
 import { StatsModule } from './stats/stats.module';
 import { EmailModule } from './email/email.module';
+import { StripeModule } from './stripe/stripe.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     MongooseModule.forRoot(process.env.MONGODB_URI),
     AuthModule,
     UsersModule,
@@ -22,8 +23,8 @@ import { EmailModule } from './email/email.module';
     HealthcheckModule,
     StatsModule,
     EmailModule,
+    StripeModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, { provide: APP_GUARD, useClass: AuthGuard }],
+  providers: [{ provide: APP_GUARD, useClass: AuthGuard }],
 })
 export class AppModule {}

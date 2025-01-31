@@ -8,7 +8,6 @@ import * as moment from 'moment';
 import { HabitsCounterService } from './services/habits.counter';
 import { HabitsBooleanService } from './services/habits.boolean';
 import { HabitsTaskService } from './services/habits.task';
-import { StatsService } from '../stats/stats.service';
 
 @Injectable()
 export class HabitsService {
@@ -17,7 +16,6 @@ export class HabitsService {
     private readonly counterService: HabitsCounterService,
     private readonly booleanService: HabitsBooleanService,
     private readonly taskService: HabitsTaskService,
-    private readonly statsService: StatsService,
   ) {}
 
   async getHabits(userId: string) {

@@ -23,6 +23,7 @@ import {
   ApiBearerAuth,
   ApiBody,
 } from '@nestjs/swagger';
+import { SubscriptionStatus } from './interfaces/subscription-status.interface';
 
 @ApiTags('users')
 @Controller('users')
@@ -116,5 +117,55 @@ export class UsersController {
       resetPasswordDto.token,
       resetPasswordDto.newPassword,
     );
+  }
+
+  @Get('subscription/status')
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Get subscription status and habit creation allowance',
+    description:
+      "Returns information about user's subscription status, including current habit count and limits",
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Returns subscription status information',
+    type: SubscriptionStatus,
+  })
+  async getSubscriptionStatus(
+    @Req() req: AuthRequest,
+  ): Promise<SubscriptionStatus> {
+    return this.usersService.getSubscriptionStatus(req.user.sub);
+  }
+
+  @Get('subscription/can-create-habit')
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Check if user can create more habits',
+    description:
+      'Verifies if the user has not reached their habit limit based on their subscription',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Returns whether user can create more habits',
+    schema: {
+      type: 'object',
+      properties: {
+        canCreate: {
+          type: 'boolean',
+          description: 'Whether the user can create more habits',
+        },
+        currentCount: {
+          type: 'number',
+          description: 'Current number of habits',
+        },
+        maxAllowed: {
+          type: 'number',
+          description: 'Maximum number of habits allowed',
+        },
+      },
+    },
+  })
+  async canCreateHabit(@Req() req: AuthRequest) {
+    return this.usersService.canCreateHabit(req.user.sub);
   }
 }

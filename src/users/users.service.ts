@@ -10,6 +10,7 @@ import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 import { EmailService } from '../email/email.service';
 import { HabitsService } from 'src/habits/habits.service';
+import { SubscriptionTier } from './users.schema';
 
 @Injectable()
 export class UsersService {
@@ -138,5 +139,73 @@ export class UsersService {
     await user.save();
 
     return { message: 'Password reset successful' };
+  }
+
+  async getSubscriptionStatus(userId: string) {
+    const user = await this.findById(userId);
+    const habits = await this.habitsService.getHabits(userId);
+
+    return {
+      tier: user.subscriptionTier,
+      expiresAt: user.subscriptionExpiresAt,
+      habitsCount: habits.length,
+      maxHabits: this.getMaxHabitsForTier(user.subscriptionTier),
+      canCreateMore: await this.canCreateHabit(userId),
+    };
+  }
+
+  private getMaxHabitsForTier(tier: SubscriptionTier): number {
+    switch (tier) {
+      case SubscriptionTier.FREE:
+        return 3;
+      case SubscriptionTier.MONTHLY:
+      case SubscriptionTier.YEARLY:
+      case SubscriptionTier.LIFETIME:
+        return Infinity;
+      default:
+        return 0;
+    }
+  }
+
+  async canCreateHabit(userId: string): Promise<boolean> {
+    const user = await this.findById(userId);
+    const habits = await this.habitsService.getHabits(userId);
+    const maxHabits = this.getMaxHabitsForTier(user.subscriptionTier);
+
+    if (maxHabits === Infinity) return true;
+    return habits.length < maxHabits;
+  }
+
+  async updateSubscriptionTier(
+    userId: string,
+    stripeCustomerId: string,
+    stripeSubscriptionId: string,
+    tier: SubscriptionTier,
+    subscriptionExpiresAt: Date,
+  ) {
+    const user = await this.userModel.findByIdAndUpdate(userId, {
+      subscriptionTier: tier,
+      stripeCustomerId: stripeCustomerId,
+      stripeSubscriptionId: stripeSubscriptionId,
+      subscriptionExpiresAt: subscriptionExpiresAt,
+    });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
+  }
+
+  async cancelSubscription(userId: string, subscriptionExpiresAt: Date) {
+    const user = await this.userModel.findByIdAndUpdate(userId, {
+      subscriptionExpiresAt: subscriptionExpiresAt,
+    });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
+  }
+
+  async findByStripeCustomerId(stripeCustomerId: string) {
+    return this.userModel.findOne({ stripeCustomerId }).exec();
   }
 }
