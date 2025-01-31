@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Req,
+  ForbiddenException,
 } from '@nestjs/common';
 import { HabitsService } from './habits.service';
 import { CreateHabitDto } from './dto/create.dto';
@@ -20,12 +21,16 @@ import {
   ApiBearerAuth,
   ApiParam,
 } from '@nestjs/swagger';
+import { UsersService } from '../users/users.service';
 
 @ApiTags('habits')
 @ApiBearerAuth()
 @Controller('habits')
 export class HabitsController {
-  constructor(private readonly habitsService: HabitsService) {}
+  constructor(
+    private readonly habitsService: HabitsService,
+    private readonly usersService: UsersService,
+  ) {}
 
   @Get()
   @ApiOperation({ summary: 'Get all habits for the current user' })
@@ -51,10 +56,20 @@ export class HabitsController {
   @Post()
   @ApiOperation({ summary: 'Create a new habit' })
   @ApiResponse({ status: 201, description: 'Habit created successfully' })
+  @ApiResponse({
+    status: 403,
+    description: 'Subscription required for more habits',
+  })
   async createHabit(
     @Body() createHabitDto: CreateHabitDto,
     @Req() req: AuthRequest,
   ) {
+    const canCreate = await this.usersService.canCreateHabit(req.user.sub);
+    if (!canCreate) {
+      throw new ForbiddenException(
+        'You have reached the maximum number of habits for your subscription tier. Please upgrade to create more habits.',
+      );
+    }
     return this.habitsService.createHabit(createHabitDto, req.user.sub);
   }
 
