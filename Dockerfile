@@ -28,13 +28,17 @@ WORKDIR /app
 RUN apk add --no-cache python3 make g++ \
     && npm install -g pnpm
 
-# Copy built assets from builder
+# Copy all node_modules from builder to preserve the built bcrypt
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/pnpm-lock.yaml ./
 
-# Install production dependencies and rebuild bcrypt
+# Install production dependencies
 RUN pnpm install --prod --frozen-lockfile
+
+# Rebuild bcrypt using pnpm
+RUN pnpm rebuild bcrypt
 
 # Expose port
 EXPOSE 3000
