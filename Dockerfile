@@ -3,8 +3,8 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Install PNPM using NPM instead of Corepack
+RUN npm install -g pnpm
 
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
@@ -23,8 +23,8 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Install PNPM using NPM instead of Corepack
+RUN npm install -g pnpm
 
 # Copy built assets from builder
 COPY --from=builder /app/dist ./dist
