@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: minihabits-api
     ports:
       - "3000:3000"
@@ -16,6 +18,10 @@ services:
     depends_on:
       - mongodb
     restart: unless-stopped
+    command: >
+      sh -c "npm install -g pnpm &&
+             pnpm install &&
+             pnpm run start:dev"
 
   mongodb:
     image: mongo:latest
