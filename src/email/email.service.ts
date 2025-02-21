@@ -27,6 +27,7 @@ export class EmailService {
   }
 
   async sendWelcomeEmail(email: string) {
+    await this.createContact(email);
     return this.resend.emails.send({
       from: this.from,
       to: email,
@@ -74,5 +75,17 @@ export class EmailService {
         <p>We're sorry to see you go. If you change your mind, you can always create a new account.</p>
       `,
     });
+  }
+
+  async createContact(email: string) {
+    try {
+      await this.resend.contacts.create({
+        email,
+        unsubscribed: false,
+        audienceId: process.env.RESEND_AUDIENCE_ID,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

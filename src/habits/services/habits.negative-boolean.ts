@@ -8,46 +8,41 @@ import {
 } from '../interfaces/habit-service.interface';
 
 @Injectable()
-export class HabitsCounterService implements HabitService {
+export class HabitsNegativeBooleanService implements HabitService {
   constructor(private readonly statsService: StatsService) {}
 
   async trackHabit(habit: HabitDocument, date: string): Promise<void> {
-    if (habit.type !== HabitType.COUNTER) {
-      throw new Error('This habit is not a counter type');
+    if (habit.type !== HabitType.NEGATIVE_BOOLEAN) {
+      throw new Error('This habit is not a negative boolean type');
     }
 
     const targetDate = moment(date).startOf('day').format('YYYY-MM-DD');
-    const currentValue = habit.completedDates.get(targetDate) || 0;
-    habit.completedDates.set(targetDate, currentValue + 1);
+
+    if (habit.completedDates.get(targetDate) === 1) {
+      return;
+    }
+    habit.completedDates.set(targetDate, 1);
 
     habit.currentStreak = this.calculateStreak(habit);
     habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
     await habit.save();
-    if (currentValue + 1 === 1) {
-      await this.statsService.incrementTotalCompleted(date);
-    }
+    await this.statsService.incrementTotalCompleted(date);
   }
 
   async untrackHabit(habit: HabitDocument, date: string): Promise<void> {
-    if (habit.type !== HabitType.COUNTER) {
-      throw new Error('This habit is not a counter type');
+    if (habit.type !== HabitType.NEGATIVE_BOOLEAN) {
+      throw new Error('This habit is not a negative boolean type');
     }
 
     const targetDate = moment(date).startOf('day').format('YYYY-MM-DD');
-    const currentValue = habit.completedDates.get(targetDate) || 0;
-
-    if (currentValue > 0) {
-      habit.completedDates.set(targetDate, currentValue - 1);
-    }
+    habit.completedDates.delete(targetDate);
 
     habit.currentStreak = this.calculateStreak(habit);
     habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
     await habit.save();
-    if (currentValue - 1 === 0) {
-      await this.statsService.decrementTotalCompleted(date);
-    }
+    await this.statsService.decrementTotalCompleted(date);
   }
 
   calculateStreak(
@@ -73,7 +68,7 @@ export class HabitsCounterService implements HabitService {
 
   isCompleted(habit: HabitDocument, date: string): boolean {
     const value = habit.completedDates.get(date) || 0;
-    return value >= habit.targetCounter;
+    return value !== 1; // Success when NOT checked
   }
 
   getStats(
@@ -86,9 +81,9 @@ export class HabitsCounterService implements HabitService {
   ): HabitStats {
     const { last7Days, currentMonthDays, currentYearDays } = dates;
 
-    // Calculate completions
+    // Calculate completions (days where habit was NOT checked)
     const completions = Array.from(habit.completedDates.values()).filter(
-      (value) => value >= habit.targetCounter,
+      (value) => value !== 1,
     ).length;
 
     // Calculate current streak and longest streak
