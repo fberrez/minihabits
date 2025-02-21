@@ -8,12 +8,12 @@ import {
 } from '../interfaces/habit-service.interface';
 
 @Injectable()
-export class HabitsCounterService implements HabitService {
+export class HabitsNegativeCounterService implements HabitService {
   constructor(private readonly statsService: StatsService) {}
 
   async trackHabit(habit: HabitDocument, date: string): Promise<void> {
-    if (habit.type !== HabitType.COUNTER) {
-      throw new Error('This habit is not a counter type');
+    if (habit.type !== HabitType.NEGATIVE_COUNTER) {
+      throw new Error('This habit is not a negative counter type');
     }
 
     const targetDate = moment(date).startOf('day').format('YYYY-MM-DD');
@@ -24,14 +24,19 @@ export class HabitsCounterService implements HabitService {
     habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
     await habit.save();
-    if (currentValue + 1 === 1) {
+    if (currentValue === 0 && currentValue + 1 < habit.targetCounter) {
       await this.statsService.incrementTotalCompleted(date);
+    } else if (
+      currentValue + 1 >= habit.targetCounter &&
+      currentValue < habit.targetCounter
+    ) {
+      await this.statsService.decrementTotalCompleted(date);
     }
   }
 
   async untrackHabit(habit: HabitDocument, date: string): Promise<void> {
-    if (habit.type !== HabitType.COUNTER) {
-      throw new Error('This habit is not a counter type');
+    if (habit.type !== HabitType.NEGATIVE_COUNTER) {
+      throw new Error('This habit is not a negative counter type');
     }
 
     const targetDate = moment(date).startOf('day').format('YYYY-MM-DD');
@@ -45,7 +50,12 @@ export class HabitsCounterService implements HabitService {
     habit.longestStreak = Math.max(habit.currentStreak, habit.longestStreak);
 
     await habit.save();
-    if (currentValue - 1 === 0) {
+    if (
+      currentValue >= habit.targetCounter &&
+      currentValue - 1 < habit.targetCounter
+    ) {
+      await this.statsService.incrementTotalCompleted(date);
+    } else if (currentValue === 1 && currentValue - 1 < habit.targetCounter) {
       await this.statsService.decrementTotalCompleted(date);
     }
   }
@@ -73,7 +83,7 @@ export class HabitsCounterService implements HabitService {
 
   isCompleted(habit: HabitDocument, date: string): boolean {
     const value = habit.completedDates.get(date) || 0;
-    return value >= habit.targetCounter;
+    return value < habit.targetCounter;
   }
 
   getStats(
@@ -86,9 +96,9 @@ export class HabitsCounterService implements HabitService {
   ): HabitStats {
     const { last7Days, currentMonthDays, currentYearDays } = dates;
 
-    // Calculate completions
+    // Calculate completions (days where count is below target)
     const completions = Array.from(habit.completedDates.values()).filter(
-      (value) => value >= habit.targetCounter,
+      (value) => value < habit.targetCounter,
     ).length;
 
     // Calculate current streak and longest streak

@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Req,
 } from '@nestjs/common';
 import { HabitsService } from './habits.service';
@@ -19,7 +20,9 @@ import {
   ApiResponse,
   ApiBearerAuth,
   ApiParam,
+  ApiQuery,
 } from '@nestjs/swagger';
+import { HabitStats } from './interfaces/habit-stats.interface';
 
 @ApiTags('habits')
 @ApiBearerAuth()
@@ -44,8 +47,12 @@ export class HabitsController {
   @Get('stats')
   @ApiOperation({ summary: 'Get habit statistics' })
   @ApiResponse({ status: 200, description: 'Habit statistics' })
-  async getStats(@Req() req: AuthRequest) {
-    return this.habitsService.getStats(req.user.sub);
+  @ApiQuery({ name: 'ids', type: [String], required: false })
+  async getStats(
+    @Req() req: AuthRequest,
+    @Query('ids') ids?: string[],
+  ): Promise<HabitStats> {
+    return this.habitsService.getStats(req.user.sub, ids);
   }
 
   @Post()
