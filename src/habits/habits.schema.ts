@@ -16,8 +16,6 @@ export enum HabitColor {
 export enum HabitType {
   BOOLEAN = 'boolean',
   COUNTER = 'counter',
-  NEGATIVE_BOOLEAN = 'negative_boolean',
-  NEGATIVE_COUNTER = 'negative_counter',
 }
 
 export type HabitDocument = HydratedDocument<Habit>;

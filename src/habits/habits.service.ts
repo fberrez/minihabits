@@ -10,8 +10,6 @@ import { CreateHabitDto } from './dto/create.dto';
 import { UpdateHabitDto } from './dto/update.dto';
 import { HabitsCounterService } from './services/habits.counter';
 import { HabitsBooleanService } from './services/habits.boolean';
-import { HabitsNegativeBooleanService } from './services/habits.negative-boolean';
-import { HabitsNegativeCounterService } from './services/habits.negative-counter';
 import { HabitService } from './interfaces/habit-service.interface';
 import { HabitStatsOutput } from './dto/habits';
 
@@ -21,8 +19,6 @@ export class HabitsService {
     @InjectModel(Habit.name) private habitModel: Model<Habit>,
     private readonly counterService: HabitsCounterService,
     private readonly booleanService: HabitsBooleanService,
-    private readonly negativeBooleanService: HabitsNegativeBooleanService,
-    private readonly negativeCounterService: HabitsNegativeCounterService,
   ) {}
 
   async getHabitById(id: string, userId: string) {
@@ -92,12 +88,6 @@ export class HabitsService {
       case HabitType.COUNTER:
         await this.counterService.trackHabit(habit, date);
         break;
-      case HabitType.NEGATIVE_BOOLEAN:
-        await this.negativeBooleanService.trackHabit(habit, date);
-        break;
-      case HabitType.NEGATIVE_COUNTER:
-        await this.negativeCounterService.trackHabit(habit, date);
-        break;
       default:
         throw new BadRequestException('Invalid habit type');
     }
@@ -117,12 +107,6 @@ export class HabitsService {
         break;
       case HabitType.COUNTER:
         await this.counterService.untrackHabit(habit, date);
-        break;
-      case HabitType.NEGATIVE_BOOLEAN:
-        await this.negativeBooleanService.untrackHabit(habit, date);
-        break;
-      case HabitType.NEGATIVE_COUNTER:
-        await this.negativeCounterService.untrackHabit(habit, date);
         break;
       default:
         throw new BadRequestException('Invalid habit type');
@@ -155,10 +139,8 @@ export class HabitsService {
         return this.booleanService;
       case HabitType.COUNTER:
         return this.counterService;
-      case HabitType.NEGATIVE_BOOLEAN:
-        return this.negativeBooleanService;
-      case HabitType.NEGATIVE_COUNTER:
-        return this.negativeCounterService;
+      default:
+        throw new BadRequestException('Invalid habit type');
     }
   }
 
