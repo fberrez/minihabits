@@ -20,10 +20,9 @@ import {
   ApiResponse,
   ApiBearerAuth,
   ApiParam,
-  ApiQuery,
 } from '@nestjs/swagger';
-import { HabitStats } from './interfaces/habit-stats.interface';
 import { Habit } from './habits.schema';
+import { HabitStatsOutput, HabitTypeOutput } from './dto/habits';
 @ApiTags('habits')
 @ApiBearerAuth()
 @Controller('habits')
@@ -37,26 +36,19 @@ export class HabitsController {
     description: 'List of habits',
     type: [Habit],
   })
-  async getHabits(@Req() req: AuthRequest) {
+  async getHabits(@Req() req: AuthRequest): Promise<Habit[]> {
     return this.habitsService.getHabits(req.user.sub);
   }
 
   @Get('types')
   @ApiOperation({ summary: 'Get available habit types' })
-  @ApiResponse({ status: 200, description: 'List of habit types' })
+  @ApiResponse({
+    status: 200,
+    description: 'List of habit types',
+    type: [HabitTypeOutput],
+  })
   getHabitTypes() {
     return this.habitsService.getHabitTypes();
-  }
-
-  @Get('stats')
-  @ApiOperation({ summary: 'Get habit statistics' })
-  @ApiResponse({ status: 200, description: 'Habit statistics' })
-  @ApiQuery({ name: 'ids', type: [String], required: false })
-  async getStats(
-    @Req() req: AuthRequest,
-    @Query('ids') ids?: string[],
-  ): Promise<HabitStats> {
-    return this.habitsService.getStats(req.user.sub, ids);
   }
 
   @Get(':id')
@@ -65,6 +57,21 @@ export class HabitsController {
   @ApiResponse({ status: 200, description: 'Habit details' })
   async getHabit(@Param('id') id: string, @Req() req: AuthRequest) {
     return this.habitsService.getHabitById(id, req.user.sub);
+  }
+
+  @Get(':id/stats')
+  @ApiOperation({ summary: 'Get a habit by ID' })
+  @ApiParam({ name: 'id', description: 'Habit ID' })
+  @ApiResponse({
+    status: 200,
+    description: 'Habit details',
+    type: HabitStatsOutput,
+  })
+  async getHabitStats(
+    @Param('id') id: string,
+    @Req() req: AuthRequest,
+  ): Promise<HabitStatsOutput> {
+    return this.habitsService.getHabitStatsById(id, req.user.sub);
   }
 
   @Post()

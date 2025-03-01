@@ -1,10 +1,4 @@
-import {
-  IsString,
-  IsEnum,
-  IsOptional,
-  IsNumber,
-  IsDateString,
-} from 'class-validator';
+import { IsString, IsEnum, IsOptional, IsNumber } from 'class-validator';
 import { HabitColor, HabitType } from '../habits.schema';
 import { ApiProperty } from '@nestjs/swagger';
 

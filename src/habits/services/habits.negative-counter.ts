@@ -86,15 +86,25 @@ export class HabitsNegativeCounterService implements HabitService {
     return value < habit.targetCounter;
   }
 
-  getStats(
-    habit: HabitDocument,
-    dates: {
-      last7Days: string[];
-      currentMonthDays: string[];
-      currentYearDays: string[];
-    },
-  ): HabitStats {
-    const { last7Days, currentMonthDays, currentYearDays } = dates;
+  getStats(habit: HabitDocument): HabitStats {
+    const today = moment();
+    // Calculate dates for stats
+    const last7Days = Array.from({ length: 7 }, (_, i) =>
+      today.clone().subtract(i, 'days').format('YYYY-MM-DD'),
+    );
+
+    const startOfMonth = today.clone().startOf('month');
+    const daysInCurrentMonth = today.diff(startOfMonth, 'days') + 1;
+    const currentMonthDays = Array.from(
+      { length: daysInCurrentMonth },
+      (_, i) => startOfMonth.clone().add(i, 'days').format('YYYY-MM-DD'),
+    );
+
+    const startOfYear = today.clone().startOf('year');
+    const daysInCurrentYear = today.diff(startOfYear, 'days') + 1;
+    const currentYearDays = Array.from({ length: daysInCurrentYear }, (_, i) =>
+      startOfYear.clone().add(i, 'days').format('YYYY-MM-DD'),
+    );
 
     // Calculate completions (days where count is below target)
     const completions = Array.from(habit.completedDates.values()).filter(

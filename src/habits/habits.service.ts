@@ -4,13 +4,12 @@ import { Model } from 'mongoose';
 import { Habit, HabitType } from './habits.schema';
 import { CreateHabitDto } from './dto/create.dto';
 import { UpdateHabitDto } from './dto/update.dto';
-import * as moment from 'moment';
 import { HabitsCounterService } from './services/habits.counter';
 import { HabitsBooleanService } from './services/habits.boolean';
 import { HabitsNegativeBooleanService } from './services/habits.negative-boolean';
 import { HabitsNegativeCounterService } from './services/habits.negative-counter';
-import { HabitStats } from './interfaces/habit-stats.interface';
 import { HabitService } from './interfaces/habit-service.interface';
+import { HabitStatsOutput } from './dto/habits';
 
 @Injectable()
 export class HabitsService {
@@ -132,144 +131,21 @@ export class HabitsService {
     };
   }
 
-  // Add this helper function to calculate streaks
-  private calculateStreak(
-    habit: Habit,
-    upToDate: string = moment().format('YYYY-MM-DD'),
-  ): number {
-    const startDate = moment(upToDate);
-    let currentDate = startDate.clone();
-    let streak = 0;
-    const createdAt = moment(habit.createdAt).startOf('day');
-
-    while (currentDate.isSameOrAfter(createdAt)) {
-      const dateStr = currentDate.format('YYYY-MM-DD');
-      const value = habit.completedDates.get(dateStr) || 0;
-
-      let isCompleted = false;
-      switch (habit.type) {
-        case HabitType.COUNTER:
-          isCompleted = value >= habit.targetCounter;
-          break;
-        case HabitType.NEGATIVE_COUNTER:
-          isCompleted = value < habit.targetCounter;
-          break;
-        case HabitType.NEGATIVE_BOOLEAN:
-          isCompleted = value !== 1;
-          break;
-        case HabitType.BOOLEAN:
-          isCompleted = value === 1;
-          break;
-      }
-
-      if (!isCompleted) {
-        break; // Break on first failure - streak must be continuous
-      }
-
-      streak++;
-      currentDate = currentDate.subtract(1, 'day');
+  async getHabitStatsById(
+    id: string,
+    userId: string,
+  ): Promise<HabitStatsOutput> {
+    const habit = await this.getHabitById(id, userId);
+    if (!habit) {
+      throw new NotFoundException('Habit not found');
     }
 
-    return streak;
-  }
-
-  async getStats(userId: string, ids?: string[]): Promise<HabitStats> {
-    let habits;
-    if (ids) {
-      habits = await this.habitModel.find({
-        _id: { $in: ids },
-        userId,
-      });
-    } else {
-      habits = await this.habitModel.find({ userId });
-    }
-
-    const today = moment().startOf('day');
-
-    // Calculate dates for stats
-    const last7Days = Array.from({ length: 7 }, (_, i) =>
-      today.clone().subtract(i, 'days').format('YYYY-MM-DD'),
-    );
-
-    const startOfMonth = today.clone().startOf('month');
-    const daysInCurrentMonth = today.diff(startOfMonth, 'days') + 1;
-    const currentMonthDays = Array.from(
-      { length: daysInCurrentMonth },
-      (_, i) => startOfMonth.clone().add(i, 'days').format('YYYY-MM-DD'),
-    );
-
-    const startOfYear = today.clone().startOf('year');
-    const daysInCurrentYear = today.diff(startOfYear, 'days') + 1;
-    const currentYearDays = Array.from({ length: daysInCurrentYear }, (_, i) =>
-      startOfYear.clone().add(i, 'days').format('YYYY-MM-DD'),
-    );
-
-    const dates = {
-      last7Days,
-      currentMonthDays,
-      currentYearDays,
-    };
-
-    // Get stats for each habit using its corresponding service
-    const habitStats = habits.map((habit) => {
-      const service = this.getServiceForHabit(habit);
-
-      const stats = service.getStats(habit, dates);
-      return {
-        name: habit.name,
-        type: habit.type,
-        targetCounter:
-          habit.type === HabitType.COUNTER ||
-          habit.type === HabitType.NEGATIVE_COUNTER
-            ? habit.targetCounter
-            : undefined,
-        ...stats,
-      };
-    });
-
-    // Calculate aggregated stats
-    const totalHabits = habits.length;
-    const totalCompletions = habitStats.reduce(
-      (sum, stat) => sum + stat.completions,
-      0,
-    );
-    const averageStreak =
-      habitStats.reduce((sum, stat) => sum + stat.currentStreak, 0) /
-      totalHabits;
-
-    const completionsLast7Days = habits.reduce(
-      (sum, habit) =>
-        sum +
-        last7Days.filter((date) =>
-          this.getServiceForHabit(habit).isCompleted(habit, date),
-        ).length,
-      0,
-    );
-
-    const completionRate7Days =
-      (completionsLast7Days / (totalHabits * 7)) * 100;
-
-    const todayStr = today.format('YYYY-MM-DD');
-    const habitsCompletedToday = habits.filter((habit) =>
-      this.getServiceForHabit(habit).isCompleted(habit, todayStr),
-    ).length;
-
-    const maxStreak = Math.max(...habitStats.map((stat) => stat.longestStreak));
-
+    const service = this.getServiceForHabit(habit);
+    const stats = service.getStats(habit);
     return {
-      totalHabits,
-      totalCompletions,
-      habitsCompletedToday,
-      averageStreak: Math.round(averageStreak * 10) / 10,
-      completionRate7Days: Math.round(completionRate7Days * 10) / 10,
-      completionRateYear:
-        Math.round(
-          (habitStats.reduce((sum, stat) => sum + stat.completionRateYear, 0) /
-            totalHabits) *
-            10,
-        ) / 10,
-      maxStreak,
-      habits: habitStats,
+      name: habit.name,
+      type: habit.type,
+      ...stats,
     };
   }
 

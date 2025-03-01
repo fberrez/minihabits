@@ -14,12 +14,5 @@ export interface HabitService {
   untrackHabit(habit: HabitDocument, date: string): Promise<void>;
   calculateStreak(habit: HabitDocument, upToDate?: string): number;
   isCompleted(habit: HabitDocument, date: string): boolean;
-  getStats(
-    habit: HabitDocument,
-    dates: {
-      last7Days: string[];
-      currentMonthDays: string[];
-      currentYearDays: string[];
-    },
-  ): HabitStats;
+  getStats(habit: HabitDocument): HabitStats;
 }
