@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Habit, HabitType } from './habits.schema';
@@ -75,7 +79,7 @@ export class HabitsService {
     return habit;
   }
 
-  async trackHabit(id: string, date: string, userId: string) {
+  async trackHabit(id: string, date: string, userId: string): Promise<Habit> {
     const habit = await this.habitModel.findOne({ _id: id, userId });
     if (!habit) {
       throw new NotFoundException('Habit not found');
@@ -94,10 +98,14 @@ export class HabitsService {
       case HabitType.NEGATIVE_COUNTER:
         await this.negativeCounterService.trackHabit(habit, date);
         break;
+      default:
+        throw new BadRequestException('Invalid habit type');
     }
+
+    return habit;
   }
 
-  async untrackHabit(id: string, date: string, userId: string) {
+  async untrackHabit(id: string, date: string, userId: string): Promise<Habit> {
     const habit = await this.habitModel.findOne({ _id: id, userId });
     if (!habit) {
       throw new NotFoundException('Habit not found');
@@ -116,19 +124,11 @@ export class HabitsService {
       case HabitType.NEGATIVE_COUNTER:
         await this.negativeCounterService.untrackHabit(habit, date);
         break;
-    }
-  }
-
-  async getStreak(id: string, userId: string) {
-    const habit = await this.habitModel.findOne({ _id: id, userId });
-    if (!habit) {
-      throw new NotFoundException('Habit not found');
+      default:
+        throw new BadRequestException('Invalid habit type');
     }
 
-    return {
-      currentStreak: habit.currentStreak,
-      longestStreak: habit.longestStreak,
-    };
+    return habit;
   }
 
   async getHabitStatsById(

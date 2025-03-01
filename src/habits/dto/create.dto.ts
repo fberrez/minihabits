@@ -31,7 +31,8 @@ export class CreateHabitDto {
   type?: HabitType;
 
   @ApiProperty({
-    description: 'Target counter value for counter-type habits',
+    description:
+      'Target counter value for counter-type habits (required for counter-type habits)',
     required: false,
     example: 10,
   })

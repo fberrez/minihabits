@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { HabitDocument, HabitType } from '../habits.schema';
+import { Habit, HabitDocument, HabitType } from '../habits.schema';
 import * as moment from 'moment';
 import { StatsService } from '../../stats/stats.service';
 import {
@@ -11,7 +11,7 @@ import {
 export class HabitsNegativeBooleanService implements HabitService {
   constructor(private readonly statsService: StatsService) {}
 
-  async trackHabit(habit: HabitDocument, date: string): Promise<void> {
+  async trackHabit(habit: HabitDocument, date: string): Promise<Habit> {
     if (habit.type !== HabitType.NEGATIVE_BOOLEAN) {
       throw new Error('This habit is not a negative boolean type');
     }
@@ -28,9 +28,11 @@ export class HabitsNegativeBooleanService implements HabitService {
 
     await habit.save();
     await this.statsService.incrementTotalCompleted(date);
+
+    return habit;
   }
 
-  async untrackHabit(habit: HabitDocument, date: string): Promise<void> {
+  async untrackHabit(habit: HabitDocument, date: string): Promise<Habit> {
     if (habit.type !== HabitType.NEGATIVE_BOOLEAN) {
       throw new Error('This habit is not a negative boolean type');
     }
@@ -43,6 +45,8 @@ export class HabitsNegativeBooleanService implements HabitService {
 
     await habit.save();
     await this.statsService.decrementTotalCompleted(date);
+
+    return habit;
   }
 
   calculateStreak(

@@ -1,4 +1,4 @@
-import { HabitDocument } from '../habits.schema';
+import { Habit, HabitDocument } from '../habits.schema';
 
 export interface HabitStats {
   completions: number;
@@ -10,8 +10,8 @@ export interface HabitStats {
 }
 
 export interface HabitService {
-  trackHabit(habit: HabitDocument, date: string): Promise<void>;
-  untrackHabit(habit: HabitDocument, date: string): Promise<void>;
+  trackHabit(habit: HabitDocument, date: string): Promise<Habit>;
+  untrackHabit(habit: HabitDocument, date: string): Promise<Habit>;
   calculateStreak(habit: HabitDocument, upToDate?: string): number;
   isCompleted(habit: HabitDocument, date: string): boolean;
   getStats(habit: HabitDocument): HabitStats;

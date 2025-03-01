@@ -7,6 +7,7 @@ import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dto/sign-up.dto';
 import * as bcrypt from 'bcrypt';
+import { AuthResponse } from './interfaces/request.interface';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +16,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signUp(signUpDto: SignUpDto) {
+  async signUp(signUpDto: SignUpDto): Promise<AuthResponse> {
     // Check if user already exists
     const existingUser = await this.usersService.findOne(signUpDto.email);
     if (existingUser) {
@@ -32,7 +33,7 @@ export class AuthService {
     return this.generateTokens(user._id.toString(), user.email);
   }
 
-  async signIn(email: string, pass: string) {
+  async signIn(email: string, pass: string): Promise<AuthResponse> {
     const user = await this.usersService.findOne(email);
     if (!user) {
       throw new UnauthorizedException();
@@ -46,7 +47,7 @@ export class AuthService {
     return this.generateTokens(user._id.toString(), user.email);
   }
 
-  async refreshToken(userId: string) {
+  async refreshToken(userId: string): Promise<AuthResponse> {
     const user = await this.usersService.findById(userId);
     if (!user) {
       throw new UnauthorizedException('Invalid refresh token');
@@ -55,7 +56,10 @@ export class AuthService {
     return this.generateTokens(user._id.toString(), user.email);
   }
 
-  private async generateTokens(userId: string, email: string) {
+  private async generateTokens(
+    userId: string,
+    email: string,
+  ): Promise<AuthResponse> {
     const payload = { sub: userId, email };
 
     return {

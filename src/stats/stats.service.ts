@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { Stats } from './stats.schema';
 import { Logger } from '@nestjs/common';
 import { User } from 'src/users/users.schema';
+import { StatsOutput } from './dto/stats';
 
 @Injectable()
 export class StatsService {
@@ -33,7 +34,7 @@ export class StatsService {
     };
   }
 
-  async getHomeStats() {
+  async getHomeStats(): Promise<StatsOutput> {
     const dateComponents = this.getTodayDateComponents();
     const [stats, usersCount] = await Promise.all([
       this.statsModel.findOne(dateComponents),

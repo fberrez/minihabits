@@ -4,8 +4,10 @@ import {
   HealthCheckService,
   MongooseHealthIndicator,
 } from '@nestjs/terminus';
-import { Public } from 'src/auth/auth.decorator';
+import { PublicRoute } from 'src/auth/public-route.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('healthcheck')
 @Controller('healthcheck')
 export class HealthcheckController {
   constructor(
@@ -13,7 +15,7 @@ export class HealthcheckController {
     private db: MongooseHealthIndicator,
   ) {}
 
-  @Public()
+  @PublicRoute()
   @Get()
   @HealthCheck()
   readiness() {

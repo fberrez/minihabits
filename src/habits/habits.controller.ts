@@ -6,7 +6,6 @@ import {
   Param,
   Patch,
   Post,
-  Query,
   Req,
 } from '@nestjs/common';
 import { HabitsService } from './habits.service';
@@ -18,21 +17,22 @@ import {
   ApiTags,
   ApiOperation,
   ApiResponse,
-  ApiBearerAuth,
   ApiParam,
+  ApiOkResponse,
 } from '@nestjs/swagger';
 import { Habit } from './habits.schema';
 import { HabitStatsOutput, HabitTypeOutput } from './dto/habits';
+import { ProtectedRoute } from '../auth/protected-route.decorator';
+
 @ApiTags('habits')
-@ApiBearerAuth()
 @Controller('habits')
 export class HabitsController {
   constructor(private readonly habitsService: HabitsService) {}
 
   @Get()
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Get all habits for the current user' })
-  @ApiResponse({
-    status: 200,
+  @ApiOkResponse({
     description: 'List of habits',
     type: [Habit],
   })
@@ -41,30 +41,38 @@ export class HabitsController {
   }
 
   @Get('types')
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Get available habit types' })
-  @ApiResponse({
-    status: 200,
+  @ApiOkResponse({
     description: 'List of habit types',
     type: [HabitTypeOutput],
   })
-  getHabitTypes() {
+  getHabitTypes(): HabitTypeOutput[] {
     return this.habitsService.getHabitTypes();
   }
 
   @Get(':id')
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Get a habit by ID' })
   @ApiParam({ name: 'id', description: 'Habit ID' })
-  @ApiResponse({ status: 200, description: 'Habit details' })
-  async getHabit(@Param('id') id: string, @Req() req: AuthRequest) {
+  @ApiOkResponse({
+    description: 'Habit details',
+    type: Habit,
+  })
+  async getHabit(
+    @Param('id') id: string,
+    @Req() req: AuthRequest,
+  ): Promise<Habit> {
     return this.habitsService.getHabitById(id, req.user.sub);
   }
 
   @Get(':id/stats')
-  @ApiOperation({ summary: 'Get a habit by ID' })
+  @ProtectedRoute()
+  @ApiOperation({ summary: 'Get habit statistics' })
   @ApiParam({ name: 'id', description: 'Habit ID' })
   @ApiResponse({
     status: 200,
-    description: 'Habit details',
+    description: 'Habit statistics',
     type: HabitStatsOutput,
   })
   async getHabitStats(
@@ -75,68 +83,81 @@ export class HabitsController {
   }
 
   @Post()
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Create a new habit' })
-  @ApiResponse({ status: 201, description: 'Habit created successfully' })
+  @ApiResponse({
+    status: 201,
+    description: 'Habit created successfully',
+    type: Habit,
+  })
   async createHabit(
     @Body() createHabitDto: CreateHabitDto,
     @Req() req: AuthRequest,
-  ) {
+  ): Promise<Habit> {
     return this.habitsService.createHabit(createHabitDto, req.user.sub);
   }
 
   @Delete(':id')
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Delete a habit' })
   @ApiParam({ name: 'id', description: 'Habit ID' })
-  @ApiResponse({ status: 200, description: 'Habit deleted successfully' })
-  async deleteHabit(@Param('id') id: string, @Req() req: AuthRequest) {
+  @ApiOkResponse({ description: 'Habit deleted successfully', type: Habit })
+  async deleteHabit(
+    @Param('id') id: string,
+    @Req() req: AuthRequest,
+  ): Promise<Habit> {
     return this.habitsService.deleteHabit(id, req.user.sub);
   }
 
   @Patch(':id')
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Update a habit' })
   @ApiParam({ name: 'id', description: 'Habit ID' })
-  @ApiResponse({ status: 200, description: 'Habit updated successfully' })
+  @ApiOkResponse({
+    description: 'Habit updated successfully',
+    type: Habit,
+  })
   async updateHabit(
     @Param('id') id: string,
     @Body() updateHabitDto: UpdateHabitDto,
     @Req() req: AuthRequest,
-  ) {
+  ): Promise<Habit> {
     return this.habitsService.updateHabit(id, updateHabitDto, req.user.sub);
   }
 
   @Post(':id/track')
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Track a habit for a specific date' })
   @ApiParam({ name: 'id', description: 'Habit ID' })
-  @ApiResponse({ status: 200, description: 'Habit tracked successfully' })
+  @ApiOkResponse({
+    description: 'Habit tracked successfully',
+    type: Habit,
+  })
   async trackHabit(
     @Param('id') id: string,
     @Body() trackHabitDto: TrackHabitDto,
     @Req() req: AuthRequest,
-  ) {
+  ): Promise<Habit> {
     return this.habitsService.trackHabit(id, trackHabitDto.date, req.user.sub);
   }
 
   @Delete(':id/track')
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Untrack a habit for a specific date' })
   @ApiParam({ name: 'id', description: 'Habit ID' })
-  @ApiResponse({ status: 200, description: 'Habit untracked successfully' })
+  @ApiOkResponse({
+    description: 'Habit untracked successfully',
+    type: Habit,
+  })
   async untrackHabit(
     @Param('id') id: string,
     @Body() trackHabitDto: TrackHabitDto,
     @Req() req: AuthRequest,
-  ) {
+  ): Promise<Habit> {
     return this.habitsService.untrackHabit(
       id,
       trackHabitDto.date,
       req.user.sub,
     );
-  }
-
-  @Get(':id/streak')
-  @ApiOperation({ summary: 'Get streak information for a habit' })
-  @ApiParam({ name: 'id', description: 'Habit ID' })
-  @ApiResponse({ status: 200, description: 'Streak information' })
-  async getStreak(@Param('id') id: string, @Req() req: AuthRequest) {
-    return this.habitsService.getStreak(id, req.user.sub);
   }
 }

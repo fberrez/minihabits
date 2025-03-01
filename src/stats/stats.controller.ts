@@ -1,7 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
 import { StatsService } from './stats.service';
-import { Public } from 'src/auth/auth.decorator';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiOkResponse } from '@nestjs/swagger';
+import { StatsOutput } from './dto/stats';
+import { PublicRoute } from 'src/auth/public-route.decorator';
 
 @ApiTags('stats')
 @Controller('stats')
@@ -9,13 +10,13 @@ export class StatsController {
   constructor(private readonly statsService: StatsService) {}
 
   @Get('home')
-  @Public()
+  @PublicRoute()
   @ApiOperation({ summary: 'Get home page statistics' })
-  @ApiResponse({
-    status: 200,
+  @ApiOkResponse({
     description: 'Returns general statistics for the home page',
+    type: StatsOutput,
   })
-  async getHomeStats() {
+  async getHomeStats(): Promise<StatsOutput> {
     return this.statsService.getHomeStats();
   }
 }

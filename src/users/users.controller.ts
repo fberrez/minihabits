@@ -15,14 +15,9 @@ import { UpdateEmailDto } from './dto/update-email.dto';
 import { UpdatePasswordDto } from './dto/update-password.dto';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
-import { Public } from '../auth/auth.decorator';
-import {
-  ApiTags,
-  ApiOperation,
-  ApiResponse,
-  ApiBearerAuth,
-  ApiBody,
-} from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { PublicRoute } from '../auth/public-route.decorator';
+import { ProtectedRoute } from '../auth/protected-route.decorator';
 
 @ApiTags('users')
 @Controller('users')
@@ -30,19 +25,17 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get('me')
-  @ApiBearerAuth()
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Get current user profile' })
   @ApiResponse({ status: 200, description: 'Returns the current user profile' })
-  @ApiResponse({ status: 401, description: 'Unauthorized' })
   async getMe(@Req() req: AuthRequest) {
     return this.usersService.findById(req.user.sub);
   }
 
   @Patch('email')
-  @ApiBearerAuth()
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Update email address' })
   @ApiResponse({ status: 200, description: 'Email updated successfully' })
-  @ApiResponse({ status: 401, description: 'Unauthorized' })
   @ApiResponse({ status: 409, description: 'Email already exists' })
   async updateEmail(
     @Req() req: AuthRequest,
@@ -56,10 +49,9 @@ export class UsersController {
   }
 
   @Patch('password')
-  @ApiBearerAuth()
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Update password' })
   @ApiResponse({ status: 200, description: 'Password updated successfully' })
-  @ApiResponse({ status: 401, description: 'Unauthorized' })
   async updatePassword(
     @Req() req: AuthRequest,
     @Body() updatePasswordDto: UpdatePasswordDto,
@@ -72,10 +64,9 @@ export class UsersController {
   }
 
   @Delete()
-  @ApiBearerAuth()
+  @ProtectedRoute()
   @ApiOperation({ summary: 'Delete account' })
   @ApiResponse({ status: 204, description: 'Account deleted successfully' })
-  @ApiResponse({ status: 401, description: 'Unauthorized' })
   @ApiBody({
     schema: {
       type: 'object',
@@ -96,7 +87,7 @@ export class UsersController {
     return this.usersService.deleteAccount(req.user.sub, password);
   }
 
-  @Public()
+  @PublicRoute()
   @Post('forgot-password')
   @ApiOperation({ summary: 'Request password reset' })
   @ApiResponse({ status: 200, description: 'Password reset email sent' })
@@ -105,7 +96,7 @@ export class UsersController {
     return this.usersService.createPasswordResetToken(forgotPasswordDto.email);
   }
 
-  @Public()
+  @PublicRoute()
   @Post('reset-password')
   @ApiOperation({ summary: 'Reset password with token' })
   @ApiResponse({ status: 200, description: 'Password reset successful' })

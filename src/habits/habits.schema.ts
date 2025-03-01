@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiProperty } from '@nestjs/swagger';
 import { HydratedDocument, Types } from 'mongoose';
 
 export enum HabitColor {
@@ -23,14 +24,31 @@ export type HabitDocument = HydratedDocument<Habit>;
 
 @Schema()
 export class Habit {
+  @ApiProperty({
+    type: String,
+    example: '66d060e6777b2b2b2b2b2b2b',
+    required: true,
+  })
   _id: Types.ObjectId;
 
+  @ApiProperty({ type: String, example: 'Do 10 pushups', required: true })
   @Prop({ required: true })
   name: string;
 
+  @ApiProperty({
+    type: String,
+    example: '66d060e6777b2b2b2b2b2b2b',
+    required: true,
+  })
   @Prop({ required: true })
   userId: Types.ObjectId;
 
+  @ApiProperty({
+    type: String,
+    enum: HabitColor,
+    default: HabitColor.BLUE,
+    required: true,
+  })
   @Prop({
     type: String,
     enum: HabitColor,
@@ -39,18 +57,32 @@ export class Habit {
   })
   color: HabitColor;
 
+  @ApiProperty({ type: Date, example: '2023-01-01', required: true })
   @Prop({ default: Date.now })
   createdAt: Date;
 
+  @ApiProperty({
+    type: Object,
+    example: { '2023-01-01': 1 },
+    required: true,
+  })
   @Prop({ type: Map, of: Number, default: new Map() })
   completedDates: Map<string, number>;
 
+  @ApiProperty({ type: Number, example: 0, required: true })
   @Prop({ default: 0 })
   currentStreak: number;
 
+  @ApiProperty({ type: Number, example: 0, required: true })
   @Prop({ default: 0 })
   longestStreak: number;
 
+  @ApiProperty({
+    type: String,
+    enum: HabitType,
+    default: HabitType.BOOLEAN,
+    required: true,
+  })
   @Prop({
     type: String,
     enum: HabitType,
@@ -59,6 +91,7 @@ export class Habit {
   })
   type: HabitType;
 
+  @ApiProperty({ type: Number, example: 0 })
   @Prop({
     default: 0,
     validate: {
@@ -74,9 +107,11 @@ export class Habit {
   })
   targetCounter: number;
 
+  @ApiProperty({ type: String, example: 'Do 10 pushups', required: false })
   @Prop({ type: String, required: false })
   description?: string;
 
+  @ApiProperty({ type: Date, example: '2023-01-01', required: false })
   @Prop({ type: Date, required: false })
   deadline?: Date;
 }
