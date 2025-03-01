@@ -23,7 +23,7 @@ import {
   ApiQuery,
 } from '@nestjs/swagger';
 import { HabitStats } from './interfaces/habit-stats.interface';
-
+import { Habit } from './habits.schema';
 @ApiTags('habits')
 @ApiBearerAuth()
 @Controller('habits')
@@ -32,7 +32,11 @@ export class HabitsController {
 
   @Get()
   @ApiOperation({ summary: 'Get all habits for the current user' })
-  @ApiResponse({ status: 200, description: 'List of habits' })
+  @ApiResponse({
+    status: 200,
+    description: 'List of habits',
+    type: [Habit],
+  })
   async getHabits(@Req() req: AuthRequest) {
     return this.habitsService.getHabits(req.user.sub);
   }
@@ -53,6 +57,14 @@ export class HabitsController {
     @Query('ids') ids?: string[],
   ): Promise<HabitStats> {
     return this.habitsService.getStats(req.user.sub, ids);
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a habit by ID' })
+  @ApiParam({ name: 'id', description: 'Habit ID' })
+  @ApiResponse({ status: 200, description: 'Habit details' })
+  async getHabit(@Param('id') id: string, @Req() req: AuthRequest) {
+    return this.habitsService.getHabitById(id, req.user.sub);
   }
 
   @Post()

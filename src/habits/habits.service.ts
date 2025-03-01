@@ -22,6 +22,14 @@ export class HabitsService {
     private readonly negativeCounterService: HabitsNegativeCounterService,
   ) {}
 
+  async getHabitById(id: string, userId: string) {
+    const habit = await this.habitModel.findOne({ _id: id, userId });
+    if (!habit) {
+      throw new NotFoundException('Habit not found');
+    }
+    return habit;
+  }
+
   async getHabits(userId: string) {
     return this.habitModel.find({ userId }).exec();
   }
