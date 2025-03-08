@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: production
     permissions:
       contents: read
       packages: write
@@ -60,19 +61,17 @@ jobs:
             # Create .env file on the server
             cat > ~/minihabits/.env << EOL
             CORS_ORIGIN="${{ secrets.CORS_ORIGIN }}"
-            FRONTEND_URL="${{ secrets.FRONTEND_URL }}"
-            JWT_EXPIRATION_TIME="${{ secrets.JWT_EXPIRATION_TIME }}"
-            JWT_REFRESH_EXPIRATION_TIME="${{ secrets.JWT_REFRESH_EXPIRATION_TIME }}"
+            FRONTEND_URL="${{ vars.FRONTEND_URL }}"
+            JWT_EXPIRATION_TIME="${{ vars.JWT_EXPIRATION_TIME }}"
+            JWT_REFRESH_EXPIRATION_TIME="${{ vars.JWT_REFRESH_EXPIRATION_TIME }}"
             JWT_REFRESH_SECRET="${{ secrets.JWT_REFRESH_SECRET }}"
             JWT_SECRET="${{ secrets.JWT_SECRET }}"
-            MONGODB_URI="mongodb://mongodb:27017/minihabits"
-            MONGO_INITDB_ROOT_USERNAME="${{ secrets.MONGO_INITDB_ROOT_USERNAME }}"
-            MONGO_INITDB_ROOT_PASSWORD="${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}"
+            MONGODB_URI="mongodb://${{ secrets.MONGO_INITDB_ROOT_USERNAME }}:${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}@mongodb:27017/minihabits?authSource=admin"
             NODE_ENV="production"
             PORT="3000"
             RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}"
-            RESEND_FROM="${{ secrets.RESEND_FROM }}"
-            RESEND_AUDIENCE_ID="${{ secrets.RESEND_AUDIENCE_ID }}"
+            RESEND_FROM="${{ vars.RESEND_FROM }}"
+            RESEND_AUDIENCE_ID="${{ vars.RESEND_AUDIENCE_ID }}"
             STRIPE_SECRET_KEY="${{ secrets.STRIPE_SECRET_KEY }}"
             STRIPE_WEBHOOK_SECRET="${{ secrets.STRIPE_WEBHOOK_SECRET }}"
             STRIPE_PRICE_MONTHLY_ID="${{ secrets.STRIPE_PRICE_MONTHLY_ID }}"
@@ -94,7 +93,7 @@ jobs:
                 env_file:
                   - .env
                 environment:
-                  - MONGODB_URI=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/minihabits?authSource=admin
+                  - MONGODB_URI=mongodb://${{ secrets.MONGO_INITDB_ROOT_USERNAME }}:${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}@mongodb:27017/minihabits?authSource=admin
                 restart: unless-stopped
                 depends_on:
                   - mongodb
@@ -112,8 +111,8 @@ jobs:
                 image: mongo:6
                 restart: unless-stopped
                 environment:
-                  - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
-                  - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+                  - MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_INITDB_ROOT_USERNAME }}
+                  - MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_INITDB_ROOT_PASSWORD } }
                 volumes:
                   - ./mongodb/data/db:/data/db
                 networks:
