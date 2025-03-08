@@ -87,10 +87,12 @@ jobs:
                 container_name: minihabits-api
                 labels:
                   - "traefik.enable=true"
+                  - "traefik.docker.network=web"
                   - "traefik.http.routers.minihabits-api.rule=Host(`minihabits-api.fberrez.co`)"
                   - "traefik.http.routers.minihabits-api.entrypoints=websecure"
                   - "traefik.http.routers.minihabits-api.tls.certresolver=myresolver"
-                  - "traefik.http.services.minihabits-api-service.loadbalancer.server.port=3000"
+                  - "traefik.http.services.minihabits-api.loadbalancer.server.port=3000"
+                  - "traefik.http.services.minihabits-api.loadbalancer.server.scheme=http"
                 env_file:
                   - .env
                 environment:
@@ -99,7 +101,7 @@ jobs:
                 depends_on:
                   - mongodb
                 healthcheck:
-                  test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+                  test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/healthcheck', (res) => process.exit(res.statusCode === 200 ? 0 : 1))"]
                   interval: 30s
                   timeout: 5s
                   retries: 3
@@ -112,6 +114,8 @@ jobs:
                 image: mongo:6
                 container_name: minihabits-mongodb
                 restart: unless-stopped
+                labels:
+                  - "traefik.enable=false"
                 environment:
                   - MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_INITDB_ROOT_USERNAME }}
                   - MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}
