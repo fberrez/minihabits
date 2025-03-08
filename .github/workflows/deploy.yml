@@ -112,7 +112,7 @@ jobs:
                 restart: unless-stopped
                 environment:
                   - MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_INITDB_ROOT_USERNAME }}
-                  - MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_INITDB_ROOT_PASSWORD } }
+                  - MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}
                 volumes:
                   - ./mongodb/data/db:/data/db
                 networks:
