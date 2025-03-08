@@ -84,12 +84,13 @@ jobs:
             services:
               minihabits:
                 image: ghcr.io/${{ github.repository }}:latest
+                container_name: minihabits-api
                 labels:
                   - "traefik.enable=true"
-                  - "traefik.http.routers.minihabits.rule=Host(`minihabits-api.fberrez.co`)"
-                  - "traefik.http.routers.minihabits.entrypoints=websecure"
-                  - "traefik.http.routers.minihabits.tls.certresolver=myresolver"
-                  - "traefik.http.services.minihabits.loadbalancer.server.port=3000"
+                  - "traefik.http.routers.minihabits-api.rule=Host(`minihabits-api.fberrez.co`)"
+                  - "traefik.http.routers.minihabits-api.entrypoints=websecure"
+                  - "traefik.http.routers.minihabits-api.tls.certresolver=myresolver"
+                  - "traefik.http.services.minihabits-api-service.loadbalancer.server.port=3000"
                 env_file:
                   - .env
                 environment:
@@ -109,6 +110,7 @@ jobs:
 
               mongodb:
                 image: mongo:6
+                container_name: minihabits-mongodb
                 restart: unless-stopped
                 environment:
                   - MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_INITDB_ROOT_USERNAME }}
