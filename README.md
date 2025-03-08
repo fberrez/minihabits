@@ -49,11 +49,40 @@ NODE_ENV="development"
 PORT="3000"
 RESEND_API_KEY="re_11234"
 RESEND_FROM="Minihabits <youraddres@host.co>"
+RESEND_AUDIENCE_ID="your-audience-id"
 
 ```
 
 4. Start the development server:
 
 ```bash
-npm run start:dev
+pnpm run start:dev
 ```
+
+## Production Deployment
+
+This project is configured for automated deployment using GitHub Actions, Docker, and Traefik.
+
+## Infrastructure
+
+- **Hosting**: VPS - OVH
+- **Containerization**: Docker
+- **Reverse Proxy**: Traefik
+- **SSL**: Let's Encrypt via Traefik
+
+### Deployment Process
+
+1. Push changes to the `main` branch
+2. GitHub Actions workflow builds a Docker image and pushes it to GitHub Container Registry
+3. The workflow deploys the image to a VPS using SSH
+4. Traefik handles routing and SSL certificates
+
+### Server Requirements
+
+- Docker and Docker Compose
+- Traefik v3 configured as a reverse proxy
+- External `web` network for Traefik communication
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
