@@ -66,7 +66,7 @@ jobs:
             JWT_REFRESH_EXPIRATION_TIME="${{ vars.JWT_REFRESH_EXPIRATION_TIME }}"
             JWT_REFRESH_SECRET="${{ secrets.JWT_REFRESH_SECRET }}"
             JWT_SECRET="${{ secrets.JWT_SECRET }}"
-            MONGODB_URI="mongodb://${{ secrets.MONGO_INITDB_ROOT_USERNAME }}:${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}@mongodb:27017/minihabits?authSource=admin"
+            MONGODB_URI="${{secrets.MONGODB_URI }}"
             NODE_ENV="production"
             PORT="3000"
             RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}"
@@ -108,33 +108,10 @@ jobs:
                   start_period: 15s
                 networks:
                   - web
-                  - internal
-
-              mongodb:
-                image: mongo:6
-                container_name: minihabits-mongodb
-                restart: unless-stopped
-                labels:
-                  - "traefik.enable=false"
-                environment:
-                  - MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_INITDB_ROOT_USERNAME }}
-                  - MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}
-                volumes:
-                  - ./mongodb/data/db:/data/db
-                networks:
-                  - internal
-                healthcheck:
-                  test: echo 'db.runCommand("ping").ok' | mongosh mongodb:27017/test --quiet
-                  interval: 10s
-                  timeout: 5s
-                  retries: 5
-                  start_period: 40s
 
             networks:
               web:
                 external: true
-              internal:
-                external: false
             EOL
             
             # Login to GitHub Container Registry
