@@ -95,11 +95,7 @@ jobs:
                   - "traefik.http.services.minihabits-api.loadbalancer.server.scheme=http"
                 env_file:
                   - .env
-                environment:
-                  - MONGODB_URI=mongodb://${{ secrets.MONGO_INITDB_ROOT_USERNAME }}:${{ secrets.MONGO_INITDB_ROOT_PASSWORD }}@mongodb:27017/minihabits?authSource=admin
                 restart: unless-stopped
-                depends_on:
-                  - mongodb
                 healthcheck:
                   test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/healthcheck', (res) => process.exit(res.statusCode === 200 ? 0 : 1))"]
                   interval: 30s
