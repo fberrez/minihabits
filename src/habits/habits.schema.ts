@@ -55,7 +55,11 @@ export class Habit {
   })
   color: HabitColor;
 
-  @ApiProperty({ type: Date, example: '2023-01-01', required: true })
+  @ApiProperty({
+    type: Date,
+    example: '2023-01-01T00:00:00.000Z',
+    required: true,
+  })
   @Prop({ default: Date.now })
   createdAt: Date;
 
@@ -104,14 +108,6 @@ export class Habit {
     },
   })
   targetCounter: number;
-
-  @ApiProperty({ type: String, example: 'Do 10 pushups', required: false })
-  @Prop({ type: String, required: false })
-  description?: string;
-
-  @ApiProperty({ type: Date, example: '2023-01-01', required: false })
-  @Prop({ type: Date, required: false })
-  deadline?: Date;
 }
 
 export const HabitSchema = SchemaFactory.createForClass(Habit);

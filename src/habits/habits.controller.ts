@@ -141,7 +141,7 @@ export class HabitsController {
     return this.habitsService.trackHabit(id, trackHabitDto.date, req.user.sub);
   }
 
-  @Delete(':id/track')
+  @Post(':id/untrack')
   @ProtectedRoute()
   @ApiOperation({ summary: 'Untrack a habit for a specific date' })
   @ApiParam({ name: 'id', description: 'Habit ID' })
