@@ -1,0 +1,3 @@
+> pnpm exec tsc -p apps/backend/tsconfig.build.json --outputPath=dist/apps/backend
+
+[41m[30m ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL [39m[49m [31mCommand "tsc" not found[39m

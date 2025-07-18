@@ -1,0 +1,32 @@
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.app-header h1 {
+  margin: 0;
+}
+
+.mode-toggle-container {
+  position: fixed;
+  bottom: 40px;
+  right: 20px;
+  z-index: 1000;
+  color: hsl(var(--foreground));
+}
+
+@media (max-width: 768px) {
+  .mode-toggle-container {
+    display: none;
+  }
+}

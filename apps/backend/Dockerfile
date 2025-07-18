@@ -7,17 +7,18 @@ RUN corepack enable
 FROM base AS build
 WORKDIR /app
 COPY pnpm-lock.yaml package.json ./
+COPY nx.json ./
 # Install ALL dependencies (including devDependencies)
 RUN pnpm install --frozen-lockfile
 COPY . .
-RUN pnpm run build
+RUN pnpm nx build backend
 
 FROM base AS prod
 WORKDIR /app
 COPY pnpm-lock.yaml package.json ./
 # Install ONLY production dependencies
 RUN pnpm install --frozen-lockfile --prod
-COPY --from=build /app/dist ./dist
+COPY --from=build /app/dist/apps/backend ./dist
 
 EXPOSE 3000
-CMD [ "node", "dist/main" ]
+CMD [ "node", "dist/main" ] 

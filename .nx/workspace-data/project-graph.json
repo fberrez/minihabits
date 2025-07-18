@@ -1,0 +1,225 @@
+{
+  "nodes": {
+    "frontend": {
+      "name": "frontend",
+      "type": "app",
+      "data": {
+        "root": "minihabits/apps/frontend",
+        "name": "frontend",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "apps/frontend/src",
+        "projectType": "application",
+        "tags": [
+          "scope:frontend",
+          "type:app"
+        ],
+        "targets": {
+          "build": {
+            "executor": "@nx/vite:build",
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/apps/frontend",
+              "configFile": "apps/frontend/vite.config.ts"
+            },
+            "configurations": {
+              "production": {
+                "mode": "production"
+              }
+            },
+            "parallelism": true,
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ]
+          },
+          "serve": {
+            "executor": "@nx/vite:dev-server",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "frontend:build",
+              "configFile": "apps/frontend/vite.config.ts"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "frontend:build:development",
+                "hmr": true
+              },
+              "production": {
+                "buildTarget": "frontend:build:production",
+                "hmr": false
+              }
+            },
+            "parallelism": true,
+            "continuous": true
+          },
+          "preview": {
+            "executor": "@nx/vite:preview-server",
+            "defaultConfiguration": "development",
+            "options": {
+              "buildTarget": "frontend:build"
+            },
+            "configurations": {
+              "development": {
+                "buildTarget": "frontend:build:development"
+              },
+              "production": {
+                "buildTarget": "frontend:build:production"
+              }
+            },
+            "parallelism": true,
+            "continuous": true
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "options": {
+              "lintFilePatterns": [
+                "apps/frontend/**/*.{ts,tsx,js,jsx}"
+              ]
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": true,
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ]
+          },
+          "generate-api": {
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "tsx apps/frontend/src/api/openapi-config.ts",
+              "cwd": "apps/frontend"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "docker-build": {
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "docker build -f apps/frontend/Dockerfile -t minihabits-frontend ."
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
+    "backend": {
+      "name": "backend",
+      "type": "app",
+      "data": {
+        "root": "minihabits/apps/backend",
+        "name": "backend",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "apps/backend/src",
+        "projectType": "application",
+        "tags": [
+          "scope:backend",
+          "type:app"
+        ],
+        "targets": {
+          "build": {
+            "executor": "nx:run-commands",
+            "outputs": [
+              "{options.outputPath}"
+            ],
+            "options": {
+              "outputPath": "dist/apps/backend",
+              "command": "./node_modules/.bin/tsc -p apps/backend/tsconfig.build.json"
+            },
+            "configurations": {
+              "production": {
+                "command": "./node_modules/.bin/tsc -p apps/backend/tsconfig.build.json"
+              }
+            },
+            "parallelism": true,
+            "cache": true,
+            "dependsOn": [
+              "^build"
+            ],
+            "inputs": [
+              "production",
+              "^production"
+            ]
+          },
+          "serve": {
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "node dist/apps/backend/main.js"
+            },
+            "configurations": {
+              "development": {
+                "command": "./node_modules/.bin/ts-node -r tsconfig-paths/register apps/backend/src/main.ts"
+              }
+            },
+            "parallelism": true
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": [
+              "{options.outputFile}"
+            ],
+            "options": {
+              "lintFilePatterns": [
+                "apps/backend/src/**/*.ts",
+                "apps/backend/test/**/*.ts"
+              ]
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": true,
+            "inputs": [
+              "default",
+              "{workspaceRoot}/.eslintrc.json"
+            ]
+          },
+          "test": {
+            "executor": "@nx/jest:jest",
+            "outputs": [
+              "{workspaceRoot}/coverage/apps/backend"
+            ],
+            "options": {
+              "jestConfig": "apps/backend/jest.config.ts",
+              "passWithNoTests": true
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": true,
+            "inputs": [
+              "default",
+              "^production",
+              "{workspaceRoot}/jest.preset.js"
+            ]
+          },
+          "docker-build": {
+            "executor": "nx:run-commands",
+            "options": {
+              "command": "docker build -f apps/backend/Dockerfile -t minihabits-backend ."
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    }
+  },
+  "externalNodes": {},
+  "dependencies": {
+    "frontend": [],
+    "backend": []
+  },
+  "version": "6.0",
+  "errors": [],
+  "computedAt": 1752867321450
+}

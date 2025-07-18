@@ -1,0 +1,454 @@
+{
+  "minihabits/apps/backend": {
+    "root": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.scope:backend": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.type:app": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.executor": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.outputs": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.outputPath": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.command": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production.command": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.executor": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options.command": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development.command": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.outputs": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.options": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.options.lintFilePatterns": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.outputs": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.jestConfig": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options.passWithNoTests": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.executor": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.options": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.options.command": [
+      "minihabits/apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
+  "minihabits/apps/frontend": {
+    "root": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.scope:frontend": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.type:app": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.executor": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.outputs": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.outputPath": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options.configFile": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.configurations.production.mode": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.executor": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.defaultConfiguration": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options.buildTarget": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options.configFile": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development.buildTarget": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.development.hmr": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production.buildTarget": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.configurations.production.hmr": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.executor": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.defaultConfiguration": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.options": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.configurations": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.options.buildTarget": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.configurations.development": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.configurations.development.buildTarget": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.configurations.production": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.preview.configurations.production.buildTarget": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.executor": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.outputs": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.options": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.lint.options.lintFilePatterns": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.generate-api": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.generate-api.executor": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.generate-api.options": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.generate-api.options.command": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.generate-api.options.cwd": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.executor": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.options": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.docker-build.options.command": [
+      "minihabits/apps/frontend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.inputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.lint.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  }
+}

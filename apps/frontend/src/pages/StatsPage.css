@@ -1,0 +1,4 @@
+/* change the background color of cal-heatmap in dark mode */
+.dark .ch-subdomain-bg {
+  fill: #161b22;
+}
