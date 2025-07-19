@@ -1,6 +1,8 @@
 # compiled output
 /dist
-/node_modules
+apps/frontend/dist
+apps/backend/dist
+node_modules/
 /build
 
 # Logs
@@ -54,3 +56,9 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Nx
+.nx/
+nx-cache/
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md

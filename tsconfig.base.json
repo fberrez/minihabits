@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "rootDir": ".",
+    "declaration": false,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "es2015",
+    "module": "esnext",
+    "types": ["node"],
+    "lib": ["es2020", "dom"],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "strictPropertyInitialization": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "noUncheckedIndexedAccess": false,
+    "useUnknownInCatchVariables": false
+  },
+  "exclude": ["node_modules", "tmp"],
+  "require": ["tsconfig-paths/register"]
+}

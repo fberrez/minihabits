@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer utilities {
   .animate-glow {
     animation: glow 1s ease-in-out infinite alternate;
@@ -111,8 +112,6 @@
     @apply bg-background text-foreground;
   }
 }
-
-
 
 @layer base {
   * {

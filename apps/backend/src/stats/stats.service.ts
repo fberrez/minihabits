@@ -28,9 +28,11 @@ export class StatsService {
   private getDateComponents(date: string) {
     const dateComponents = moment(date).startOf('day');
     return {
-      year: dateComponents.year(),
-      month: dateComponents.month() + 1,
-      day: dateComponents.date(),
+      year: dateMoment.year(),
+      month: dateMoment.month() + 1, // moment months are 0-based
+      day: dateMoment.date(),
+    };
+  }
     };
   }
 

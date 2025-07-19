@@ -6,25 +6,33 @@
   "targets": {
     "build": {
       "executor": "nx:run-commands",
-      "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/backend",
-        "command": "./node_modules/.bin/tsc -p apps/backend/tsconfig.build.json"
+        "cwd": "apps/backend",
+        "command": "nest build"
       },
       "configurations": {
+        "development": {
+          "command": "nest build"
+        },
         "production": {
-          "command": "./node_modules/.bin/tsc -p apps/backend/tsconfig.build.json"
+          "command": "nest build"
         }
       }
     },
     "serve": {
       "executor": "nx:run-commands",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
       "options": {
-        "command": "node dist/apps/backend/main.js"
+        "cwd": "apps/backend",
+        "command": "node dist/main.js"
       },
       "configurations": {
         "development": {
-          "command": "./node_modules/.bin/ts-node -r tsconfig-paths/register apps/backend/src/main.ts"
+          "command": "node dist/main.js"
+        },
+        "production": {
+          "command": "node dist/main.js"
         }
       }
     },
