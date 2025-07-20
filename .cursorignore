@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+# /dist
+# apps/*/dist
+# apps/*/build
+# /build
+*.tsbuildinfo
+
+# Cache directories
+.nx/
+nx-cache/
+.cache/
+.temp/
+.tmp/
+
+# Lock files
+pnpm-lock.yaml
+**/pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Generated/API files
+apps/frontend/src/api/generated/
+
+# Logs
+*.log
+logs/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Environment files
+.env*
+!.env.example
+
+# Documentation (focus on code)
+*.md
+!README.md
+
+# Configuration that changes frequently
+.nx/workspace-data/
+.nx/cache/
+
+# Bruno API collection (not code)
+bruno/ 

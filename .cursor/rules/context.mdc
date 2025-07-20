@@ -1,0 +1,213 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# MiniHabits - Cursor AI Context Rules
+
+You are working on **MiniHabits**, a minimalist habit tracking application designed to help users build and maintain daily habits through a clean, intuitive interface.
+
+## Business Logic & Core Concepts
+
+### What MiniHabits Does
+- **Habit Tracking**: Users can create and track different types of habits (boolean on/off, counter-based)
+- **Progress Visualization**: Visual heatmaps, charts, and statistics show habit completion over time
+- **Streak Tracking**: Motivational streak counters for consecutive completions
+- **Statistics & Analytics**: Detailed insights including completion rates, best streaks, monthly/yearly overviews
+- **User Management**: Account creation, authentication, password reset functionality
+
+### Key Business Entities
+1. **User**: Authenticated individuals who own habits
+2. **Habit**: The core entity representing a trackable behavior
+   - Types: Boolean (completed/not completed) or Counter (numeric tracking)
+   - Properties: name, description, color, icon, creation date
+3. **Habit Entry/Tracking**: Daily records of habit completion
+4. **Statistics**: Aggregated data showing trends, streaks, completion rates
+
+### User Journey
+1. **Registration/Login**: JWT-based authentication with refresh tokens
+2. **Habit Creation**: Simple modal interface for adding new habits
+3. **Daily Tracking**: Mark habits as complete or add counter values
+4. **Progress Review**: View statistics, heatmaps, and trends
+5. **Long-term Motivation**: Streak tracking and visual progress indicators
+
+## Technical Architecture
+
+### Monorepo Structure (Nx)
+```
+apps/
+├── backend/     # NestJS API server
+└── frontend/    # React + Vite SPA
+```
+
+### Backend (NestJS) - Port 3000
+- **Framework**: NestJS with TypeScript
+- **Database**: MongoDB with Mongoose ODM
+- **Authentication**: JWT + Refresh Token strategy
+- **Architecture Pattern**: Modular design with clear separation of concerns
+
+#### Key Modules:
+- `auth/`: JWT authentication, login/signup, token refresh
+- `users/`: User management, profile updates, password reset
+- `habits/`: CRUD operations for habits, habit type services
+- `stats/`: Statistics calculation, aggregation, analytics
+- `email/`: Resend integration for notifications
+- `healthcheck/`: Application health monitoring
+
+#### Database Schema (MongoDB):
+- **Users Collection**: Authentication, profile data
+- **Habits Collection**: Habit definitions with embedded tracking data
+- **Stats Collection**: Pre-computed statistics for performance
+
+#### Authentication Flow:
+1. User login → Access token (7d) + Refresh token (30d)
+2. Protected routes use JWT Guard
+3. Token refresh endpoint for seamless UX
+4. Password reset via email with secure tokens
+
+### Frontend (React + Vite) - Port 5173
+- **Framework**: React 18 with TypeScript
+- **Build Tool**: Vite for fast development
+- **Styling**: Tailwind CSS with custom component library
+- **State Management**: React Query (TanStack Query)
+- **HTTP Client**: Generated from OpenAPI specification
+
+#### Key Features:
+- **Responsive Design**: Mobile-first with dark/light mode
+- **Component Architecture**: Reusable UI components with Radix UI primitives
+- **Data Visualization**: Recharts for statistics and heatmaps
+- **Real-time Updates**: React Query for optimistic updates
+- **Audio Feedback**: Success sounds for habit completion
+
+#### Page Structure:
+- `/auth`: Login/signup forms
+- `/habits`: Main habit tracking interface
+- `/new-habit`: Habit creation modal/page
+- `/stats`: Detailed analytics and visualizations
+- `/account`: User settings and profile management
+
+## Development Patterns & Conventions
+
+### Code Style (Following User Rules)
+- **TypeScript First**: Strong typing for all functions and variables
+- **Clean Code**: Small functions (<20 lines), single responsibility
+- **SOLID Principles**: Especially in NestJS services and controllers
+- **RO-RO Pattern**: Receive Object, Return Object for complex functions
+- **Early Returns**: Avoid deep nesting through early validation
+- **Descriptive Naming**: Clear, verb-based function names
+
+### NestJS Specific Patterns
+- **Module Structure**: One module per domain (auth, habits, stats, users)
+- **DTOs with Validation**: class-validator for input validation
+- **Service Layer**: Business logic separated from controllers
+- **Guards**: JWT authentication and role-based access
+- **Interceptors**: Request/response transformation
+- **Exception Handling**: Custom exceptions with proper HTTP status codes
+
+### Frontend Patterns
+- **Component Composition**: Small, reusable components
+- **Custom Hooks**: useAuth, useHabits, useStats for data management
+- **Error Boundaries**: Graceful error handling in UI
+- **Loading States**: Skeleton components and optimistic updates
+- **Form Handling**: React Hook Form with validation
+
+### Database Patterns
+- **Embedded Documents**: Habit entries stored within habit documents for performance
+- **Aggregation Pipelines**: Complex statistics calculated in MongoDB
+- **Indexing**: Proper indexes on user queries and date ranges
+- **Schema Validation**: Mongoose schemas with built-in validation
+
+## API Design
+
+### RESTful Endpoints:
+- `POST /auth/signin`, `/auth/signup` - Authentication
+- `GET/POST/PUT/DELETE /habits` - Habit CRUD
+- `POST /habits/:id/track` - Track habit completion
+- `GET /stats` - Retrieve user statistics
+- `GET /users/profile` - User profile management
+
+### OpenAPI Integration:
+- Backend generates OpenAPI spec
+- Frontend uses generated TypeScript client
+- Type safety across full-stack
+- Automatic API documentation
+
+## Critical Development Workflow
+
+### API Changes Protocol
+⚠️ **MANDATORY**: Whenever ANY changes are made to the backend API (controllers, DTOs, endpoints, etc.), you MUST regenerate the OpenAPI client BEFORE making any frontend updates:
+
+```bash
+# 1. After making API changes in backend
+pnpm nx serve backend        # Start backend to generate new OpenAPI spec
+
+# 2. Regenerate frontend API client (REQUIRED STEP)
+cd apps/frontend
+pnpm run generate-api       # or: pnpm nx run frontend:generate-api
+
+# 3. Then proceed with frontend changes
+```
+
+**Why this matters**:
+- Frontend uses generated TypeScript client from OpenAPI spec
+- API changes without client regeneration cause type mismatches
+- Generated client provides full type safety across the stack
+- Prevents runtime errors and maintains type consistency
+
+**Generated files location**: `apps/frontend/src/api/generated/`
+
+## Current State & Important Notes
+
+### Recent Migration to Nx:
+- Project recently migrated from standalone apps to Nx monorepo
+- Build optimization and caching through Nx
+- Shared dependencies and configuration
+
+### Key Technical Decisions:
+1. **MongoDB Choice**: Flexible schema for different habit types
+2. **JWT Strategy**: Stateless authentication with refresh tokens
+3. **Embedded Tracking**: Habit entries stored in habit documents for query performance
+4. **Generated Client**: Type-safe API client from OpenAPI spec
+5. **Optimistic Updates**: Immediate UI feedback with background sync
+
+### Performance Considerations:
+- Habit statistics pre-computed and cached
+- MongoDB aggregation for complex queries
+- React Query caching for frontend performance
+- Lazy loading for charts and visualizations
+
+## Development Commands
+
+```bash
+# Start development servers
+pnpm nx serve backend    # NestJS API
+pnpm nx serve frontend   # React dev server
+
+# ⚠️ CRITICAL: Generate API client after backend changes
+pnpm nx run frontend:generate-api
+
+# Build applications
+pnpm nx build backend
+pnpm nx build frontend
+
+# Run tests
+pnpm nx test backend
+pnpm nx test frontend
+
+# Lint and format
+pnpm nx lint backend
+pnpm nx lint frontend
+```
+
+## Important Implementation Notes
+
+1. **Habit Types**: Boolean habits vs Counter habits have different tracking mechanisms
+2. **Streak Logic**: Calculated based on consecutive completions, reset on missed days
+3. **Statistics**: Real-time calculation with MongoDB aggregation pipelines
+4. **Time Zones**: All dates handled in user's local timezone
+5. **Audio Feedback**: Success sounds play on habit completion for positive reinforcement
+6. **Responsive Design**: Mobile-first approach with Tailwind breakpoints
+
+---
+
+**Note**: Update this file whenever new features, major refactors, or architectural changes are made to maintain accurate context for the AI assistant. 
