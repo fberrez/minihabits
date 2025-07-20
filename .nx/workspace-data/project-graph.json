@@ -75,19 +75,16 @@
           "serve": {
             "executor": "nx:run-commands",
             "defaultConfiguration": "development",
-            "dependsOn": [
-              "build"
-            ],
             "options": {
               "cwd": "apps/frontend",
-              "command": "vite preview"
+              "command": "vite"
             },
             "configurations": {
               "development": {
-                "command": "vite preview"
+                "command": "vite"
               },
               "production": {
-                "command": "vite preview"
+                "command": "vite"
               }
             },
             "parallelism": true
@@ -18103,6 +18100,11 @@
         "source": "frontend",
         "target": "npm:tailwindcss-animate",
         "type": "static"
+      },
+      {
+        "source": "frontend",
+        "target": "npm:tailwindcss-animate",
+        "type": "dynamic"
       },
       {
         "source": "frontend",
@@ -43356,5 +43358,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1752996811190
+  "computedAt": 1753013772569
 }

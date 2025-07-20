@@ -22,17 +22,16 @@
     "serve": {
       "executor": "nx:run-commands",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
       "options": {
         "cwd": "apps/frontend",
-        "command": "vite preview"
+        "command": "vite"
       },
       "configurations": {
         "development": {
-          "command": "vite preview"
+          "command": "vite"
         },
         "production": {
-          "command": "vite preview"
+          "command": "vite"
         }
       }
     },

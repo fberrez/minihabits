@@ -578,10 +578,6 @@
       "apps/frontend/project.json",
       "nx/core/project-json"
     ],
-    "targets.serve.dependsOn": [
-      "apps/frontend/project.json",
-      "nx/core/project-json"
-    ],
     "targets.serve.options": [
       "apps/frontend/project.json",
       "nx/core/project-json"
