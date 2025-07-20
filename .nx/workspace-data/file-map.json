@@ -23,131 +23,135 @@
   "fileMap": {
     "nonProjectFiles": [
       {
+        "file": "bruno/minihabits/streak/track.bru",
+        "hash": "2584637748775236364"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "14525742987502695387"
+      },
+      {
         "file": "pnpm-lock.yaml",
-        "hash": "471157261310827217"
-      },
-      {
-        "file": "bruno/minihabits/environments/minihabits.bru",
-        "hash": "6000593210490242070"
-      },
-      {
-        "file": ".cursorignore",
-        "hash": "2419917810289608604"
-      },
-      {
-        "file": "README.md",
-        "hash": "2074353371698391063"
-      },
-      {
-        "file": "bruno/minihabits/habits/delete.bru",
-        "hash": "563054263706853344"
-      },
-      {
-        "file": ".cursor/rules/context.mdc",
-        "hash": "11687051178541775495"
-      },
-      {
-        "file": "bruno/minihabits/bruno.json",
-        "hash": "4860971085582506866"
-      },
-      {
-        "file": "bruno/minihabits/habits/get.bru",
-        "hash": "315946568693710760"
-      },
-      {
-        "file": "bruno/minihabits/auth/auth-signup.bru",
-        "hash": "12160729914325817397"
-      },
-      {
-        "file": "bruno/minihabits/streak/stats.bru",
-        "hash": "8979621950904663070"
-      },
-      {
-        "file": "pnpm-workspace.yaml",
-        "hash": "7434045464140418696"
-      },
-      {
-        "file": "tsconfig.base.json",
-        "hash": "9897484296694281365"
-      },
-      {
-        "file": ".github/workflows/deploy.yml",
-        "hash": "9615265460323563013"
+        "hash": "1126861987764473436"
       },
       {
         "file": ".dockerignore",
         "hash": "14615377730694613191"
       },
       {
-        "file": "bruno/minihabits/streak/streak.bru",
-        "hash": "4629195930661766912"
+        "file": "bruno/minihabits/habits/get.bru",
+        "hash": "315946568693710760"
       },
       {
-        "file": "package.json",
-        "hash": "7188411199928821643"
-      },
-      {
-        "file": "nx.json",
-        "hash": "16970103842083221899"
-      },
-      {
-        "file": "bruno/minihabits/auth/auth-signin.bru",
-        "hash": "16264788594396078775"
+        "file": "bruno/minihabits/environments/minihabits.bru",
+        "hash": "6000593210490242070"
       },
       {
         "file": "bruno/minihabits/habits/update.bru",
         "hash": "5406080266286274314"
       },
       {
-        "file": "bruno/minihabits/auth/refresh.bru",
-        "hash": "3762807682471900586"
+        "file": "bruno/minihabits/auth/auth-signin.bru",
+        "hash": "16264788594396078775"
       },
       {
-        "file": "bruno/minihabits/habits/getstats.bru",
-        "hash": "18225461552242178982"
+        "file": "package.json",
+        "hash": "7188411199928821643"
       },
       {
         "file": ".prettierrc",
         "hash": "4808572120966128913"
       },
       {
-        "file": "LICENSE.md",
-        "hash": "17672936396789512931"
+        "file": "bruno/minihabits/habits/getstats.bru",
+        "hash": "18225461552242178982"
       },
       {
         "file": ".gitignore",
-        "hash": "14277686975277425246"
+        "hash": "10789874955046848277"
       },
       {
-        "file": ".eslintrc.js",
-        "hash": "7461846271827386206"
+        "file": "README.md",
+        "hash": "2074353371698391063"
       },
       {
-        "file": "bruno/minihabits/habits/create.bru",
-        "hash": "2116015504710481526"
+        "file": "bruno/minihabits/streak/streak.bru",
+        "hash": "4629195930661766912"
       },
       {
-        "file": "bruno/minihabits/healthccheck.bru",
-        "hash": "10620767397262759657"
-      },
-      {
-        "file": "docker-compose.yml",
-        "hash": "9930372911091436949"
+        "file": "LICENSE.md",
+        "hash": "17672936396789512931"
       },
       {
         "file": "bruno/minihabits/streak/untrack.bru",
         "hash": "5373538890283712661"
       },
       {
-        "file": "bruno/minihabits/streak/track.bru",
-        "hash": "2584637748775236364"
+        "file": "bruno/minihabits/streak/stats.bru",
+        "hash": "8979621950904663070"
+      },
+      {
+        "file": "bruno/minihabits/auth/auth-signup.bru",
+        "hash": "12160729914325817397"
+      },
+      {
+        "file": "bruno/minihabits/healthccheck.bru",
+        "hash": "10620767397262759657"
+      },
+      {
+        "file": ".github/workflows/deploy.yml",
+        "hash": "2611635289843289345"
+      },
+      {
+        "file": "nx.json",
+        "hash": "16970103842083221899"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "9897484296694281365"
+      },
+      {
+        "file": ".cursorignore",
+        "hash": "17321229812038436774"
+      },
+      {
+        "file": ".cursor/rules/context.mdc",
+        "hash": "11687051178541775495"
+      },
+      {
+        "file": "pnpm-workspace.yaml",
+        "hash": "7434045464140418696"
+      },
+      {
+        "file": "bruno/minihabits/bruno.json",
+        "hash": "4860971085582506866"
+      },
+      {
+        "file": ".eslintrc.js",
+        "hash": "7461846271827386206"
+      },
+      {
+        "file": "bruno/minihabits/auth/refresh.bru",
+        "hash": "3762807682471900586"
+      },
+      {
+        "file": "docker-compose.yml",
+        "hash": "12379412086816051549"
+      },
+      {
+        "file": "bruno/minihabits/habits/create.bru",
+        "hash": "2116015504710481526"
+      },
+      {
+        "file": "bruno/minihabits/habits/delete.bru",
+        "hash": "563054263706853344"
       }
     ],
     "projectFileMap": {
       "frontend": [
         {
           "file": "apps/frontend/Dockerfile",
-          "hash": "7199202615298650830"
+          "hash": "14941629869811820639"
         },
         {
           "file": "apps/frontend/components.json",
@@ -219,8 +223,8 @@
           ]
         },
         {
-          "file": "apps/frontend/postcss.config.js",
-          "hash": "1925598197698243946",
+          "file": "apps/frontend/postcss.config.cjs",
+          "hash": "542958312489793870",
           "deps": [
             "npm:tailwindcss",
             "npm:autoprefixer"
@@ -987,7 +991,7 @@
         },
         {
           "file": "apps/backend/Dockerfile",
-          "hash": "3882044937718691778"
+          "hash": "8912108969087130400"
         },
         {
           "file": "apps/backend/jest.config.ts",
@@ -995,12 +999,12 @@
         },
         {
           "file": "apps/backend/package.json",
-          "hash": "15459326653824671426",
+          "hash": "2436436292751458691",
           "deps": [
             "npm:@nestjs/testing",
             "npm:@swc/cli",
             "npm:@swc/core",
-            "npm:@types/bcrypt",
+            "npm:@types/bcryptjs",
             "npm:@types/express@5.0.0",
             "npm:@types/jest",
             "npm:@types/node@20.17.12",
@@ -1030,7 +1034,7 @@
             "npm:@nestjs/platform-express",
             "npm:@nestjs/swagger",
             "npm:@nestjs/terminus",
-            "npm:bcrypt",
+            "npm:bcryptjs",
             "npm:class-transformer",
             "npm:class-validator",
             "npm:moment",
@@ -1110,11 +1114,11 @@
         },
         {
           "file": "apps/backend/src/auth/auth.service.ts",
-          "hash": "16459695513723853634",
+          "hash": "2755978631989716086",
           "deps": [
             "npm:@nestjs/common",
             "npm:@nestjs/jwt",
-            "npm:bcrypt"
+            "npm:bcryptjs"
           ]
         },
         {
@@ -1269,7 +1273,7 @@
         },
         {
           "file": "apps/backend/src/habits/services/habits.boolean.ts",
-          "hash": "7666275037813377073",
+          "hash": "6062576374861979672",
           "deps": [
             "npm:@nestjs/common",
             "npm:moment"
@@ -1277,7 +1281,7 @@
         },
         {
           "file": "apps/backend/src/habits/services/habits.counter.ts",
-          "hash": "2942951321118003386",
+          "hash": "8235851454638784850",
           "deps": [
             "npm:@nestjs/common",
             "npm:moment"
@@ -1437,12 +1441,12 @@
         },
         {
           "file": "apps/backend/src/users/users.service.ts",
-          "hash": "12936106588278513036",
+          "hash": "17074826377877712898",
           "deps": [
             "npm:@nestjs/common",
             "npm:@nestjs/mongoose",
             "npm:mongoose",
-            "npm:bcrypt"
+            "npm:bcryptjs"
           ]
         },
         {
@@ -1465,6 +1469,10 @@
         {
           "file": "apps/backend/tsconfig.json",
           "hash": "12648181540449338374"
+        },
+        {
+          "file": "apps/backend/tsconfig.spec.json",
+          "hash": "6971615064981144049"
         },
         {
           "file": "apps/backend/tsconfig.tsbuildinfo",

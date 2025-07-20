@@ -1,18 +1,22 @@
 import {
   ConflictException,
+  forwardRef,
+  Inject,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { SignUpDto } from './dto/sign-up.dto';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { AuthResponse } from './interfaces/request.interface';
 
 @Injectable()
 export class AuthService {
   constructor(
+    @Inject(UsersService)
     private usersService: UsersService,
+    @Inject(JwtService)
     private jwtService: JwtService,
   ) {}
 

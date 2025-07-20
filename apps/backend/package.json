@@ -24,7 +24,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^11.0.2",
     "@nestjs/terminus": "^10.2.3",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "moment": "^2.30.1",
@@ -39,7 +39,7 @@
     "@nestjs/testing": "^10.0.0",
     "@swc/cli": "^0.7.8",
     "@swc/core": "^1.13.1",
-    "@types/bcrypt": "^6.0.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.3.1",
@@ -79,11 +79,7 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "bcrypt"
-    ]
-  },
+
   "engines": {
     "node": ">=20.0.0"
   }

@@ -1,27 +1,53 @@
 version: '3.8'
 
 services:
-  api:
+  backend:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: minihabits-api
+      dockerfile: apps/backend/Dockerfile
+    container_name: minihabits-backend
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
-      - MONGODB_URI=mongodb://admin:pwd@mongodb:27017/minihabits
+      - MONGODB_URI=mongodb://admin:password@mongodb:27017/minihabits
       - JWT_SECRET=your-jwt-secret
-      - JWT_EXPIRATION_TIME=24h
+      - JWT_EXPIRATION_TIME=7d
       - JWT_REFRESH_SECRET=your-jwt-refresh-secret
-      - JWT_REFRESH_EXPIRATION_TIME=7d
+      - JWT_REFRESH_EXPIRATION_TIME=30d
+      - CORS_ORIGIN=http://localhost:5173,http://localhost:80
+      - FRONTEND_URL=http://localhost:5173
+      - RESEND_API_KEY="re_11234"
+      - RESEND_FROM="Minihabits <youraddres@host.co>"
+      - RESEND_AUDIENCE_ID="your-audience-id"
+      - PORT=3000
     depends_on:
       - mongodb
     restart: unless-stopped
-    command: >
-      sh -c "npm install -g pnpm &&
-             pnpm install &&
-             pnpm run start:dev"
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/healthcheck', (res) => process.exit(res.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+      args:
+        - VITE_API_BASE_URL=http://localhost:3000
+        - VITE_CONTACT_EMAIL=contact@fberrez.co
+    container_name: minihabits-frontend
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   mongodb:
     image: mongo:latest

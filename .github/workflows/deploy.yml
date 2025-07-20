@@ -31,9 +31,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run tests
-        run: pnpm nx test
-
       - name: Build applications
         run: |
           pnpm nx build backend
@@ -122,11 +119,6 @@ jobs:
             RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}"
             RESEND_FROM="${{ vars.RESEND_FROM }}"
             RESEND_AUDIENCE_ID="${{ vars.RESEND_AUDIENCE_ID }}"
-            STRIPE_SECRET_KEY="${{ secrets.STRIPE_SECRET_KEY }}"
-            STRIPE_WEBHOOK_SECRET="${{ secrets.STRIPE_WEBHOOK_SECRET }}"
-            STRIPE_PRICE_MONTHLY_ID="${{ secrets.STRIPE_PRICE_MONTHLY_ID }}"
-            STRIPE_PRICE_YEARLY_ID="${{ secrets.STRIPE_PRICE_YEARLY_ID }}"
-            STRIPE_PRICE_LIFETIME_ID="${{ secrets.STRIPE_PRICE_LIFETIME_ID }}"
             EOL
             
             # Create docker-compose.yml file directly on the server

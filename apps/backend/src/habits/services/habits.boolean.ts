@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Habit, HabitDocument, HabitType } from '../habits.schema';
 import moment from 'moment';
 import { StatsService } from '../../stats/stats.service';
@@ -7,7 +7,10 @@ import { HabitStats } from '../interfaces/habit-service.interface';
 
 @Injectable()
 export class HabitsBooleanService implements HabitService {
-  constructor(private readonly statsService: StatsService) {}
+  constructor(
+    @Inject(StatsService)
+    private readonly statsService: StatsService,
+  ) {}
 
   async trackHabit(habit: HabitDocument, date: string): Promise<Habit> {
     if (habit.type !== HabitType.BOOLEAN) {

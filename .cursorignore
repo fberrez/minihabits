@@ -47,10 +47,6 @@ coverage/
 .env*
 !.env.example
 
-# Docker
-Dockerfile*
-docker-compose*.yml
-
 # Documentation (focus on code)
 *.md
 !README.md

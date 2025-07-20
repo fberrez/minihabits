@@ -6,19 +6,23 @@ RUN corepack enable
 
 FROM base AS build
 WORKDIR /app
-COPY pnpm-lock.yaml package.json ./
+# Copy workspace configuration files
+COPY pnpm-lock.yaml package.json pnpm-workspace.yaml ./
 COPY nx.json ./
+# Copy all app package.json files to ensure proper workspace dependency resolution
+COPY apps/backend/package.json ./apps/backend/
+COPY apps/frontend/package.json ./apps/frontend/
 # Install ALL dependencies (including devDependencies)
 RUN pnpm install --frozen-lockfile
 # Copy all files including the public directory
 COPY . .
 
-# Define build arguments for environment variables
-ARG VITE_API_BASE_URL
-ARG VITE_CONTACT_EMAIL
-ARG VITE_STRIPE_PRICE_MONTHLY_ID
-ARG VITE_STRIPE_PRICE_YEARLY_ID
-ARG VITE_STRIPE_PRICE_LIFETIME_ID
+# Define build arguments for environment variables (with defaults for development)
+ARG VITE_API_BASE_URL=http://localhost:3000
+ARG VITE_CONTACT_EMAIL=contact@example.com
+ARG VITE_STRIPE_PRICE_MONTHLY_ID=""
+ARG VITE_STRIPE_PRICE_YEARLY_ID=""
+ARG VITE_STRIPE_PRICE_LIFETIME_ID=""
 
 # Set environment variables for the build process
 ENV NODE_ENV=production
@@ -37,7 +41,7 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 # Copy the built files
-COPY --from=build /app/dist/apps/frontend ./dist
+COPY --from=build /app/apps/frontend/dist ./dist
 # Install serve to host the static files
 RUN npm install -g serve
 # Expose port 80
