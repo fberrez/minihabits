@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -17,7 +18,9 @@ import { HabitStatsOutput } from './dto/habits';
 export class HabitsService {
   constructor(
     @InjectModel(Habit.name) private habitModel: Model<Habit>,
+    @Inject(HabitsCounterService)
     private readonly counterService: HabitsCounterService,
+    @Inject(HabitsBooleanService)
     private readonly booleanService: HabitsBooleanService,
   ) {}
 

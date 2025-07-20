@@ -23,84 +23,8 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".dockerignore",
-        "hash": "14615377730694613191"
-      },
-      {
-        "file": ".eslintrc.js",
-        "hash": "7461846271827386206"
-      },
-      {
-        "file": ".github/workflows/deploy.yml",
-        "hash": "9615265460323563013"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "2065040232376736455"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "4808572120966128913"
-      },
-      {
-        "file": "LICENSE.md",
-        "hash": "17672936396789512931"
-      },
-      {
-        "file": "README.md",
-        "hash": "15105974508404268812"
-      },
-      {
-        "file": "bruno/minihabits/auth/auth-signin.bru",
-        "hash": "16264788594396078775"
-      },
-      {
-        "file": "bruno/minihabits/auth/auth-signup.bru",
-        "hash": "12160729914325817397"
-      },
-      {
-        "file": "bruno/minihabits/auth/refresh.bru",
-        "hash": "3762807682471900586"
-      },
-      {
-        "file": "bruno/minihabits/bruno.json",
-        "hash": "4860971085582506866"
-      },
-      {
         "file": "bruno/minihabits/environments/minihabits.bru",
         "hash": "6000593210490242070"
-      },
-      {
-        "file": "bruno/minihabits/habits/create.bru",
-        "hash": "2116015504710481526"
-      },
-      {
-        "file": "bruno/minihabits/habits/delete.bru",
-        "hash": "563054263706853344"
-      },
-      {
-        "file": "bruno/minihabits/habits/get.bru",
-        "hash": "315946568693710760"
-      },
-      {
-        "file": "bruno/minihabits/habits/getstats.bru",
-        "hash": "18225461552242178982"
-      },
-      {
-        "file": "bruno/minihabits/habits/update.bru",
-        "hash": "5406080266286274314"
-      },
-      {
-        "file": "bruno/minihabits/healthccheck.bru",
-        "hash": "10620767397262759657"
-      },
-      {
-        "file": "bruno/minihabits/streak/stats.bru",
-        "hash": "8979621950904663070"
-      },
-      {
-        "file": "bruno/minihabits/streak/streak.bru",
-        "hash": "4629195930661766912"
       },
       {
         "file": "bruno/minihabits/streak/track.bru",
@@ -111,2349 +35,115 @@
         "hash": "5373538890283712661"
       },
       {
-        "file": "docker-compose.yml",
-        "hash": "9930372911091436949"
+        "file": "bruno/minihabits/habits/update.bru",
+        "hash": "5406080266286274314"
       },
       {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/app.controller.js",
-        "hash": "14370057546217371066"
+        "file": ".eslintrc.js",
+        "hash": "7461846271827386206"
       },
       {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/app.controller.js.map",
-        "hash": "6562097015224482676"
+        "file": "bruno/minihabits/healthccheck.bru",
+        "hash": "10620767397262759657"
       },
       {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/app.module.js",
-        "hash": "4059055384509005017"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/app.module.js.map",
-        "hash": "3260060584667994196"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/app.service.js",
-        "hash": "7939744916669607990"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/app.service.js.map",
-        "hash": "1654525777957145490"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/auth.controller.js",
-        "hash": "8948941029346896185"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/auth.controller.js.map",
-        "hash": "18333816312557591949"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/auth.decorator.js",
-        "hash": "16175270029737720680"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/auth.decorator.js.map",
-        "hash": "1364146991999482798"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/auth.guard.js",
-        "hash": "3500796405452768086"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/auth.guard.js.map",
-        "hash": "11658611928521241931"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/auth.module.js",
-        "hash": "11837110976626912561"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/auth.module.js.map",
-        "hash": "9344584603823522279"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/auth.service.js",
-        "hash": "15913012886913158765"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/auth.service.js.map",
-        "hash": "10481082779684522162"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/dto/sign-in.dto.js",
-        "hash": "6715092510795973174"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/dto/sign-in.dto.js.map",
-        "hash": "2991014390552959933"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/dto/sign-up.dto.js",
-        "hash": "1233578326296323291"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/dto/sign-up.dto.js.map",
-        "hash": "1418399473424097529"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/interfaces/request.interface.js",
-        "hash": "10231227954160724287"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/interfaces/request.interface.js.map",
-        "hash": "10432714066054265610"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/protected-route.decorator.js",
-        "hash": "8575130003477667068"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/protected-route.decorator.js.map",
-        "hash": "17981027535293657390"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/public-route.decorator.js",
-        "hash": "16754715019936870061"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/auth/public-route.decorator.js.map",
-        "hash": "13699836819984015064"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/email/email.module.js",
-        "hash": "16543825731829205249"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/email/email.module.js.map",
-        "hash": "2344234534402699591"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/email/email.service.js",
-        "hash": "13191004375904230646"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/email/email.service.js.map",
-        "hash": "9572091503501245208"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/dto/create.dto.js",
-        "hash": "10161324859522721140"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/dto/create.dto.js.map",
-        "hash": "15319531963734074655"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/dto/habits.js",
-        "hash": "2743477236013823634"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/dto/habits.js.map",
-        "hash": "18158254812948022721"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/dto/track.dto.js",
-        "hash": "9437470375572702503"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/dto/track.dto.js.map",
-        "hash": "13590162151599873195"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/dto/update.dto.js",
-        "hash": "17973486268166169273"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/dto/update.dto.js.map",
-        "hash": "10027040278280112992"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/habits.controller.js",
-        "hash": "3883912150817674791"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/habits.controller.js.map",
-        "hash": "3196279685931332030"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/habits.module.js",
-        "hash": "2234011041427405052"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/habits.module.js.map",
-        "hash": "685107844876167085"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/habits.schema.js",
-        "hash": "9136551762134920965"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/habits.schema.js.map",
-        "hash": "14763621771129980012"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/habits.service.js",
-        "hash": "11573615697143945176"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/habits.service.js.map",
-        "hash": "587945235734878320"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/interfaces/habit-service.interface.js",
-        "hash": "2858756214878943995"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/interfaces/habit-service.interface.js.map",
-        "hash": "12284320218611325983"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/interfaces/habit-stats.interface.js",
-        "hash": "1371128398330958096"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/interfaces/habit-stats.interface.js.map",
-        "hash": "14159144082693247155"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/services/habits.boolean.js",
-        "hash": "10628649516622035988"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/services/habits.boolean.js.map",
-        "hash": "10770315107337295449"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/services/habits.counter.js",
-        "hash": "18258931482614014904"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/habits/services/habits.counter.js.map",
-        "hash": "6064966594484933781"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/healthcheck/healthcheck.controller.js",
-        "hash": "15622552243624235066"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/healthcheck/healthcheck.controller.js.map",
-        "hash": "237360547186499053"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/healthcheck/healthcheck.module.js",
-        "hash": "16290205817552887500"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/healthcheck/healthcheck.module.js.map",
-        "hash": "6661586233867684613"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/main.js",
-        "hash": "13320053897089309204"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/main.js.map",
-        "hash": "11727299432271641619"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/stats/dto/stats.js",
-        "hash": "4905405129569835443"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/stats/dto/stats.js.map",
-        "hash": "4595061296179571244"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/stats/stats.controller.js",
-        "hash": "7556629794280230219"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/stats/stats.controller.js.map",
-        "hash": "3232173676782908801"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/stats/stats.module.js",
-        "hash": "4583099015801716546"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/stats/stats.module.js.map",
-        "hash": "14536746134210628477"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/stats/stats.schema.js",
-        "hash": "794592436446171312"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/stats/stats.schema.js.map",
-        "hash": "2041650368046396993"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/stats/stats.service.js",
-        "hash": "2697535210255290719"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/stats/stats.service.js.map",
-        "hash": "12699595067761278594"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/dto/forgot-password.dto.js",
-        "hash": "6059782164073247533"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/dto/forgot-password.dto.js.map",
-        "hash": "10745346769999788385"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/dto/reset-password.dto.js",
-        "hash": "4436525927449500714"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/dto/reset-password.dto.js.map",
-        "hash": "1485422746435853809"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/dto/update-email.dto.js",
-        "hash": "11937643645392204118"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/dto/update-email.dto.js.map",
-        "hash": "2180805030128396276"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/dto/update-password.dto.js",
-        "hash": "15265639662314789721"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/dto/update-password.dto.js.map",
-        "hash": "4128476920967084767"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/users.controller.js",
-        "hash": "4885971328741470259"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/users.controller.js.map",
-        "hash": "18268582005211758013"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/users.module.js",
-        "hash": "692845901807100740"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/users.module.js.map",
-        "hash": "11171687049244449802"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/users.schema.js",
-        "hash": "3727029004639843914"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/users.schema.js.map",
-        "hash": "16204038655152430101"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/users.service.js",
-        "hash": "16523937759454366782"
-      },
-      {
-        "file": "nx-cache/11382334686972954188/apps/backend/dist/users/users.service.js.map",
-        "hash": "15380134640559564549"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/app.controller.js",
-        "hash": "14370057546217371066"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/app.controller.js.map",
-        "hash": "6562097015224482676"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/app.module.js",
-        "hash": "4059055384509005017"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/app.module.js.map",
-        "hash": "3260060584667994196"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/app.service.js",
-        "hash": "7939744916669607990"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/app.service.js.map",
-        "hash": "1654525777957145490"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/auth.controller.js",
-        "hash": "8948941029346896185"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/auth.controller.js.map",
-        "hash": "18333816312557591949"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/auth.decorator.js",
-        "hash": "16175270029737720680"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/auth.decorator.js.map",
-        "hash": "1364146991999482798"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/auth.guard.js",
-        "hash": "3500796405452768086"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/auth.guard.js.map",
-        "hash": "11658611928521241931"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/auth.module.js",
-        "hash": "11837110976626912561"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/auth.module.js.map",
-        "hash": "9344584603823522279"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/auth.service.js",
-        "hash": "15913012886913158765"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/auth.service.js.map",
-        "hash": "10481082779684522162"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/dto/sign-in.dto.js",
-        "hash": "6715092510795973174"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/dto/sign-in.dto.js.map",
-        "hash": "2991014390552959933"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/dto/sign-up.dto.js",
-        "hash": "1233578326296323291"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/dto/sign-up.dto.js.map",
-        "hash": "1418399473424097529"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/interfaces/request.interface.js",
-        "hash": "10231227954160724287"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/interfaces/request.interface.js.map",
-        "hash": "10432714066054265610"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/protected-route.decorator.js",
-        "hash": "8575130003477667068"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/protected-route.decorator.js.map",
-        "hash": "17981027535293657390"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/public-route.decorator.js",
-        "hash": "16754715019936870061"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/auth/public-route.decorator.js.map",
-        "hash": "13699836819984015064"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/email/email.module.js",
-        "hash": "16543825731829205249"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/email/email.module.js.map",
-        "hash": "2344234534402699591"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/email/email.service.js",
-        "hash": "13191004375904230646"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/email/email.service.js.map",
-        "hash": "9572091503501245208"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/dto/create.dto.js",
-        "hash": "10161324859522721140"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/dto/create.dto.js.map",
-        "hash": "15319531963734074655"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/dto/habits.js",
-        "hash": "2743477236013823634"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/dto/habits.js.map",
-        "hash": "18158254812948022721"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/dto/track.dto.js",
-        "hash": "9437470375572702503"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/dto/track.dto.js.map",
-        "hash": "13590162151599873195"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/dto/update.dto.js",
-        "hash": "17973486268166169273"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/dto/update.dto.js.map",
-        "hash": "10027040278280112992"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/habits.controller.js",
-        "hash": "3883912150817674791"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/habits.controller.js.map",
-        "hash": "3196279685931332030"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/habits.module.js",
-        "hash": "2234011041427405052"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/habits.module.js.map",
-        "hash": "685107844876167085"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/habits.schema.js",
-        "hash": "9136551762134920965"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/habits.schema.js.map",
-        "hash": "14763621771129980012"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/habits.service.js",
-        "hash": "11573615697143945176"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/habits.service.js.map",
-        "hash": "587945235734878320"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/interfaces/habit-service.interface.js",
-        "hash": "2858756214878943995"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/interfaces/habit-service.interface.js.map",
-        "hash": "12284320218611325983"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/interfaces/habit-stats.interface.js",
-        "hash": "1371128398330958096"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/interfaces/habit-stats.interface.js.map",
-        "hash": "14159144082693247155"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/services/habits.boolean.js",
-        "hash": "10628649516622035988"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/services/habits.boolean.js.map",
-        "hash": "10770315107337295449"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/services/habits.counter.js",
-        "hash": "18258931482614014904"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/habits/services/habits.counter.js.map",
-        "hash": "6064966594484933781"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/healthcheck/healthcheck.controller.js",
-        "hash": "15622552243624235066"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/healthcheck/healthcheck.controller.js.map",
-        "hash": "237360547186499053"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/healthcheck/healthcheck.module.js",
-        "hash": "16290205817552887500"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/healthcheck/healthcheck.module.js.map",
-        "hash": "6661586233867684613"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/main.js",
-        "hash": "13320053897089309204"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/main.js.map",
-        "hash": "11727299432271641619"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/stats/dto/stats.js",
-        "hash": "4905405129569835443"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/stats/dto/stats.js.map",
-        "hash": "4595061296179571244"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/stats/stats.controller.js",
-        "hash": "7556629794280230219"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/stats/stats.controller.js.map",
-        "hash": "3232173676782908801"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/stats/stats.module.js",
-        "hash": "4583099015801716546"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/stats/stats.module.js.map",
-        "hash": "14536746134210628477"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/stats/stats.schema.js",
-        "hash": "794592436446171312"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/stats/stats.schema.js.map",
-        "hash": "2041650368046396993"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/stats/stats.service.js",
-        "hash": "2697535210255290719"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/stats/stats.service.js.map",
-        "hash": "12699595067761278594"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/dto/forgot-password.dto.js",
-        "hash": "6059782164073247533"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/dto/forgot-password.dto.js.map",
-        "hash": "10745346769999788385"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/dto/reset-password.dto.js",
-        "hash": "4436525927449500714"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/dto/reset-password.dto.js.map",
-        "hash": "1485422746435853809"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/dto/update-email.dto.js",
-        "hash": "11937643645392204118"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/dto/update-email.dto.js.map",
-        "hash": "2180805030128396276"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/dto/update-password.dto.js",
-        "hash": "15265639662314789721"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/dto/update-password.dto.js.map",
-        "hash": "4128476920967084767"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/users.controller.js",
-        "hash": "4885971328741470259"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/users.controller.js.map",
-        "hash": "18268582005211758013"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/users.module.js",
-        "hash": "692845901807100740"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/users.module.js.map",
-        "hash": "11171687049244449802"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/users.schema.js",
-        "hash": "3727029004639843914"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/users.schema.js.map",
-        "hash": "16204038655152430101"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/users.service.js",
-        "hash": "16523937759454366782"
-      },
-      {
-        "file": "nx-cache/12393218811166137110/apps/backend/dist/users/users.service.js.map",
-        "hash": "15380134640559564549"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/dist/assets/HH7B3BHX-kgKNfCm8.js",
-        "hash": "3234556596520810379"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/dist/assets/index-BeQYCanK.css",
-        "hash": "18107886502860443585"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/dist/assets/index-ByCzARt3.js",
-        "hash": "12187338272298564134"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/dist/assets/success-bQnasmkR.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/dist/h-192.png",
-        "hash": "10096827051478760105"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/dist/h-512.png",
-        "hash": "16729165065195339152"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/dist/h.svg",
-        "hash": "17521644408541024471"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/dist/index.html",
-        "hash": "3618141519569396824"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/dist/robots.txt",
-        "hash": "8047389571712361519"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/dist/success.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/public/h-192.png",
-        "hash": "10096827051478760105"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/public/h-512.png",
-        "hash": "16729165065195339152"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/public/h.svg",
-        "hash": "17521644408541024471"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/public/robots.txt",
-        "hash": "8047389571712361519"
-      },
-      {
-        "file": "nx-cache/14981507837921477952/apps/frontend/public/success.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/dist/assets/HH7B3BHX-BxPM7wBf.js",
-        "hash": "1655331545410982414"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/dist/assets/index-BbEQWfcI.css",
-        "hash": "1924442502049703397"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/dist/assets/index-Cz438bOH.js",
-        "hash": "566386353311173947"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/dist/assets/success-bQnasmkR.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/dist/h-192.png",
-        "hash": "10096827051478760105"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/dist/h-512.png",
-        "hash": "16729165065195339152"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/dist/h.svg",
-        "hash": "17521644408541024471"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/dist/index.html",
-        "hash": "664739332595662910"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/dist/robots.txt",
-        "hash": "8047389571712361519"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/dist/success.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/public/h-192.png",
-        "hash": "10096827051478760105"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/public/h-512.png",
-        "hash": "16729165065195339152"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/public/h.svg",
-        "hash": "17521644408541024471"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/public/robots.txt",
-        "hash": "8047389571712361519"
-      },
-      {
-        "file": "nx-cache/2693604387559002141/apps/frontend/public/success.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/app.controller.js",
-        "hash": "14370057546217371066"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/app.controller.js.map",
-        "hash": "6562097015224482676"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/app.module.js",
-        "hash": "4059055384509005017"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/app.module.js.map",
-        "hash": "3260060584667994196"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/app.service.js",
-        "hash": "7939744916669607990"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/app.service.js.map",
-        "hash": "1654525777957145490"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/auth.controller.js",
-        "hash": "8948941029346896185"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/auth.controller.js.map",
-        "hash": "18333816312557591949"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/auth.decorator.js",
-        "hash": "16175270029737720680"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/auth.decorator.js.map",
-        "hash": "1364146991999482798"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/auth.guard.js",
-        "hash": "3500796405452768086"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/auth.guard.js.map",
-        "hash": "11658611928521241931"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/auth.module.js",
-        "hash": "11837110976626912561"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/auth.module.js.map",
-        "hash": "9344584603823522279"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/auth.service.js",
-        "hash": "15913012886913158765"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/auth.service.js.map",
-        "hash": "10481082779684522162"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/dto/sign-in.dto.js",
-        "hash": "6715092510795973174"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/dto/sign-in.dto.js.map",
-        "hash": "2991014390552959933"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/dto/sign-up.dto.js",
-        "hash": "1233578326296323291"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/dto/sign-up.dto.js.map",
-        "hash": "1418399473424097529"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/interfaces/request.interface.js",
-        "hash": "10231227954160724287"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/interfaces/request.interface.js.map",
-        "hash": "10432714066054265610"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/protected-route.decorator.js",
-        "hash": "8575130003477667068"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/protected-route.decorator.js.map",
-        "hash": "17981027535293657390"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/public-route.decorator.js",
-        "hash": "16754715019936870061"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/auth/public-route.decorator.js.map",
-        "hash": "13699836819984015064"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/email/email.module.js",
-        "hash": "16543825731829205249"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/email/email.module.js.map",
-        "hash": "2344234534402699591"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/email/email.service.js",
-        "hash": "13191004375904230646"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/email/email.service.js.map",
-        "hash": "9572091503501245208"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/dto/create.dto.js",
-        "hash": "10161324859522721140"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/dto/create.dto.js.map",
-        "hash": "15319531963734074655"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/dto/habits.js",
-        "hash": "2743477236013823634"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/dto/habits.js.map",
-        "hash": "18158254812948022721"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/dto/track.dto.js",
-        "hash": "9437470375572702503"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/dto/track.dto.js.map",
-        "hash": "13590162151599873195"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/dto/update.dto.js",
-        "hash": "17973486268166169273"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/dto/update.dto.js.map",
-        "hash": "10027040278280112992"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/habits.controller.js",
-        "hash": "3883912150817674791"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/habits.controller.js.map",
-        "hash": "3196279685931332030"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/habits.module.js",
-        "hash": "2234011041427405052"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/habits.module.js.map",
-        "hash": "685107844876167085"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/habits.schema.js",
-        "hash": "9136551762134920965"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/habits.schema.js.map",
-        "hash": "14763621771129980012"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/habits.service.js",
-        "hash": "11573615697143945176"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/habits.service.js.map",
-        "hash": "587945235734878320"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/interfaces/habit-service.interface.js",
-        "hash": "2858756214878943995"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/interfaces/habit-service.interface.js.map",
-        "hash": "12284320218611325983"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/interfaces/habit-stats.interface.js",
-        "hash": "1371128398330958096"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/interfaces/habit-stats.interface.js.map",
-        "hash": "14159144082693247155"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/services/habits.boolean.js",
-        "hash": "10628649516622035988"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/services/habits.boolean.js.map",
-        "hash": "10770315107337295449"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/services/habits.counter.js",
-        "hash": "18258931482614014904"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/habits/services/habits.counter.js.map",
-        "hash": "6064966594484933781"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/healthcheck/healthcheck.controller.js",
-        "hash": "15622552243624235066"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/healthcheck/healthcheck.controller.js.map",
-        "hash": "237360547186499053"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/healthcheck/healthcheck.module.js",
-        "hash": "16290205817552887500"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/healthcheck/healthcheck.module.js.map",
-        "hash": "6661586233867684613"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/main.js",
-        "hash": "13320053897089309204"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/main.js.map",
-        "hash": "11727299432271641619"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/stats/dto/stats.js",
-        "hash": "4905405129569835443"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/stats/dto/stats.js.map",
-        "hash": "4595061296179571244"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/stats/stats.controller.js",
-        "hash": "7556629794280230219"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/stats/stats.controller.js.map",
-        "hash": "3232173676782908801"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/stats/stats.module.js",
-        "hash": "4583099015801716546"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/stats/stats.module.js.map",
-        "hash": "14536746134210628477"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/stats/stats.schema.js",
-        "hash": "794592436446171312"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/stats/stats.schema.js.map",
-        "hash": "2041650368046396993"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/stats/stats.service.js",
-        "hash": "2697535210255290719"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/stats/stats.service.js.map",
-        "hash": "12699595067761278594"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/dto/forgot-password.dto.js",
-        "hash": "6059782164073247533"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/dto/forgot-password.dto.js.map",
-        "hash": "10745346769999788385"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/dto/reset-password.dto.js",
-        "hash": "4436525927449500714"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/dto/reset-password.dto.js.map",
-        "hash": "1485422746435853809"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/dto/update-email.dto.js",
-        "hash": "11937643645392204118"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/dto/update-email.dto.js.map",
-        "hash": "2180805030128396276"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/dto/update-password.dto.js",
-        "hash": "15265639662314789721"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/dto/update-password.dto.js.map",
-        "hash": "4128476920967084767"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/users.controller.js",
-        "hash": "4885971328741470259"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/users.controller.js.map",
-        "hash": "18268582005211758013"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/users.module.js",
-        "hash": "692845901807100740"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/users.module.js.map",
-        "hash": "11171687049244449802"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/users.schema.js",
-        "hash": "3727029004639843914"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/users.schema.js.map",
-        "hash": "16204038655152430101"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/users.service.js",
-        "hash": "16523937759454366782"
-      },
-      {
-        "file": "nx-cache/5434867316722837255/apps/backend/dist/users/users.service.js.map",
-        "hash": "15380134640559564549"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/dist/assets/HH7B3BHX-BxPM7wBf.js",
-        "hash": "1655331545410982414"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/dist/assets/index-BbEQWfcI.css",
-        "hash": "1924442502049703397"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/dist/assets/index-Cz438bOH.js",
-        "hash": "566386353311173947"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/dist/assets/success-bQnasmkR.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/dist/h-192.png",
-        "hash": "10096827051478760105"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/dist/h-512.png",
-        "hash": "16729165065195339152"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/dist/h.svg",
-        "hash": "17521644408541024471"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/dist/index.html",
-        "hash": "664739332595662910"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/dist/robots.txt",
-        "hash": "8047389571712361519"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/dist/success.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/public/h-192.png",
-        "hash": "10096827051478760105"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/public/h-512.png",
-        "hash": "16729165065195339152"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/public/h.svg",
-        "hash": "17521644408541024471"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/public/robots.txt",
-        "hash": "8047389571712361519"
-      },
-      {
-        "file": "nx-cache/6205900052679219768/apps/frontend/public/success.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/dist/assets/HH7B3BHX-kgKNfCm8.js",
-        "hash": "3234556596520810379"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/dist/assets/index-BeQYCanK.css",
-        "hash": "18107886502860443585"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/dist/assets/index-ByCzARt3.js",
-        "hash": "12187338272298564134"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/dist/assets/success-bQnasmkR.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/dist/h-192.png",
-        "hash": "10096827051478760105"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/dist/h-512.png",
-        "hash": "16729165065195339152"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/dist/h.svg",
-        "hash": "17521644408541024471"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/dist/index.html",
-        "hash": "3618141519569396824"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/dist/robots.txt",
-        "hash": "8047389571712361519"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/dist/success.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/public/h-192.png",
-        "hash": "10096827051478760105"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/public/h-512.png",
-        "hash": "16729165065195339152"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/public/h.svg",
-        "hash": "17521644408541024471"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/public/robots.txt",
-        "hash": "8047389571712361519"
-      },
-      {
-        "file": "nx-cache/7586122265672499934/apps/frontend/public/success.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/app.controller.js",
-        "hash": "14370057546217371066"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/app.controller.js.map",
-        "hash": "6562097015224482676"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/app.module.js",
-        "hash": "4059055384509005017"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/app.module.js.map",
-        "hash": "3260060584667994196"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/app.service.js",
-        "hash": "7939744916669607990"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/app.service.js.map",
-        "hash": "1654525777957145490"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/auth.controller.js",
-        "hash": "8948941029346896185"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/auth.controller.js.map",
-        "hash": "18333816312557591949"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/auth.decorator.js",
-        "hash": "16175270029737720680"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/auth.decorator.js.map",
-        "hash": "1364146991999482798"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/auth.guard.js",
-        "hash": "3500796405452768086"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/auth.guard.js.map",
-        "hash": "11658611928521241931"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/auth.module.js",
-        "hash": "11837110976626912561"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/auth.module.js.map",
-        "hash": "9344584603823522279"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/auth.service.js",
-        "hash": "15913012886913158765"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/auth.service.js.map",
-        "hash": "10481082779684522162"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/dto/sign-in.dto.js",
-        "hash": "6715092510795973174"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/dto/sign-in.dto.js.map",
-        "hash": "2991014390552959933"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/dto/sign-up.dto.js",
-        "hash": "1233578326296323291"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/dto/sign-up.dto.js.map",
-        "hash": "1418399473424097529"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/interfaces/request.interface.js",
-        "hash": "10231227954160724287"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/interfaces/request.interface.js.map",
-        "hash": "10432714066054265610"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/protected-route.decorator.js",
-        "hash": "8575130003477667068"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/protected-route.decorator.js.map",
-        "hash": "17981027535293657390"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/public-route.decorator.js",
-        "hash": "16754715019936870061"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/auth/public-route.decorator.js.map",
-        "hash": "13699836819984015064"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/email/email.module.js",
-        "hash": "16543825731829205249"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/email/email.module.js.map",
-        "hash": "2344234534402699591"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/email/email.service.js",
-        "hash": "13191004375904230646"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/email/email.service.js.map",
-        "hash": "9572091503501245208"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/dto/create.dto.js",
-        "hash": "10161324859522721140"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/dto/create.dto.js.map",
-        "hash": "15319531963734074655"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/dto/habits.js",
-        "hash": "2743477236013823634"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/dto/habits.js.map",
-        "hash": "18158254812948022721"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/dto/track.dto.js",
-        "hash": "9437470375572702503"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/dto/track.dto.js.map",
-        "hash": "13590162151599873195"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/dto/update.dto.js",
-        "hash": "17973486268166169273"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/dto/update.dto.js.map",
-        "hash": "10027040278280112992"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/habits.controller.js",
-        "hash": "3883912150817674791"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/habits.controller.js.map",
-        "hash": "3196279685931332030"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/habits.module.js",
-        "hash": "2234011041427405052"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/habits.module.js.map",
-        "hash": "685107844876167085"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/habits.schema.js",
-        "hash": "9136551762134920965"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/habits.schema.js.map",
-        "hash": "14763621771129980012"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/habits.service.js",
-        "hash": "11573615697143945176"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/habits.service.js.map",
-        "hash": "587945235734878320"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/interfaces/habit-service.interface.js",
-        "hash": "2858756214878943995"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/interfaces/habit-service.interface.js.map",
-        "hash": "12284320218611325983"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/interfaces/habit-stats.interface.js",
-        "hash": "1371128398330958096"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/interfaces/habit-stats.interface.js.map",
-        "hash": "14159144082693247155"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/services/habits.boolean.js",
-        "hash": "10628649516622035988"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/services/habits.boolean.js.map",
-        "hash": "10770315107337295449"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/services/habits.counter.js",
-        "hash": "18258931482614014904"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/habits/services/habits.counter.js.map",
-        "hash": "6064966594484933781"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/healthcheck/healthcheck.controller.js",
-        "hash": "15622552243624235066"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/healthcheck/healthcheck.controller.js.map",
-        "hash": "237360547186499053"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/healthcheck/healthcheck.module.js",
-        "hash": "16290205817552887500"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/healthcheck/healthcheck.module.js.map",
-        "hash": "6661586233867684613"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/main.js",
-        "hash": "13320053897089309204"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/main.js.map",
-        "hash": "11727299432271641619"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/stats/dto/stats.js",
-        "hash": "4905405129569835443"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/stats/dto/stats.js.map",
-        "hash": "4595061296179571244"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/stats/stats.controller.js",
-        "hash": "7556629794280230219"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/stats/stats.controller.js.map",
-        "hash": "3232173676782908801"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/stats/stats.module.js",
-        "hash": "4583099015801716546"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/stats/stats.module.js.map",
-        "hash": "14536746134210628477"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/stats/stats.schema.js",
-        "hash": "794592436446171312"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/stats/stats.schema.js.map",
-        "hash": "2041650368046396993"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/stats/stats.service.js",
-        "hash": "2697535210255290719"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/stats/stats.service.js.map",
-        "hash": "12699595067761278594"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/dto/forgot-password.dto.js",
-        "hash": "6059782164073247533"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/dto/forgot-password.dto.js.map",
-        "hash": "10745346769999788385"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/dto/reset-password.dto.js",
-        "hash": "4436525927449500714"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/dto/reset-password.dto.js.map",
-        "hash": "1485422746435853809"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/dto/update-email.dto.js",
-        "hash": "11937643645392204118"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/dto/update-email.dto.js.map",
-        "hash": "2180805030128396276"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/dto/update-password.dto.js",
-        "hash": "15265639662314789721"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/dto/update-password.dto.js.map",
-        "hash": "4128476920967084767"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/users.controller.js",
-        "hash": "4885971328741470259"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/users.controller.js.map",
-        "hash": "18268582005211758013"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/users.module.js",
-        "hash": "692845901807100740"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/users.module.js.map",
-        "hash": "11171687049244449802"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/users.schema.js",
-        "hash": "3727029004639843914"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/users.schema.js.map",
-        "hash": "16204038655152430101"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/users.service.js",
-        "hash": "16523937759454366782"
-      },
-      {
-        "file": "nx-cache/8111306143309094984/apps/backend/dist/users/users.service.js.map",
-        "hash": "15380134640559564549"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/dist/assets/HH7B3BHX-Dmjq-pua.js",
-        "hash": "8564307496368972502"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/dist/assets/index-W0NyTY3w.css",
-        "hash": "13723343438346221954"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/dist/assets/index-sSh4QvUM.js",
-        "hash": "16773881420216149408"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/dist/assets/success-bQnasmkR.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/dist/h-192.png",
-        "hash": "10096827051478760105"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/dist/h-512.png",
-        "hash": "16729165065195339152"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/dist/h.svg",
-        "hash": "17521644408541024471"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/dist/index.html",
-        "hash": "13896580054509451563"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/dist/robots.txt",
-        "hash": "8047389571712361519"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/dist/success.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/public/h-192.png",
-        "hash": "10096827051478760105"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/public/h-512.png",
-        "hash": "16729165065195339152"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/public/h.svg",
-        "hash": "17521644408541024471"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/public/robots.txt",
-        "hash": "8047389571712361519"
-      },
-      {
-        "file": "nx-cache/8916186677673744090/apps/frontend/public/success.mp3",
-        "hash": "13432905744671719963"
-      },
-      {
-        "file": "nx-cache/run.json",
-        "hash": "765666120858730673"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/10331985760387847829",
-        "hash": "14746413065432156192"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/10535417199093268536",
-        "hash": "11281684110947400706"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/10595916637952593547",
-        "hash": "17636245082647359234"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/10927807301765759727",
-        "hash": "3601210490302631851"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/11042034786765149963",
-        "hash": "2518412886637064093"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/11382334686972954188",
-        "hash": "14619949914368618562"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/11470212056287762938",
-        "hash": "5750227344750803110"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/11491043915912176454",
-        "hash": "16131660217516295408"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/12083460109450033065",
-        "hash": "12264732578805781703"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/12393218811166137110",
-        "hash": "14619949914368618562"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/13313578114972158443",
-        "hash": "9082469791452482553"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/13988056614300064525",
-        "hash": "11624727760092307340"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/14981507837921477952",
-        "hash": "6753367781705665227"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/15634973253564297661",
-        "hash": "3443081049771406122"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/16400075330484225668",
-        "hash": "16023412365679107585"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/17222874433861364606",
-        "hash": "11738987486487466444"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/2693604387559002141",
-        "hash": "13516818632896288518"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/3438598605446812007",
-        "hash": "17952885140112680419"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/4779797918103415140",
-        "hash": "4521089673671303095"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/5147998745097747935",
-        "hash": "15227499603545754817"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/5183477602708702790",
-        "hash": "17781168537781368750"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/5434867316722837255",
-        "hash": "14619949914368618562"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/563811177077841535",
-        "hash": "5112065238677220347"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/5936509165214844588",
-        "hash": "4751281380237769357"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/6205900052679219768",
-        "hash": "16371698577311563809"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/6215668037497017147",
-        "hash": "12331093590068156895"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/6947577087308326284",
-        "hash": "8358724904429066738"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/7586122265672499934",
-        "hash": "5106540365652549670"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/7838528922980223376",
-        "hash": "7422978594669855138"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/8111306143309094984",
-        "hash": "14619949914368618562"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/819340799798220753",
-        "hash": "1596652025765832592"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/8876342548546069003",
-        "hash": "2084505352237950750"
-      },
-      {
-        "file": "nx-cache/terminalOutputs/8916186677673744090",
-        "hash": "17850522637471018774"
-      },
-      {
-        "file": "nx.json",
-        "hash": "16970103842083221899"
+        "file": "bruno/minihabits/auth/auth-signin.bru",
+        "hash": "16264788594396078775"
       },
       {
         "file": "package.json",
         "hash": "7188411199928821643"
       },
       {
-        "file": "pnpm-lock.yaml",
-        "hash": "10231370740762950261"
+        "file": "bruno/minihabits/habits/get.bru",
+        "hash": "315946568693710760"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "4808572120966128913"
+      },
+      {
+        "file": "docker-compose.yml",
+        "hash": "9930372911091436949"
+      },
+      {
+        "file": "bruno/minihabits/auth/auth-signup.bru",
+        "hash": "12160729914325817397"
+      },
+      {
+        "file": "bruno/minihabits/auth/refresh.bru",
+        "hash": "3762807682471900586"
+      },
+      {
+        "file": "bruno/minihabits/habits/delete.bru",
+        "hash": "563054263706853344"
+      },
+      {
+        "file": "LICENSE.md",
+        "hash": "17672936396789512931"
+      },
+      {
+        "file": "bruno/minihabits/streak/stats.bru",
+        "hash": "8979621950904663070"
+      },
+      {
+        "file": "nx.json",
+        "hash": "16970103842083221899"
+      },
+      {
+        "file": ".dockerignore",
+        "hash": "14615377730694613191"
+      },
+      {
+        "file": "bruno/minihabits/streak/streak.bru",
+        "hash": "4629195930661766912"
       },
       {
         "file": "pnpm-workspace.yaml",
         "hash": "7434045464140418696"
       },
       {
+        "file": ".cursorignore",
+        "hash": "2419917810289608604"
+      },
+      {
+        "file": "bruno/minihabits/habits/create.bru",
+        "hash": "2116015504710481526"
+      },
+      {
+        "file": ".cursor/rules/context.mdc",
+        "hash": "11687051178541775495"
+      },
+      {
+        "file": "README.md",
+        "hash": "2074353371698391063"
+      },
+      {
+        "file": "bruno/minihabits/bruno.json",
+        "hash": "4860971085582506866"
+      },
+      {
         "file": "tsconfig.base.json",
         "hash": "9897484296694281365"
+      },
+      {
+        "file": "bruno/minihabits/habits/getstats.bru",
+        "hash": "18225461552242178982"
+      },
+      {
+        "file": ".github/workflows/deploy.yml",
+        "hash": "9615265460323563013"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "1862103868418924314"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "471157261310827217"
       }
     ],
     "projectFileMap": {
-      "backend": [
-        {
-          "file": "apps/backend/Dockerfile",
-          "hash": "3882044937718691778"
-        },
-        {
-          "file": "apps/backend/jest.config.ts",
-          "hash": "6027698785061982581"
-        },
-        {
-          "file": "apps/backend/package.json",
-          "hash": "13446541203692496586",
-          "deps": [
-            "npm:@nestjs/cli",
-            "npm:@nestjs/schematics@10.2.3",
-            "npm:@nestjs/testing",
-            "npm:@types/express@5.0.0",
-            "npm:@types/jest",
-            "npm:@types/node",
-            "npm:@types/supertest",
-            "npm:@typescript-eslint/eslint-plugin",
-            "npm:@typescript-eslint/parser",
-            "npm:eslint",
-            "npm:eslint-config-prettier",
-            "npm:eslint-plugin-prettier",
-            "npm:jest",
-            "npm:prettier",
-            "npm:source-map-support@0.5.21",
-            "npm:supertest",
-            "npm:ts-jest",
-            "npm:ts-loader",
-            "npm:ts-node",
-            "npm:tsconfig-paths",
-            "npm:typescript@5.8.3",
-            "npm:@nestjs/common",
-            "npm:@nestjs/config",
-            "npm:@nestjs/core",
-            "npm:@nestjs/jwt",
-            "npm:@nestjs/mongoose",
-            "npm:@nestjs/platform-express",
-            "npm:@nestjs/swagger",
-            "npm:@nestjs/terminus",
-            "npm:bcrypt",
-            "npm:class-transformer",
-            "npm:class-validator",
-            "npm:moment",
-            "npm:mongoose",
-            "npm:reflect-metadata",
-            "npm:resend",
-            "npm:rxjs",
-            "npm:swagger-ui-express",
-            "npm:tslib"
-          ]
-        },
-        {
-          "file": "apps/backend/pnpm-lock.yaml",
-          "hash": "886632050476554342"
-        },
-        {
-          "file": "apps/backend/project.json",
-          "hash": "1128444236244733329"
-        },
-        {
-          "file": "apps/backend/src/app.controller.spec.ts",
-          "hash": "14455686485259474421"
-        },
-        {
-          "file": "apps/backend/src/app.controller.ts",
-          "hash": "1439676189250699541",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/app.module.ts",
-          "hash": "17946585968696293461",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/mongoose",
-            "npm:@nestjs/config",
-            "npm:@nestjs/core"
-          ]
-        },
-        {
-          "file": "apps/backend/src/app.service.ts",
-          "hash": "16892833931858030153",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/auth.controller.spec.ts",
-          "hash": "14239920491639202077",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/auth.controller.ts",
-          "hash": "8504768699898289627",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/auth.decorator.ts",
-          "hash": "3876953546895043639",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/auth.guard.spec.ts",
-          "hash": "4535299700144361694"
-        },
-        {
-          "file": "apps/backend/src/auth/auth.guard.ts",
-          "hash": "10148660676598854255",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/jwt",
-            "npm:express",
-            "npm:@nestjs/core"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/auth.module.ts",
-          "hash": "15578774565802884581",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/jwt",
-            "npm:@nestjs/config"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/auth.service.spec.ts",
-          "hash": "5442871165268080463",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/auth.service.ts",
-          "hash": "16459695513723853634",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/jwt",
-            "npm:bcrypt"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/dto/sign-in.dto.ts",
-          "hash": "7514602806135194310",
-          "deps": [
-            "npm:class-validator",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/dto/sign-up.dto.ts",
-          "hash": "17919209892194303504",
-          "deps": [
-            "npm:class-validator",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/interfaces/request.interface.ts",
-          "hash": "12054088082986005218",
-          "deps": [
-            "npm:@nestjs/swagger",
-            "npm:express"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/protected-route.decorator.ts",
-          "hash": "5842418989746646970",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/auth/public-route.decorator.ts",
-          "hash": "13186857623861016280",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/email/email.module.ts",
-          "hash": "6976671242283359164",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "apps/backend/src/email/email.service.ts",
-          "hash": "13655112217456188904",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:resend"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/dto/create.dto.ts",
-          "hash": "5837976080573680800",
-          "deps": [
-            "npm:class-validator",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/dto/habits.ts",
-          "hash": "12766492034151414060",
-          "deps": [
-            "npm:@nestjs/swagger",
-            "npm:class-validator"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/dto/track.dto.ts",
-          "hash": "1998352031869819406",
-          "deps": [
-            "npm:class-validator",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/dto/update.dto.ts",
-          "hash": "13748363651674199719",
-          "deps": [
-            "npm:class-validator",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/habits.controller.spec.ts",
-          "hash": "5079810567586923221",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/habits.controller.ts",
-          "hash": "7557226507528521028",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/habits.module.ts",
-          "hash": "13675511005736135077",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/mongoose"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/habits.schema.ts",
-          "hash": "16462080142680766628",
-          "deps": [
-            "npm:@nestjs/mongoose",
-            "npm:@nestjs/swagger",
-            "npm:mongoose"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/habits.service.spec.ts",
-          "hash": "15050077918200064125",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/habits.service.ts",
-          "hash": "18156146290141741736",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/mongoose",
-            "npm:mongoose"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/interfaces/habit-service.interface.ts",
-          "hash": "3049972232891792418"
-        },
-        {
-          "file": "apps/backend/src/habits/interfaces/habit-stats.interface.ts",
-          "hash": "13540192320851201614"
-        },
-        {
-          "file": "apps/backend/src/habits/services/habits.boolean.spec.ts",
-          "hash": "3267716847823922072",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/services/habits.boolean.ts",
-          "hash": "9055078178961436870",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:moment"
-          ]
-        },
-        {
-          "file": "apps/backend/src/habits/services/habits.counter.ts",
-          "hash": "2213907797362374909",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:moment"
-          ]
-        },
-        {
-          "file": "apps/backend/src/healthcheck/healthcheck.controller.spec.ts",
-          "hash": "916895568142327745",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "apps/backend/src/healthcheck/healthcheck.controller.ts",
-          "hash": "4101516382374039264",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/terminus",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/healthcheck/healthcheck.module.ts",
-          "hash": "3687787019783152825",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/terminus"
-          ]
-        },
-        {
-          "file": "apps/backend/src/main.ts",
-          "hash": "4400795940818740867",
-          "deps": [
-            "npm:@nestjs/core",
-            "npm:@nestjs/common",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/stats/dto/stats.ts",
-          "hash": "16180145650476390166",
-          "deps": [
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/stats/stats.controller.spec.ts",
-          "hash": "5080473752589511712",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "apps/backend/src/stats/stats.controller.ts",
-          "hash": "6244682068914918872",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/stats/stats.module.ts",
-          "hash": "11953741939469271814",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/mongoose"
-          ]
-        },
-        {
-          "file": "apps/backend/src/stats/stats.schema.ts",
-          "hash": "226099565457141716",
-          "deps": [
-            "npm:@nestjs/mongoose",
-            "npm:@nestjs/swagger",
-            "npm:mongoose"
-          ]
-        },
-        {
-          "file": "apps/backend/src/stats/stats.service.spec.ts",
-          "hash": "11821543492879925828",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "apps/backend/src/stats/stats.service.ts",
-          "hash": "16745731359410752405",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/mongoose",
-            "npm:mongoose",
-            "npm:moment"
-          ]
-        },
-        {
-          "file": "apps/backend/src/users/dto/forgot-password.dto.ts",
-          "hash": "15068082640641534972",
-          "deps": [
-            "npm:class-validator",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/users/dto/reset-password.dto.ts",
-          "hash": "8079858973651258838",
-          "deps": [
-            "npm:class-validator",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/users/dto/update-email.dto.ts",
-          "hash": "13927609727075462203",
-          "deps": [
-            "npm:class-validator",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/users/dto/update-password.dto.ts",
-          "hash": "2065763965782706206",
-          "deps": [
-            "npm:class-validator",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/users/users.controller.ts",
-          "hash": "3144014044098489107",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/swagger"
-          ]
-        },
-        {
-          "file": "apps/backend/src/users/users.module.ts",
-          "hash": "9024922675459029087",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/mongoose"
-          ]
-        },
-        {
-          "file": "apps/backend/src/users/users.schema.ts",
-          "hash": "13029619206741847142",
-          "deps": [
-            "npm:@nestjs/mongoose",
-            "npm:mongoose"
-          ]
-        },
-        {
-          "file": "apps/backend/src/users/users.service.spec.ts",
-          "hash": "7278099433523887940",
-          "deps": [
-            "npm:@nestjs/testing"
-          ]
-        },
-        {
-          "file": "apps/backend/src/users/users.service.ts",
-          "hash": "5801944843055490658",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/mongoose",
-            "npm:mongoose",
-            "npm:bcrypt"
-          ]
-        },
-        {
-          "file": "apps/backend/test/app.e2e-spec.ts",
-          "hash": "15142680097789702029",
-          "deps": [
-            "npm:@nestjs/testing",
-            "npm:@nestjs/common",
-            "npm:supertest"
-          ]
-        },
-        {
-          "file": "apps/backend/test/jest-e2e.json",
-          "hash": "7570273541430074424"
-        },
-        {
-          "file": "apps/backend/tsconfig.app.json",
-          "hash": "2617706545173666094"
-        },
-        {
-          "file": "apps/backend/tsconfig.json",
-          "hash": "10171216570472823503"
-        },
-        {
-          "file": "apps/backend/tsconfig.spec.json",
-          "hash": "11843058859047597507"
-        }
-      ],
       "frontend": [
         {
           "file": "apps/frontend/Dockerfile",
@@ -2481,7 +171,7 @@
             "npm:eslint-plugin-react-hooks",
             "npm:eslint-plugin-react-refresh",
             "npm:globals@15.15.0",
-            "npm:postcss",
+            "npm:postcss@8.5.1",
             "npm:tailwindcss",
             "npm:tsx",
             "npm:typescript@5.6.3",
@@ -3189,10 +879,11 @@
         },
         {
           "file": "apps/frontend/src/pages/Home.tsx",
-          "hash": "6237449388884068210",
+          "hash": "3071126814092242250",
           "deps": [
             "npm:react-router-dom",
-            "npm:react",
+            "npm:react@18.3.1",
+            "npm:js-confetti",
             "npm:moment",
             "npm:lucide-react"
           ]
@@ -3266,7 +957,7 @@
           "hash": "3083517327221055411"
         },
         {
-          "file": "apps/frontend/tsconfig.json",
+          "file": "apps/frontend/tsconfig.js",
           "hash": "18027719143571928554"
         },
         {
@@ -3280,6 +971,501 @@
             "npm:@vitejs/plugin-react",
             "npm:vite@6.3.5"
           ]
+        }
+      ],
+      "backend": [
+        {
+          "file": "apps/backend/.swc/plugins/v7_macos_aarch64_17.0.0/41bfe852f852e0e98281be20a6378e9e7109c1bc3972f1ef3fd86cdfbf973446",
+          "hash": "7991981997398573036"
+        },
+        {
+          "file": "apps/backend/.swcrc",
+          "hash": "10332363207444329662"
+        },
+        {
+          "file": "apps/backend/Dockerfile",
+          "hash": "3882044937718691778"
+        },
+        {
+          "file": "apps/backend/jest.config.ts",
+          "hash": "6027698785061982581"
+        },
+        {
+          "file": "apps/backend/package.json",
+          "hash": "15459326653824671426",
+          "deps": [
+            "npm:@nestjs/testing",
+            "npm:@swc/cli",
+            "npm:@swc/core",
+            "npm:@types/bcrypt",
+            "npm:@types/express@5.0.0",
+            "npm:@types/jest",
+            "npm:@types/node@20.17.12",
+            "npm:@types/supertest",
+            "npm:@typescript-eslint/eslint-plugin",
+            "npm:@typescript-eslint/parser",
+            "npm:concurrently",
+            "npm:eslint@8.57.1",
+            "npm:eslint-config-prettier",
+            "npm:eslint-plugin-prettier",
+            "npm:jest",
+            "npm:nodemon",
+            "npm:prettier",
+            "npm:source-map-support@0.5.21",
+            "npm:supertest",
+            "npm:swc-plugin-pre-paths",
+            "npm:ts-jest",
+            "npm:ts-loader",
+            "npm:ts-node",
+            "npm:tsconfig-paths",
+            "npm:typescript@5.8.3",
+            "npm:@nestjs/common",
+            "npm:@nestjs/config",
+            "npm:@nestjs/core",
+            "npm:@nestjs/jwt",
+            "npm:@nestjs/mongoose",
+            "npm:@nestjs/platform-express",
+            "npm:@nestjs/swagger",
+            "npm:@nestjs/terminus",
+            "npm:bcrypt",
+            "npm:class-transformer",
+            "npm:class-validator",
+            "npm:moment",
+            "npm:mongoose",
+            "npm:reflect-metadata",
+            "npm:resend",
+            "npm:rxjs",
+            "npm:swagger-ui-express",
+            "npm:tslib"
+          ]
+        },
+        {
+          "file": "apps/backend/pnpm-lock.yaml",
+          "hash": "886632050476554342"
+        },
+        {
+          "file": "apps/backend/project.json",
+          "hash": "5625126260416555501"
+        },
+        {
+          "file": "apps/backend/src/app.module.ts",
+          "hash": "13367314724186752541",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/mongoose",
+            "npm:@nestjs/config",
+            "npm:@nestjs/core"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/auth.controller.spec.ts",
+          "hash": "14239920491639202077",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/auth.controller.ts",
+          "hash": "8616502434998273725",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/auth.decorator.ts",
+          "hash": "3876953546895043639",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/auth.guard.ts",
+          "hash": "16626425827386510971",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/jwt",
+            "npm:express",
+            "npm:@nestjs/core"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/auth.module.ts",
+          "hash": "1189215100260950035",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/jwt",
+            "npm:@nestjs/config"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/auth.service.spec.ts",
+          "hash": "5442871165268080463",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/auth.service.ts",
+          "hash": "16459695513723853634",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/jwt",
+            "npm:bcrypt"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/dto/sign-in.dto.ts",
+          "hash": "15124946944100917945",
+          "deps": [
+            "npm:class-validator",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/dto/sign-up.dto.ts",
+          "hash": "4080735123668456469",
+          "deps": [
+            "npm:class-validator",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/interfaces/request.interface.ts",
+          "hash": "12054088082986005218",
+          "deps": [
+            "npm:@nestjs/swagger",
+            "npm:express"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/protected-route.decorator.ts",
+          "hash": "5842418989746646970",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/auth/public-route.decorator.ts",
+          "hash": "13186857623861016280",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/email/email.module.ts",
+          "hash": "6976671242283359164",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/backend/src/email/email.service.ts",
+          "hash": "13655112217456188904",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:resend"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/dto/create.dto.ts",
+          "hash": "7944173387319666968",
+          "deps": [
+            "npm:class-validator",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/dto/habits.ts",
+          "hash": "3631915459800619123",
+          "deps": [
+            "npm:@nestjs/swagger",
+            "npm:class-validator"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/dto/track.dto.ts",
+          "hash": "9332466913411843627",
+          "deps": [
+            "npm:class-validator",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/dto/update.dto.ts",
+          "hash": "8446496180627700598",
+          "deps": [
+            "npm:class-validator",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/habits.controller.spec.ts",
+          "hash": "5079810567586923221",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/habits.controller.ts",
+          "hash": "12470015308130613125",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/habits.module.ts",
+          "hash": "13675511005736135077",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/mongoose"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/habits.schema.ts",
+          "hash": "17022590173630153661",
+          "deps": [
+            "npm:@nestjs/mongoose",
+            "npm:@nestjs/swagger",
+            "npm:mongoose"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/habits.service.spec.ts",
+          "hash": "15050077918200064125",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/habits.service.ts",
+          "hash": "10083834052901028979",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/mongoose",
+            "npm:mongoose"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/interfaces/habit-service.interface.ts",
+          "hash": "3049972232891792418"
+        },
+        {
+          "file": "apps/backend/src/habits/interfaces/habit-stats.interface.ts",
+          "hash": "13540192320851201614"
+        },
+        {
+          "file": "apps/backend/src/habits/services/habits.boolean.spec.ts",
+          "hash": "3267716847823922072",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/services/habits.boolean.ts",
+          "hash": "7666275037813377073",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:moment"
+          ]
+        },
+        {
+          "file": "apps/backend/src/habits/services/habits.counter.ts",
+          "hash": "2942951321118003386",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:moment"
+          ]
+        },
+        {
+          "file": "apps/backend/src/healthcheck/healthcheck.controller.spec.ts",
+          "hash": "916895568142327745",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "apps/backend/src/healthcheck/healthcheck.controller.ts",
+          "hash": "14035059220608071634",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/terminus",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/healthcheck/healthcheck.module.ts",
+          "hash": "3687787019783152825",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/terminus"
+          ]
+        },
+        {
+          "file": "apps/backend/src/main.ts",
+          "hash": "3360314164296642736",
+          "deps": [
+            "npm:@nestjs/core",
+            "npm:@nestjs/common",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/stats/dto/stats.ts",
+          "hash": "18403587414247692545",
+          "deps": [
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/stats/stats.controller.spec.ts",
+          "hash": "5080473752589511712",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "apps/backend/src/stats/stats.controller.ts",
+          "hash": "14171058738527502730",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/stats/stats.module.ts",
+          "hash": "1598806820991189556",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/mongoose"
+          ]
+        },
+        {
+          "file": "apps/backend/src/stats/stats.schema.ts",
+          "hash": "1935642961575738510",
+          "deps": [
+            "npm:@nestjs/mongoose",
+            "npm:@nestjs/swagger",
+            "npm:mongoose"
+          ]
+        },
+        {
+          "file": "apps/backend/src/stats/stats.service.spec.ts",
+          "hash": "11821543492879925828",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "apps/backend/src/stats/stats.service.ts",
+          "hash": "269467762483951420",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/mongoose",
+            "npm:mongoose",
+            "npm:moment"
+          ]
+        },
+        {
+          "file": "apps/backend/src/users/dto/forgot-password.dto.ts",
+          "hash": "13273892192078932549",
+          "deps": [
+            "npm:class-validator",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/users/dto/reset-password.dto.ts",
+          "hash": "4862755059635066237",
+          "deps": [
+            "npm:class-validator",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/users/dto/update-email.dto.ts",
+          "hash": "12919772523359032669",
+          "deps": [
+            "npm:class-validator",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/users/dto/update-password.dto.ts",
+          "hash": "4819137751095060114",
+          "deps": [
+            "npm:class-validator",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/users/users.controller.ts",
+          "hash": "11831025791490107288",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/swagger"
+          ]
+        },
+        {
+          "file": "apps/backend/src/users/users.module.ts",
+          "hash": "2951689025007580533",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/mongoose"
+          ]
+        },
+        {
+          "file": "apps/backend/src/users/users.schema.ts",
+          "hash": "3595810459910540275",
+          "deps": [
+            "npm:@nestjs/mongoose",
+            "npm:mongoose"
+          ]
+        },
+        {
+          "file": "apps/backend/src/users/users.service.spec.ts",
+          "hash": "7278099433523887940",
+          "deps": [
+            "npm:@nestjs/testing"
+          ]
+        },
+        {
+          "file": "apps/backend/src/users/users.service.ts",
+          "hash": "12936106588278513036",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/mongoose",
+            "npm:mongoose",
+            "npm:bcrypt"
+          ]
+        },
+        {
+          "file": "apps/backend/test/app.e2e-spec.ts",
+          "hash": "15142680097789702029",
+          "deps": [
+            "npm:@nestjs/testing",
+            "npm:@nestjs/common",
+            "npm:supertest"
+          ]
+        },
+        {
+          "file": "apps/backend/test/jest-e2e.json",
+          "hash": "7570273541430074424"
+        },
+        {
+          "file": "apps/backend/tsconfig.build.json",
+          "hash": "9851625508986970924"
+        },
+        {
+          "file": "apps/backend/tsconfig.json",
+          "hash": "12648181540449338374"
+        },
+        {
+          "file": "apps/backend/tsconfig.tsbuildinfo",
+          "hash": "17555468087373642133"
         }
       ]
     }

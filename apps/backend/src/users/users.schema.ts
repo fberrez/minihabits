@@ -9,22 +9,22 @@ export class UserSettings {}
 export class User {
   _id: Types.ObjectId;
 
-  @Prop({ required: true, unique: true })
+  @Prop({ type: String, required: true, unique: true })
   email: string;
 
-  @Prop({ required: true })
+  @Prop({ type: String, required: true })
   password: string;
 
-  @Prop({ required: false, default: {} })
+  @Prop({ type: Object, required: false, default: {} })
   settings: UserSettings;
 
-  @Prop({ default: Date.now })
+  @Prop({ type: Date, default: Date.now })
   createdAt: Date;
 
-  @Prop()
+  @Prop({ type: String, required: false })
   passwordResetToken?: string;
 
-  @Prop()
+  @Prop({ type: Date, required: false })
   passwordResetExpires?: Date;
 }
 

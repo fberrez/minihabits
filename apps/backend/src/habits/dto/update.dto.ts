@@ -4,6 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateHabitDto {
   @ApiProperty({
+    type: String,
     description: 'New name for the habit',
     required: false,
     example: 'Morning Meditation',
@@ -13,6 +14,7 @@ export class UpdateHabitDto {
   name?: string;
 
   @ApiProperty({
+    type: String,
     description: 'New color for the habit',
     enum: HabitColor,
     required: false,

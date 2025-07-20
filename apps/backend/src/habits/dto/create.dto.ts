@@ -4,6 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateHabitDto {
   @ApiProperty({
+    type: String,
     description: 'Name of the habit',
     example: 'Daily Exercise',
   })
@@ -11,6 +12,7 @@ export class CreateHabitDto {
   name: string;
 
   @ApiProperty({
+    type: String,
     description: 'Color of the habit',
     enum: HabitColor,
     required: false,
@@ -21,6 +23,7 @@ export class CreateHabitDto {
   color?: HabitColor;
 
   @ApiProperty({
+    type: String,
     description: 'Type of the habit',
     enum: HabitType,
     required: false,
@@ -31,6 +34,7 @@ export class CreateHabitDto {
   type?: HabitType;
 
   @ApiProperty({
+    type: Number,
     description:
       'Target counter value for counter-type habits (required for counter-type habits)',
     required: false,

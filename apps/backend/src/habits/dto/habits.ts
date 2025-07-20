@@ -5,6 +5,7 @@ import { IsEnum } from 'class-validator';
 
 export class HabitTypeOutput {
   @ApiProperty({
+    type: String,
     description: 'Type of the habit',
     enum: HabitType,
     required: true,
@@ -15,6 +16,7 @@ export class HabitTypeOutput {
   type: HabitType;
 
   @ApiProperty({
+    type: String,
     description: 'Label of the habit',
     required: true,
     example: 'Boolean',
@@ -25,6 +27,7 @@ export class HabitTypeOutput {
 
 export class HabitStatsOutput {
   @ApiProperty({
+    type: String,
     description: 'Name of the habit',
     required: true,
     example: 'Do 10 pushups',
@@ -33,6 +36,7 @@ export class HabitStatsOutput {
   name: string;
 
   @ApiProperty({
+    type: String,
     description: 'Type of the habit',
     enum: HabitType,
     required: true,
@@ -43,6 +47,7 @@ export class HabitStatsOutput {
   type: HabitType;
 
   @ApiProperty({
+    type: Number,
     description: 'Target counter value for counter-type habits',
     required: false,
     example: 10,
@@ -51,6 +56,7 @@ export class HabitStatsOutput {
   targetCounter?: number;
 
   @ApiProperty({
+    type: Number,
     description: 'Current streak of the habit',
     required: true,
     example: 10,
@@ -59,6 +65,7 @@ export class HabitStatsOutput {
   currentStreak: number;
 
   @ApiProperty({
+    type: Number,
     description: 'Longest streak of the habit',
     required: true,
     example: 10,
@@ -67,6 +74,7 @@ export class HabitStatsOutput {
   longestStreak: number;
 
   @ApiProperty({
+    type: Number,
     description: 'Completion rate of the habit in the last 7 days',
     required: true,
     example: 0.5,
@@ -75,6 +83,7 @@ export class HabitStatsOutput {
   completionRate7Days: number;
 
   @ApiProperty({
+    type: Number,
     description: 'Completion rate of the habit in the current month',
     required: true,
     example: 0.5,
@@ -83,6 +92,7 @@ export class HabitStatsOutput {
   completionRateMonth: number;
 
   @ApiProperty({
+    type: Number,
     description: 'Completion rate of the habit in the current year',
     required: true,
     example: 0.5,
@@ -91,6 +101,7 @@ export class HabitStatsOutput {
   completionRateYear: number;
 
   @ApiProperty({
+    type: Number,
     description: 'Total completions of the habit',
     required: true,
     example: 10,

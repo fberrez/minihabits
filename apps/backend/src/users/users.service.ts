@@ -2,6 +2,7 @@ import {
   Injectable,
   UnauthorizedException,
   NotFoundException,
+  Inject,
 } from '@nestjs/common';
 import { User } from './users.schema';
 import { InjectModel } from '@nestjs/mongoose';
@@ -9,14 +10,14 @@ import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import * as crypto from 'crypto';
 import { EmailService } from '../email/email.service';
-import { HabitsService } from 'src/habits/habits.service';
+import { HabitsService } from '../habits/habits.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User.name) private userModel: Model<User>,
-    private habitsService: HabitsService,
-    private emailService: EmailService,
+    @Inject(HabitsService) private habitsService: HabitsService,
+    @Inject(EmailService) private emailService: EmailService,
   ) {}
 
   async create(createUserDto: { email: string; password: string }) {

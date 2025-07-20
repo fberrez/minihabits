@@ -8,20 +8,36 @@ export type StatsDocument = HydratedDocument<Stats>;
 export class Stats {
   _id: Types.ObjectId;
 
-  @ApiProperty({ required: true, example: 2024 })
-  @Prop({ required: true })
+  @ApiProperty({
+    type: Number,
+    required: true,
+    example: 2024,
+  })
+  @Prop({ type: Number, required: true })
   year: number;
 
-  @ApiProperty({ required: true, example: 1 })
-  @Prop({ required: true, min: 1, max: 12 })
+  @ApiProperty({
+    type: Number,
+    required: true,
+    example: 1,
+  })
+  @Prop({ type: Number, required: true, min: 1, max: 12 })
   month: number;
 
-  @ApiProperty({ required: true, example: 1 })
-  @Prop({ required: true, min: 1, max: 31 })
+  @ApiProperty({
+    type: Number,
+    required: true,
+    example: 1,
+  })
+  @Prop({ type: Number, required: true, min: 1, max: 31 })
   day: number;
 
-  @ApiProperty({ required: true, example: 150 })
-  @Prop({ default: 0 })
+  @ApiProperty({
+    type: Number,
+    required: true,
+    example: 150,
+  })
+  @Prop({ type: Number, default: 0 })
   totalCompleted: number;
 }
 

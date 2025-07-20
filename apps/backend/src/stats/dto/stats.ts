@@ -1,8 +1,9 @@
-import { Stats } from '../stats.schema';
 import { ApiProperty } from '@nestjs/swagger';
+import { Stats } from '../stats.schema';
+
 export class StatsOutput {
   @ApiProperty({
-    type: Stats,
+    type: () => Stats,
     example: {
       year: 2024,
       month: 1,
@@ -12,6 +13,8 @@ export class StatsOutput {
   })
   stats: Stats;
 
-  @ApiProperty({ type: Number })
+  @ApiProperty({
+    type: Number,
+  })
   usersCount: number;
 }

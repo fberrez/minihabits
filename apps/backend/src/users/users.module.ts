@@ -4,7 +4,7 @@ import { UsersService } from './users.service';
 import { User, UserSchema } from './users.schema';
 import { UsersController } from './users.controller';
 import { EmailModule } from '../email/email.module';
-import { HabitsModule } from 'src/habits/habits.module';
+import { HabitsModule } from '../habits/habits.module';
 
 @Module({
   imports: [

@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Inject,
   Param,
   Patch,
   Post,
@@ -27,7 +28,9 @@ import { ProtectedRoute } from '../auth/protected-route.decorator';
 @ApiTags('habits')
 @Controller('habits')
 export class HabitsController {
-  constructor(private readonly habitsService: HabitsService) {}
+  constructor(
+    @Inject(HabitsService) private readonly habitsService: HabitsService,
+  ) {}
 
   @Get()
   @ProtectedRoute()

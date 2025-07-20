@@ -1,18 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
 import {
   HealthCheck,
   HealthCheckService,
   MongooseHealthIndicator,
 } from '@nestjs/terminus';
-import { PublicRoute } from 'src/auth/public-route.decorator';
+import { PublicRoute } from '../auth/public-route.decorator';
 import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('healthcheck')
 @Controller('healthcheck')
 export class HealthcheckController {
   constructor(
-    private health: HealthCheckService,
-    private db: MongooseHealthIndicator,
+    @Inject(HealthCheckService) private health: HealthCheckService,
+    @Inject(MongooseHealthIndicator) private db: MongooseHealthIndicator,
   ) {}
 
   @PublicRoute()

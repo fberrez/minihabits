@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Habit, HabitDocument, HabitType } from '../habits.schema';
-import * as moment from 'moment';
+import moment from 'moment';
 import { StatsService } from '../../stats/stats.service';
 import { HabitService } from '../interfaces/habit-service.interface';
 import { HabitStats } from '../interfaces/habit-service.interface';

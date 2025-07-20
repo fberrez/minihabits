@@ -1,13 +1,15 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
 import { StatsService } from './stats.service';
 import { ApiTags, ApiOperation, ApiOkResponse } from '@nestjs/swagger';
 import { StatsOutput } from './dto/stats';
-import { PublicRoute } from 'src/auth/public-route.decorator';
+import { PublicRoute } from '../auth/public-route.decorator';
 
 @ApiTags('stats')
 @Controller('stats')
 export class StatsController {
-  constructor(private readonly statsService: StatsService) {}
+  constructor(
+    @Inject(StatsService) private readonly statsService: StatsService,
+  ) {}
 
   @Get('home')
   @PublicRoute()

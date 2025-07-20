@@ -44,26 +44,6 @@
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
-    "metadata.targetGroups.NPM Scripts.4": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "metadata.targetGroups.NPM Scripts.5": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "metadata.targetGroups.NPM Scripts.6": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "metadata.targetGroups.NPM Scripts.7": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "metadata.targetGroups.NPM Scripts.8": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
     "metadata.description": [
       "apps/backend/package.json",
       "nx/core/package-json"
@@ -80,59 +60,31 @@
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
-    "targets.format": [
+    "targets.build:watch": [
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
-    "targets.format.executor": [
+    "targets.build:watch.executor": [
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
-    "targets.format.options": [
+    "targets.build:watch.options": [
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
-    "targets.format.metadata": [
+    "targets.build:watch.metadata": [
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
-    "targets.format.options.script": [
+    "targets.build:watch.options.script": [
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
-    "targets.format.metadata.scriptContent": [
+    "targets.build:watch.metadata.scriptContent": [
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
-    "targets.format.metadata.runCommand": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start.executor": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start.options": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start.metadata": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start.options.script": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start.metadata.scriptContent": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start.metadata.runCommand": [
+    "targets.build:watch.metadata.runCommand": [
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
@@ -164,34 +116,6 @@
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
-    "targets.start:debug": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start:debug.executor": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start:debug.options": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start:debug.metadata": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start:debug.options.script": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start:debug.metadata.scriptContent": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.start:debug.metadata.runCommand": [
-      "apps/backend/package.json",
-      "nx/core/package-json"
-    ],
     "targets.start:prod": [
       "apps/backend/package.json",
       "nx/core/package-json"
@@ -217,6 +141,34 @@
       "nx/core/package-json"
     ],
     "targets.start:prod.metadata.runCommand": [
+      "apps/backend/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve:dev": [
+      "apps/backend/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve:dev.executor": [
+      "apps/backend/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve:dev.options": [
+      "apps/backend/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve:dev.metadata": [
+      "apps/backend/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve:dev.options.script": [
+      "apps/backend/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve:dev.metadata.scriptContent": [
+      "apps/backend/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.serve:dev.metadata.runCommand": [
       "apps/backend/package.json",
       "nx/core/package-json"
     ],
@@ -252,31 +204,11 @@
       "apps/backend/project.json",
       "nx/core/project-json"
     ],
-    "targets.build.configurations": [
-      "apps/backend/project.json",
-      "nx/core/project-json"
-    ],
     "targets.build.options.cwd": [
       "apps/backend/project.json",
       "nx/core/project-json"
     ],
     "targets.build.options.command": [
-      "apps/backend/project.json",
-      "nx/core/project-json"
-    ],
-    "targets.build.configurations.development": [
-      "apps/backend/project.json",
-      "nx/core/project-json"
-    ],
-    "targets.build.configurations.development.command": [
-      "apps/backend/project.json",
-      "nx/core/project-json"
-    ],
-    "targets.build.configurations.production": [
-      "apps/backend/project.json",
-      "nx/core/project-json"
-    ],
-    "targets.build.configurations.production.command": [
       "apps/backend/project.json",
       "nx/core/project-json"
     ],
@@ -316,6 +248,10 @@
       "apps/backend/project.json",
       "nx/core/project-json"
     ],
+    "targets.serve.configurations.development.cwd": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
     "targets.serve.configurations.development.command": [
       "apps/backend/project.json",
       "nx/core/project-json"
@@ -324,7 +260,71 @@
       "apps/backend/project.json",
       "nx/core/project-json"
     ],
+    "targets.serve.configurations.production.cwd": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
     "targets.serve.configurations.production.command": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.executor": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.options": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.options.cwd": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.options.command": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.type-check": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.type-check.executor": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.type-check.options": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.type-check.options.cwd": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.type-check.options.command": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.clean": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.clean.executor": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.clean.options": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.clean.options.cwd": [
+      "apps/backend/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.clean.options.command": [
       "apps/backend/project.json",
       "nx/core/project-json"
     ],

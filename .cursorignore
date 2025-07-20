@@ -3,10 +3,10 @@ node_modules/
 **/node_modules/
 
 # Build outputs
-/dist
-apps/*/dist
-apps/*/build
-/build
+# /dist
+# apps/*/dist
+# apps/*/build
+# /build
 *.tsbuildinfo
 
 # Cache directories

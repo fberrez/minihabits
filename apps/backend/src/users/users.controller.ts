@@ -8,9 +8,10 @@ import {
   Req,
   HttpCode,
   HttpStatus,
+  Inject,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { AuthRequest } from 'src/auth/interfaces/request.interface';
+import { AuthRequest } from '../auth/interfaces/request.interface';
 import { UpdateEmailDto } from './dto/update-email.dto';
 import { UpdatePasswordDto } from './dto/update-password.dto';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
@@ -22,7 +23,7 @@ import { ProtectedRoute } from '../auth/protected-route.decorator';
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(@Inject(UsersService) private usersService: UsersService) {}
 
   @Get('me')
   @ProtectedRoute()

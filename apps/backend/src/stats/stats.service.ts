@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import * as moment from 'moment';
+import moment from 'moment';
 import { Stats } from './stats.schema';
 import { Logger } from '@nestjs/common';
-import { User } from 'src/users/users.schema';
+import { User } from '../users/users.schema';
 import { StatsOutput } from './dto/stats';
 
 @Injectable()
@@ -28,11 +28,9 @@ export class StatsService {
   private getDateComponents(date: string) {
     const dateComponents = moment(date).startOf('day');
     return {
-      year: dateMoment.year(),
-      month: dateMoment.month() + 1, // moment months are 0-based
-      day: dateMoment.date(),
-    };
-  }
+      year: dateComponents.year(),
+      month: dateComponents.month() + 1, // moment months are 0-based
+      day: dateComponents.date(),
     };
   }
 

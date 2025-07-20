@@ -30,7 +30,7 @@ export class Habit {
   _id: Types.ObjectId;
 
   @ApiProperty({ type: String, example: 'Do 10 pushups', required: true })
-  @Prop({ required: true })
+  @Prop({ type: String, required: true })
   name: string;
 
   @ApiProperty({
@@ -38,7 +38,7 @@ export class Habit {
     example: '66d060e6777b2b2b2b2b2b2b',
     required: true,
   })
-  @Prop({ required: true })
+  @Prop({ type: Types.ObjectId, required: true })
   userId: Types.ObjectId;
 
   @ApiProperty({
@@ -60,7 +60,7 @@ export class Habit {
     example: '2023-01-01T00:00:00.000Z',
     required: true,
   })
-  @Prop({ default: Date.now })
+  @Prop({ type: Date, default: Date.now })
   createdAt: Date;
 
   @ApiProperty({
@@ -72,11 +72,11 @@ export class Habit {
   completedDates: Map<string, number>;
 
   @ApiProperty({ type: Number, example: 0, required: true })
-  @Prop({ default: 0 })
+  @Prop({ type: Number, default: 0 })
   currentStreak: number;
 
   @ApiProperty({ type: Number, example: 0, required: true })
-  @Prop({ default: 0 })
+  @Prop({ type: Number, default: 0 })
   longestStreak: number;
 
   @ApiProperty({
@@ -95,6 +95,7 @@ export class Habit {
 
   @ApiProperty({ type: Number, example: 0 })
   @Prop({
+    type: Number,
     default: 0,
     validate: {
       validator: function (value: number) {

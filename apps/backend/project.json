@@ -8,15 +8,7 @@
       "executor": "nx:run-commands",
       "options": {
         "cwd": "apps/backend",
-        "command": "nest build"
-      },
-      "configurations": {
-        "development": {
-          "command": "nest build"
-        },
-        "production": {
-          "command": "nest build"
-        }
+        "command": "npm run build"
       }
     },
     "serve": {
@@ -25,15 +17,38 @@
       "dependsOn": ["build"],
       "options": {
         "cwd": "apps/backend",
-        "command": "node dist/main.js"
+        "command": "npm run start:prod"
       },
       "configurations": {
         "development": {
-          "command": "node dist/main.js"
+          "cwd": "apps/backend",
+          "command": "npm run start:dev"
         },
         "production": {
-          "command": "node dist/main.js"
+          "cwd": "apps/backend",
+          "command": "npm run start:prod"
         }
+      }
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/backend",
+        "command": "npm run dev"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/backend",
+        "command": "npm run type-check"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/backend",
+        "command": "npm run clean"
       }
     },
     "lint": {
