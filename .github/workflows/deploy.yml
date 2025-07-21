@@ -1,0 +1,258 @@
+name: 🚀 Deploy MiniHabits
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'apps/**'
+      - 'package.json'
+      - 'pnpm-workspace.yaml'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10.13.1
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: 🔧 Install backend dependencies only
+        run: pnpm install --filter=minihabits-backend --frozen-lockfile
+
+      - name: 🏗️ Build backend
+        run: pnpm nx build backend
+
+      - name: 🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔐 Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏷️ Extract metadata for backend
+        id: meta-backend
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/backend
+          tags: |
+            type=sha,format=long
+            type=ref,event=branch
+            latest
+
+      - name: 🐳 Build and push backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/backend/Dockerfile
+          push: true
+          tags: ${{ steps.meta-backend.outputs.tags }}
+          labels: ${{ steps.meta-backend.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: 🚀 Deploy backend to VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            # Create deployment directory if it doesn't exist
+            mkdir -p ~/minihabits-backend
+            
+            # Create .env file on the server
+            cat > ~/minihabits-backend/.env << EOL
+            CORS_ORIGIN="${{ secrets.CORS_ORIGIN }}"
+            FRONTEND_URL="${{ vars.FRONTEND_URL }}"
+            JWT_EXPIRATION_TIME="${{ vars.JWT_EXPIRATION_TIME }}"
+            JWT_REFRESH_EXPIRATION_TIME="${{ vars.JWT_REFRESH_EXPIRATION_TIME }}"
+            JWT_REFRESH_SECRET="${{ secrets.JWT_REFRESH_SECRET }}"
+            JWT_SECRET="${{ secrets.JWT_SECRET }}"
+            MONGODB_URI="${{ secrets.MONGODB_URI }}"
+            NODE_ENV="production"
+            PORT="3000"
+            RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}"
+            RESEND_FROM="${{ vars.RESEND_FROM }}"
+            RESEND_AUDIENCE_ID="${{ vars.RESEND_AUDIENCE_ID }}"
+            EOL
+            
+            # Create docker-compose.yml file directly on the server
+            cat > ~/minihabits-backend/docker-compose.yml << 'EOL'
+            services:
+              minihabits-backend:
+                image: ghcr.io/${{ github.repository }}/backend:latest
+                container_name: minihabits-backend
+                labels:
+                  - "traefik.enable=true"
+                  - "traefik.docker.network=web"
+                  - "traefik.http.routers.minihabits-api.rule=Host(`minihabits-api.fberrez.co`)"
+                  - "traefik.http.routers.minihabits-api.entrypoints=websecure"
+                  - "traefik.http.routers.minihabits-api.tls.certresolver=myresolver"
+                  - "traefik.http.services.minihabits-api.loadbalancer.server.port=3000"
+                  - "traefik.http.services.minihabits-api.loadbalancer.server.scheme=http"
+                env_file:
+                  - .env
+                restart: unless-stopped
+                healthcheck:
+                  test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/healthcheck', (res) => process.exit(res.statusCode === 200 ? 0 : 1))"]
+                  interval: 30s
+                  timeout: 5s
+                  retries: 3
+                  start_period: 15s
+                networks:
+                  - web
+
+            networks:
+              web:
+                external: true
+            EOL
+            
+            # Login to GitHub Container Registry
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            
+            # Pull the latest image
+            cd ~/minihabits-backend
+            docker compose pull
+            
+            # Deploy with zero downtime
+            docker compose up -d --force-recreate
+            
+            # Clean up old images
+            docker image prune -af
+
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10.13.1
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: 🔧 Install frontend dependencies only
+        run: pnpm install --filter=minihabits-frontend --frozen-lockfile
+
+      - name: 🏗️ Build frontend
+        run: pnpm nx build frontend
+
+      - name: 🐳 Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 🔐 Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏷️ Extract metadata for frontend
+        id: meta-frontend
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository }}/frontend
+          tags: |
+            type=sha,format=long
+            type=ref,event=branch
+            latest
+
+      - name: 🐳 Build and push frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/frontend/Dockerfile
+          push: true
+          tags: ${{ steps.meta-frontend.outputs.tags }}
+          labels: ${{ steps.meta-frontend.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            VITE_API_BASE_URL=${{ vars.VITE_API_BASE_URL }}
+            VITE_CONTACT_EMAIL=${{ vars.VITE_CONTACT_EMAIL }}
+            VITE_STRIPE_PRICE_MONTHLY_ID=${{ vars.VITE_STRIPE_PRICE_MONTHLY_ID }}
+            VITE_STRIPE_PRICE_YEARLY_ID=${{ vars.VITE_STRIPE_PRICE_YEARLY_ID }}
+            VITE_STRIPE_PRICE_LIFETIME_ID=${{ vars.VITE_STRIPE_PRICE_LIFETIME_ID }}
+
+      - name: 🚀 Deploy frontend to VPS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            # Create deployment directory if it doesn't exist
+            mkdir -p ~/minihabits-web
+            
+            # Create docker-compose.yml file directly on the server
+            cat > ~/minihabits-web/docker-compose.yml << 'EOL'
+            services:
+              minihabits-web:
+                image: ghcr.io/${{ github.repository }}/frontend:latest
+                container_name: minihabits-web
+                labels:
+                  - "traefik.enable=true"
+                  - "traefik.docker.network=web"
+                  - "traefik.http.routers.minihabits-web.rule=Host(`minihabits.fberrez.co`)"
+                  - "traefik.http.routers.minihabits-web.entrypoints=websecure"
+                  - "traefik.http.routers.minihabits-web.tls.certresolver=myresolver"
+                  - "traefik.http.services.minihabits-web.loadbalancer.server.port=80"
+                  - "traefik.http.services.minihabits-web.loadbalancer.server.scheme=http"
+                restart: unless-stopped
+                networks:
+                  - web
+                healthcheck:
+                  test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80"]
+                  interval: 30s
+                  timeout: 5s
+                  retries: 3
+                  start_period: 10s
+
+            networks:
+              web:
+                external: true
+            EOL
+            
+            # Login to GitHub Container Registry
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            
+            # Pull the latest image
+            cd ~/minihabits-web
+            docker compose pull
+            
+            # Deploy with zero downtime
+            docker compose up -d --force-recreate
+            
+            # Clean up old images
+            docker image prune -af 
