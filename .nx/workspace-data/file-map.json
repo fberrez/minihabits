@@ -1,6 +1,6 @@
 {
   "version": "6.0",
-  "nxVersion": "21.3.0",
+  "nxVersion": "21.3.2",
   "pathMappings": {},
   "nxJsonPlugins": [
     {
@@ -23,967 +23,139 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "pnpm-lock.yaml",
-        "hash": "1126861987764473436"
-      },
-      {
-        "file": "bruno/minihabits/habits/getstats.bru",
-        "hash": "18225461552242178982"
-      },
-      {
-        "file": "pnpm-workspace.yaml",
-        "hash": "7434045464140418696"
-      },
-      {
-        "file": "jest.preset.js",
-        "hash": "14525742987502695387"
-      },
-      {
-        "file": ".gitignore",
-        "hash": "10789874955046848277"
-      },
-      {
-        "file": "bruno/minihabits/streak/untrack.bru",
-        "hash": "5373538890283712661"
-      },
-      {
         "file": "nx.json",
         "hash": "16970103842083221899"
-      },
-      {
-        "file": "bruno/minihabits/habits/create.bru",
-        "hash": "2116015504710481526"
-      },
-      {
-        "file": "tsconfig.base.json",
-        "hash": "9897484296694281365"
-      },
-      {
-        "file": "README.md",
-        "hash": "2074353371698391063"
-      },
-      {
-        "file": "bruno/minihabits/habits/update.bru",
-        "hash": "5406080266286274314"
-      },
-      {
-        "file": "bruno/minihabits/habits/get.bru",
-        "hash": "315946568693710760"
-      },
-      {
-        "file": "bruno/minihabits/healthccheck.bru",
-        "hash": "10620767397262759657"
-      },
-      {
-        "file": ".cursor/rules/context.mdc",
-        "hash": "11687051178541775495"
-      },
-      {
-        "file": ".dockerignore",
-        "hash": "14615377730694613191"
-      },
-      {
-        "file": ".prettierrc",
-        "hash": "4808572120966128913"
-      },
-      {
-        "file": "LICENSE.md",
-        "hash": "17672936396789512931"
       },
       {
         "file": "bruno/minihabits/bruno.json",
         "hash": "4860971085582506866"
       },
       {
+        "file": ".eslintrc.js",
+        "hash": "7461846271827386206"
+      },
+      {
+        "file": "LICENSE.md",
+        "hash": "17672936396789512931"
+      },
+      {
+        "file": "DEPLOYMENT.md",
+        "hash": "7632864312474716619"
+      },
+      {
         "file": "bruno/minihabits/auth/auth-signup.bru",
         "hash": "12160729914325817397"
-      },
-      {
-        "file": "bruno/minihabits/environments/minihabits.bru",
-        "hash": "6000593210490242070"
-      },
-      {
-        "file": ".cursorignore",
-        "hash": "17321229812038436774"
-      },
-      {
-        "file": "bruno/minihabits/auth/refresh.bru",
-        "hash": "3762807682471900586"
-      },
-      {
-        "file": "bruno/minihabits/streak/streak.bru",
-        "hash": "4629195930661766912"
-      },
-      {
-        "file": "docker-compose.yml",
-        "hash": "12379412086816051549"
       },
       {
         "file": "bruno/minihabits/auth/auth-signin.bru",
         "hash": "16264788594396078775"
       },
       {
-        "file": "bruno/minihabits/streak/stats.bru",
-        "hash": "8979621950904663070"
+        "file": "bruno/minihabits/auth/refresh.bru",
+        "hash": "3762807682471900586"
       },
       {
-        "file": ".github/workflows/deploy.yml",
-        "hash": "2611635289843289345"
+        "file": ".github/workflows/deploy-backend.yml",
+        "hash": "4552379870172606099"
       },
       {
-        "file": "bruno/minihabits/streak/track.bru",
-        "hash": "2584637748775236364"
+        "file": ".github/workflows/deploy-frontend.yml",
+        "hash": "16144702360835873634"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "10789874955046848277"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "9897484296694281365"
+      },
+      {
+        "file": "pnpm-workspace.yaml",
+        "hash": "7434045464140418696"
+      },
+      {
+        "file": "bruno/minihabits/streak/streak.bru",
+        "hash": "4629195930661766912"
       },
       {
         "file": "bruno/minihabits/habits/delete.bru",
         "hash": "563054263706853344"
       },
       {
-        "file": ".eslintrc.js",
-        "hash": "7461846271827386206"
+        "file": "bruno/minihabits/habits/update.bru",
+        "hash": "5406080266286274314"
+      },
+      {
+        "file": "docker-compose.yml",
+        "hash": "12379412086816051549"
+      },
+      {
+        "file": ".cursor/rules/context.mdc",
+        "hash": "11687051178541775495"
+      },
+      {
+        "file": "bruno/minihabits/streak/untrack.bru",
+        "hash": "5373538890283712661"
+      },
+      {
+        "file": "jest.preset.js",
+        "hash": "14525742987502695387"
+      },
+      {
+        "file": "bruno/minihabits/streak/stats.bru",
+        "hash": "8979621950904663070"
+      },
+      {
+        "file": "bruno/minihabits/habits/get.bru",
+        "hash": "315946568693710760"
       },
       {
         "file": "package.json",
-        "hash": "7188411199928821643"
+        "hash": "5662496740546994512"
+      },
+      {
+        "file": "pnpm-lock.yaml",
+        "hash": "14120921503771773232"
+      },
+      {
+        "file": "bruno/minihabits/habits/getstats.bru",
+        "hash": "18225461552242178982"
+      },
+      {
+        "file": "bruno/minihabits/healthccheck.bru",
+        "hash": "10620767397262759657"
+      },
+      {
+        "file": ".dockerignore",
+        "hash": "14615377730694613191"
+      },
+      {
+        "file": "README.md",
+        "hash": "2074353371698391063"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "4808572120966128913"
+      },
+      {
+        "file": "bruno/minihabits/streak/track.bru",
+        "hash": "2584637748775236364"
+      },
+      {
+        "file": ".cursorignore",
+        "hash": "7729020033206531124"
+      },
+      {
+        "file": "bruno/minihabits/environments/minihabits.bru",
+        "hash": "6000593210490242070"
+      },
+      {
+        "file": "bruno/minihabits/habits/create.bru",
+        "hash": "2116015504710481526"
       }
     ],
     "projectFileMap": {
-      "frontend": [
-        {
-          "file": "apps/frontend/Dockerfile",
-          "hash": "14941629869811820639"
-        },
-        {
-          "file": "apps/frontend/components.json",
-          "hash": "12225174943113813965"
-        },
-        {
-          "file": "apps/frontend/index.html",
-          "hash": "1486734471898383306"
-        },
-        {
-          "file": "apps/frontend/package.json",
-          "hash": "14178042381504159392",
-          "deps": [
-            "npm:@eslint/js@9.31.0",
-            "npm:@types/node@22.16.5",
-            "npm:@types/react",
-            "npm:@types/react-dom",
-            "npm:@vitejs/plugin-react",
-            "npm:autoprefixer",
-            "npm:eslint@9.31.0",
-            "npm:eslint-plugin-react-hooks",
-            "npm:eslint-plugin-react-refresh",
-            "npm:globals@15.15.0",
-            "npm:postcss@8.5.1",
-            "npm:tailwindcss",
-            "npm:tsx",
-            "npm:typescript@5.6.3",
-            "npm:typescript-eslint",
-            "npm:vite@6.3.5",
-            "npm:@hookform/resolvers",
-            "npm:@icons-pack/react-simple-icons",
-            "npm:@radix-ui/react-alert-dialog",
-            "npm:@radix-ui/react-dialog",
-            "npm:@radix-ui/react-dropdown-menu",
-            "npm:@radix-ui/react-icons",
-            "npm:@radix-ui/react-label",
-            "npm:@radix-ui/react-popover",
-            "npm:@radix-ui/react-progress",
-            "npm:@radix-ui/react-radio-group",
-            "npm:@radix-ui/react-select",
-            "npm:@radix-ui/react-separator",
-            "npm:@radix-ui/react-slot",
-            "npm:@radix-ui/react-toast",
-            "npm:@radix-ui/react-tooltip",
-            "npm:@tanstack/react-query",
-            "npm:@tanstack/react-query-devtools",
-            "npm:@vite-pwa/workbox-window",
-            "npm:cal-heatmap",
-            "npm:class-variance-authority",
-            "npm:clsx",
-            "npm:date-fns",
-            "npm:js-confetti",
-            "npm:lucide-react",
-            "npm:moment",
-            "npm:motion",
-            "npm:openapi-typescript-codegen",
-            "npm:react@18.3.1",
-            "npm:react-day-picker",
-            "npm:react-dom@18.3.1",
-            "npm:react-hook-form",
-            "npm:react-router-dom",
-            "npm:recharts",
-            "npm:tailwind-merge",
-            "npm:tailwindcss-animate",
-            "npm:vaul",
-            "npm:vite-plugin-pwa",
-            "npm:workbox-window",
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "apps/frontend/postcss.config.cjs",
-          "hash": "542958312489793870",
-          "deps": [
-            "npm:tailwindcss",
-            "npm:autoprefixer"
-          ]
-        },
-        {
-          "file": "apps/frontend/project.json",
-          "hash": "9138543470592068932"
-        },
-        {
-          "file": "apps/frontend/public/h-192.png",
-          "hash": "10096827051478760105"
-        },
-        {
-          "file": "apps/frontend/public/h-512.png",
-          "hash": "16729165065195339152"
-        },
-        {
-          "file": "apps/frontend/public/h.svg",
-          "hash": "17521644408541024471"
-        },
-        {
-          "file": "apps/frontend/public/robots.txt",
-          "hash": "8047389571712361519"
-        },
-        {
-          "file": "apps/frontend/public/success.mp3",
-          "hash": "13432905744671719963"
-        },
-        {
-          "file": "apps/frontend/src/App.css",
-          "hash": "5998550133271099679"
-        },
-        {
-          "file": "apps/frontend/src/App.tsx",
-          "hash": "13742562147742452892",
-          "deps": [
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/api/QueryProvider.tsx",
-          "hash": "1296162869498603657",
-          "deps": [
-            "npm:@tanstack/react-query",
-            "npm:@tanstack/react-query-devtools",
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/api/generated/core/ApiError.ts",
-          "hash": "6471583321713707660"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/core/ApiRequestOptions.ts",
-          "hash": "6392281580749199450"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/core/ApiResult.ts",
-          "hash": "14028554433165977479"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/core/CancelablePromise.ts",
-          "hash": "5551668450863348458"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/core/OpenAPI.ts",
-          "hash": "17171656726033160830"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/core/request.ts",
-          "hash": "15990133958112511328"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/index.ts",
-          "hash": "14406901556444961212"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/AuthResponse.ts",
-          "hash": "7343833237403256346"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/CreateHabitDto.ts",
-          "hash": "18221429955259978906"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/ForgotPasswordDto.ts",
-          "hash": "2966161775223698476"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/Habit.ts",
-          "hash": "8321215819805599818"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/HabitStatsOutput.ts",
-          "hash": "15253500335377372619"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/HabitTypeOutput.ts",
-          "hash": "8268496475070115830"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/ResetPasswordDto.ts",
-          "hash": "10503208768714986648"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/SignInDto.ts",
-          "hash": "5728323295229234731"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/SignUpDto.ts",
-          "hash": "5140824384917697710"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/Stats.ts",
-          "hash": "16544874835382970862"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/StatsOutput.ts",
-          "hash": "8970492110863146706"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/TrackHabitDto.ts",
-          "hash": "2617269888866257133"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/UpdateEmailDto.ts",
-          "hash": "5445226936202374099"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/UpdateHabitDto.ts",
-          "hash": "5867241996189969418"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/models/UpdatePasswordDto.ts",
-          "hash": "4882939942872727153"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/services/AuthService.ts",
-          "hash": "2758825148085233226"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/services/HabitsService.ts",
-          "hash": "7330998941722472791"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/services/HealthcheckService.ts",
-          "hash": "1663479634377209006"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/services/PublicService.ts",
-          "hash": "12137525979490839058"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/services/StatsService.ts",
-          "hash": "5251677455049922247"
-        },
-        {
-          "file": "apps/frontend/src/api/generated/services/UsersService.ts",
-          "hash": "17641345896541843359"
-        },
-        {
-          "file": "apps/frontend/src/api/hooks/useAuth.ts",
-          "hash": "2437978581849905675",
-          "deps": [
-            "npm:@tanstack/react-query",
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/api/hooks/useAuthQuery.ts",
-          "hash": "14407316968148015465",
-          "deps": [
-            "npm:@tanstack/react-query",
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/api/hooks/useHabits.ts",
-          "hash": "13142788465521916585",
-          "deps": [
-            "npm:@tanstack/react-query",
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/api/hooks/useStats.ts",
-          "hash": "15996474068574544159",
-          "deps": [
-            "npm:@tanstack/react-query"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/api/openapi-config.ts",
-          "hash": "2573931687626680847",
-          "deps": [
-            "npm:openapi-typescript-codegen"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/api/openapi-init.ts",
-          "hash": "8142873041122173997"
-        },
-        {
-          "file": "apps/frontend/src/api/query-client.ts",
-          "hash": "2485886782155132971",
-          "deps": [
-            "npm:@tanstack/react-query"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/api/types/appTypes.ts",
-          "hash": "2385460913984052218"
-        },
-        {
-          "file": "apps/frontend/src/components/AlertError.tsx",
-          "hash": "6201970595923570831",
-          "deps": [
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/Toaster.tsx",
-          "hash": "4503782241318752731"
-        },
-        {
-          "file": "apps/frontend/src/components/account-settings-button.tsx",
-          "hash": "10193094723858951165",
-          "deps": [
-            "npm:react-router-dom",
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/add-new-buttons.tsx",
-          "hash": "17083870061685559901",
-          "deps": [
-            "npm:lucide-react",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/color-picker.tsx",
-          "hash": "6245497893021792941",
-          "deps": [
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/feedback-button.tsx",
-          "hash": "6339190097881749659",
-          "deps": [
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/footer.tsx",
-          "hash": "15464117740444023109",
-          "deps": [
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/habits/boolean-habit-card.tsx",
-          "hash": "6251795125301543308",
-          "deps": [
-            "npm:lucide-react",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/habits/counter-habit-card.tsx",
-          "hash": "13810847183774239453",
-          "deps": [
-            "npm:lucide-react",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/home-stats.tsx",
-          "hash": "4001473451877387470",
-          "deps": [
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/mode-toggle.tsx",
-          "hash": "14433998982904471189",
-          "deps": [
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/sign-out-button.tsx",
-          "hash": "11887698110227936353",
-          "deps": [
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/stats/Calendar.tsx",
-          "hash": "18176747564780063910",
-          "deps": [
-            "npm:date-fns",
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/stats/CompletionRateCard.tsx",
-          "hash": "9816947091006428182"
-        },
-        {
-          "file": "apps/frontend/src/components/stats/CurrentStreakCard.tsx",
-          "hash": "17798712786547243184"
-        },
-        {
-          "file": "apps/frontend/src/components/stats/Heatmap.tsx",
-          "hash": "9609468587800755279"
-        },
-        {
-          "file": "apps/frontend/src/components/stats/LongestStreakCard.tsx",
-          "hash": "1960906278063610209"
-        },
-        {
-          "file": "apps/frontend/src/components/stats/MonthlyOverviewChart.tsx",
-          "hash": "7514293693345504721",
-          "deps": [
-            "npm:recharts"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/stats/YearlyOverviewChart.tsx",
-          "hash": "5833151659825510944",
-          "deps": [
-            "npm:recharts"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/stats/boolean/BooleanHeatmap.tsx",
-          "hash": "3397752042820431063",
-          "deps": [
-            "npm:moment",
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/stats/counter/CounterHeatmap.tsx",
-          "hash": "7540589478707961006",
-          "deps": [
-            "npm:moment",
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/stats/index.ts",
-          "hash": "91785047507706979"
-        },
-        {
-          "file": "apps/frontend/src/components/theme-provider.tsx",
-          "hash": "2099711461742908018",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/top-bar.tsx",
-          "hash": "7528020631616466282",
-          "deps": [
-            "npm:lucide-react",
-            "npm:react",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/alert-dialog.tsx",
-          "hash": "5585576857993870640",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-alert-dialog"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/alert.tsx",
-          "hash": "7317990078770239904",
-          "deps": [
-            "npm:react",
-            "npm:class-variance-authority"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/animated-gradient-text.tsx",
-          "hash": "9274572155762200887",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/bento-grid.tsx",
-          "hash": "15053700052074580656",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/button.tsx",
-          "hash": "9267699881977892517",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-slot",
-            "npm:class-variance-authority"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/calendar.tsx",
-          "hash": "6787416583221909955",
-          "deps": [
-            "npm:react",
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/card.tsx",
-          "hash": "13020415022962293373",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/chart.tsx",
-          "hash": "8882641728700038694",
-          "deps": [
-            "npm:react",
-            "npm:recharts"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/dialog.tsx",
-          "hash": "7755375973925996779",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-dialog",
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/dropdown-menu.tsx",
-          "hash": "4571242179031149448",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-dropdown-menu",
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/flickering-grid.tsx",
-          "hash": "3487267202150454275",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/form.tsx",
-          "hash": "7279110871505488781",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-label",
-            "npm:@radix-ui/react-slot",
-            "npm:react-hook-form"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/input.tsx",
-          "hash": "10270228290145902228",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/label.tsx",
-          "hash": "575553755677390382",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-label",
-            "npm:class-variance-authority"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/number-ticker.tsx",
-          "hash": "6271262250328794632",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/period-select.tsx",
-          "hash": "5184420160194827728",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/popover.tsx",
-          "hash": "1239358951831244042",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-popover"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/progress.tsx",
-          "hash": "16003150628414737276",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/radio-group.tsx",
-          "hash": "11253721217064623089",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-radio-group",
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/select.tsx",
-          "hash": "11131509269934797175",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-select",
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/separator.tsx",
-          "hash": "9152929968593344539",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/sheet.tsx",
-          "hash": "6306057074302798346",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-dialog",
-            "npm:class-variance-authority",
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/skeleton.tsx",
-          "hash": "8682262600359381656"
-        },
-        {
-          "file": "apps/frontend/src/components/ui/time-picker-input.tsx",
-          "hash": "9459793399519803101",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/time-picker-utils.tsx",
-          "hash": "17376503523016333949"
-        },
-        {
-          "file": "apps/frontend/src/components/ui/time-picker.tsx",
-          "hash": "4934450160372818286",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/toast.tsx",
-          "hash": "8776325038179715669",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-toast",
-            "npm:class-variance-authority",
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/components/ui/toaster.tsx",
-          "hash": "10660638037006708513"
-        },
-        {
-          "file": "apps/frontend/src/components/ui/tooltip.tsx",
-          "hash": "8879210951239699807",
-          "deps": [
-            "npm:react",
-            "npm:@radix-ui/react-tooltip"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/contexts/AuthContext.tsx",
-          "hash": "10413536293016219519",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/hooks/use-toast.ts",
-          "hash": "8499014235844066475",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/index.css",
-          "hash": "4265000792048473579"
-        },
-        {
-          "file": "apps/frontend/src/lib/sound.ts",
-          "hash": "2350326825487011339"
-        },
-        {
-          "file": "apps/frontend/src/lib/utils.ts",
-          "hash": "7693891966047857635",
-          "deps": [
-            "npm:clsx",
-            "npm:tailwind-merge"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/main.tsx",
-          "hash": "3541832862459365875",
-          "deps": [
-            "npm:react",
-            "npm:react-dom",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/pages/Account.tsx",
-          "hash": "4683122905805786505",
-          "deps": [
-            "npm:react",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/pages/Auth.tsx",
-          "hash": "14130441625888372656",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/pages/HabitList.tsx",
-          "hash": "6156341819948154101",
-          "deps": [
-            "npm:react",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/pages/Home.tsx",
-          "hash": "3071126814092242250",
-          "deps": [
-            "npm:react-router-dom",
-            "npm:react@18.3.1",
-            "npm:js-confetti",
-            "npm:moment",
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/pages/NewHabit.tsx",
-          "hash": "11707941077499760597",
-          "deps": [
-            "npm:react",
-            "npm:react-router-dom",
-            "npm:lucide-react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/pages/PrivacyPolicy.tsx",
-          "hash": "9948282960773313947"
-        },
-        {
-          "file": "apps/frontend/src/pages/ResetPassword.tsx",
-          "hash": "17021756000036647631",
-          "deps": [
-            "npm:react",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/pages/StatsPage.css",
-          "hash": "8883344989384825234"
-        },
-        {
-          "file": "apps/frontend/src/pages/StatsPage.tsx",
-          "hash": "16615638851690045418",
-          "deps": [
-            "npm:lucide-react",
-            "npm:react",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/pages/TermsOfUse.tsx",
-          "hash": "2996362333771734359"
-        },
-        {
-          "file": "apps/frontend/src/providers/AuthProvider.tsx",
-          "hash": "18063985578219140849",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/frontend/src/services/auth.ts",
-          "hash": "11029614640074873343"
-        },
-        {
-          "file": "apps/frontend/src/services/stats.ts",
-          "hash": "3777388576651886645"
-        },
-        {
-          "file": "apps/frontend/src/vite-env.d.ts",
-          "hash": "12917595312912016608"
-        },
-        {
-          "file": "apps/frontend/tailwind.config.js",
-          "hash": "6115921651261375303",
-          "deps": [
-            [
-              "npm:tailwindcss-animate",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": "apps/frontend/tsconfig.app.json",
-          "hash": "14537410299736066200"
-        },
-        {
-          "file": "apps/frontend/tsconfig.js",
-          "hash": "18027719143571928554"
-        },
-        {
-          "file": "apps/frontend/tsconfig.json",
-          "hash": "1048694001195511004"
-        },
-        {
-          "file": "apps/frontend/tsconfig.node.json",
-          "hash": "4200375265648421840"
-        },
-        {
-          "file": "apps/frontend/vite.config.ts",
-          "hash": "658955361834391242",
-          "deps": [
-            "npm:@vitejs/plugin-react",
-            "npm:vite@6.3.5"
-          ]
-        }
-      ],
       "backend": [
         {
           "file": "apps/backend/.swcrc",
@@ -991,7 +163,7 @@
         },
         {
           "file": "apps/backend/Dockerfile",
-          "hash": "8912108969087130400"
+          "hash": "5427808299486401085"
         },
         {
           "file": "apps/backend/jest.config.ts",
@@ -1005,9 +177,9 @@
             "npm:@swc/cli",
             "npm:@swc/core",
             "npm:@types/bcryptjs",
-            "npm:@types/express@5.0.0",
+            "npm:@types/express@5.0.3",
             "npm:@types/jest",
-            "npm:@types/node@20.17.12",
+            "npm:@types/node@20.19.9",
             "npm:@types/supertest",
             "npm:@typescript-eslint/eslint-plugin",
             "npm:@typescript-eslint/parser",
@@ -1025,7 +197,7 @@
             "npm:ts-loader",
             "npm:ts-node",
             "npm:tsconfig-paths",
-            "npm:typescript@5.8.3",
+            "npm:typescript",
             "npm:@nestjs/common",
             "npm:@nestjs/config",
             "npm:@nestjs/core",
@@ -1041,14 +213,10 @@
             "npm:mongoose",
             "npm:reflect-metadata",
             "npm:resend",
-            "npm:rxjs",
+            "npm:rxjs@7.8.2",
             "npm:swagger-ui-express",
             "npm:tslib"
           ]
-        },
-        {
-          "file": "apps/backend/pnpm-lock.yaml",
-          "hash": "886632050476554342"
         },
         {
           "file": "apps/backend/project.json",
@@ -1477,6 +645,856 @@
         {
           "file": "apps/backend/tsconfig.tsbuildinfo",
           "hash": "17555468087373642133"
+        }
+      ],
+      "frontend": [
+        {
+          "file": "apps/frontend/Dockerfile",
+          "hash": "4583204429169207248"
+        },
+        {
+          "file": "apps/frontend/components.json",
+          "hash": "12225174943113813965"
+        },
+        {
+          "file": "apps/frontend/index.html",
+          "hash": "1486734471898383306"
+        },
+        {
+          "file": "apps/frontend/package.json",
+          "hash": "14178042381504159392",
+          "deps": [
+            "npm:@eslint/js@9.31.0",
+            "npm:@types/node@22.16.5",
+            "npm:@types/react",
+            "npm:@types/react-dom",
+            "npm:@vitejs/plugin-react",
+            "npm:autoprefixer",
+            "npm:eslint@9.31.0",
+            "npm:eslint-plugin-react-hooks",
+            "npm:eslint-plugin-react-refresh",
+            "npm:globals@15.15.0",
+            "npm:postcss@8.5.1",
+            "npm:tailwindcss",
+            "npm:tsx",
+            "npm:typescript",
+            "npm:typescript-eslint",
+            "npm:vite",
+            "npm:@hookform/resolvers",
+            "npm:@icons-pack/react-simple-icons",
+            "npm:@radix-ui/react-alert-dialog",
+            "npm:@radix-ui/react-dialog",
+            "npm:@radix-ui/react-dropdown-menu",
+            "npm:@radix-ui/react-icons",
+            "npm:@radix-ui/react-label",
+            "npm:@radix-ui/react-popover",
+            "npm:@radix-ui/react-progress",
+            "npm:@radix-ui/react-radio-group",
+            "npm:@radix-ui/react-select",
+            "npm:@radix-ui/react-separator",
+            "npm:@radix-ui/react-slot",
+            "npm:@radix-ui/react-toast",
+            "npm:@radix-ui/react-tooltip",
+            "npm:@tanstack/react-query",
+            "npm:@tanstack/react-query-devtools",
+            "npm:@vite-pwa/workbox-window",
+            "npm:cal-heatmap",
+            "npm:class-variance-authority",
+            "npm:clsx",
+            "npm:date-fns",
+            "npm:js-confetti",
+            "npm:lucide-react",
+            "npm:moment",
+            "npm:motion",
+            "npm:openapi-typescript-codegen",
+            "npm:react",
+            "npm:react-day-picker",
+            "npm:react-dom",
+            "npm:react-hook-form",
+            "npm:react-router-dom",
+            "npm:recharts",
+            "npm:tailwind-merge",
+            "npm:tailwindcss-animate",
+            "npm:vaul",
+            "npm:vite-plugin-pwa",
+            "npm:workbox-window",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "apps/frontend/postcss.config.cjs",
+          "hash": "542958312489793870",
+          "deps": [
+            "npm:tailwindcss",
+            "npm:autoprefixer"
+          ]
+        },
+        {
+          "file": "apps/frontend/project.json",
+          "hash": "9138543470592068932"
+        },
+        {
+          "file": "apps/frontend/public/h-192.png",
+          "hash": "10096827051478760105"
+        },
+        {
+          "file": "apps/frontend/public/h-512.png",
+          "hash": "16729165065195339152"
+        },
+        {
+          "file": "apps/frontend/public/h.svg",
+          "hash": "17521644408541024471"
+        },
+        {
+          "file": "apps/frontend/public/robots.txt",
+          "hash": "8047389571712361519"
+        },
+        {
+          "file": "apps/frontend/public/success.mp3",
+          "hash": "13432905744671719963"
+        },
+        {
+          "file": "apps/frontend/src/App.css",
+          "hash": "5998550133271099679"
+        },
+        {
+          "file": "apps/frontend/src/App.tsx",
+          "hash": "13742562147742452892",
+          "deps": [
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/api/QueryProvider.tsx",
+          "hash": "1296162869498603657",
+          "deps": [
+            "npm:@tanstack/react-query",
+            "npm:@tanstack/react-query-devtools",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/api/generated/core/ApiError.ts",
+          "hash": "6471583321713707660"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/core/ApiRequestOptions.ts",
+          "hash": "6392281580749199450"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/core/ApiResult.ts",
+          "hash": "14028554433165977479"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/core/CancelablePromise.ts",
+          "hash": "5551668450863348458"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/core/OpenAPI.ts",
+          "hash": "17171656726033160830"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/core/request.ts",
+          "hash": "15990133958112511328"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/index.ts",
+          "hash": "14406901556444961212"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/AuthResponse.ts",
+          "hash": "7343833237403256346"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/CreateHabitDto.ts",
+          "hash": "18221429955259978906"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/ForgotPasswordDto.ts",
+          "hash": "2966161775223698476"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/Habit.ts",
+          "hash": "8321215819805599818"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/HabitStatsOutput.ts",
+          "hash": "15253500335377372619"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/HabitTypeOutput.ts",
+          "hash": "8268496475070115830"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/ResetPasswordDto.ts",
+          "hash": "10503208768714986648"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/SignInDto.ts",
+          "hash": "5728323295229234731"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/SignUpDto.ts",
+          "hash": "5140824384917697710"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/Stats.ts",
+          "hash": "16544874835382970862"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/StatsOutput.ts",
+          "hash": "8970492110863146706"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/TrackHabitDto.ts",
+          "hash": "2617269888866257133"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/UpdateEmailDto.ts",
+          "hash": "5445226936202374099"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/UpdateHabitDto.ts",
+          "hash": "5867241996189969418"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/models/UpdatePasswordDto.ts",
+          "hash": "4882939942872727153"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/services/AuthService.ts",
+          "hash": "2758825148085233226"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/services/HabitsService.ts",
+          "hash": "7330998941722472791"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/services/HealthcheckService.ts",
+          "hash": "1663479634377209006"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/services/PublicService.ts",
+          "hash": "12137525979490839058"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/services/StatsService.ts",
+          "hash": "5251677455049922247"
+        },
+        {
+          "file": "apps/frontend/src/api/generated/services/UsersService.ts",
+          "hash": "17641345896541843359"
+        },
+        {
+          "file": "apps/frontend/src/api/hooks/useAuth.ts",
+          "hash": "2437978581849905675",
+          "deps": [
+            "npm:@tanstack/react-query",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/api/hooks/useAuthQuery.ts",
+          "hash": "14407316968148015465",
+          "deps": [
+            "npm:@tanstack/react-query",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/api/hooks/useHabits.ts",
+          "hash": "13142788465521916585",
+          "deps": [
+            "npm:@tanstack/react-query",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/api/hooks/useStats.ts",
+          "hash": "15996474068574544159",
+          "deps": [
+            "npm:@tanstack/react-query"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/api/openapi-config.ts",
+          "hash": "2573931687626680847",
+          "deps": [
+            "npm:openapi-typescript-codegen"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/api/openapi-init.ts",
+          "hash": "8142873041122173997"
+        },
+        {
+          "file": "apps/frontend/src/api/query-client.ts",
+          "hash": "2485886782155132971",
+          "deps": [
+            "npm:@tanstack/react-query"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/api/types/appTypes.ts",
+          "hash": "2385460913984052218"
+        },
+        {
+          "file": "apps/frontend/src/components/AlertError.tsx",
+          "hash": "6201970595923570831",
+          "deps": [
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/Toaster.tsx",
+          "hash": "4503782241318752731"
+        },
+        {
+          "file": "apps/frontend/src/components/account-settings-button.tsx",
+          "hash": "10193094723858951165",
+          "deps": [
+            "npm:react-router-dom",
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/add-new-buttons.tsx",
+          "hash": "17083870061685559901",
+          "deps": [
+            "npm:lucide-react",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/color-picker.tsx",
+          "hash": "6245497893021792941",
+          "deps": [
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/feedback-button.tsx",
+          "hash": "6339190097881749659",
+          "deps": [
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/footer.tsx",
+          "hash": "15464117740444023109",
+          "deps": [
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/habits/boolean-habit-card.tsx",
+          "hash": "6251795125301543308",
+          "deps": [
+            "npm:lucide-react",
+            "npm:js-confetti",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/habits/counter-habit-card.tsx",
+          "hash": "13810847183774239453",
+          "deps": [
+            "npm:lucide-react",
+            "npm:js-confetti",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/home-stats.tsx",
+          "hash": "4001473451877387470",
+          "deps": [
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/mode-toggle.tsx",
+          "hash": "14433998982904471189",
+          "deps": [
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/sign-out-button.tsx",
+          "hash": "11887698110227936353",
+          "deps": [
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/stats/Calendar.tsx",
+          "hash": "18176747564780063910",
+          "deps": [
+            "npm:date-fns",
+            "npm:react",
+            "npm:react-day-picker"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/stats/CompletionRateCard.tsx",
+          "hash": "9816947091006428182"
+        },
+        {
+          "file": "apps/frontend/src/components/stats/CurrentStreakCard.tsx",
+          "hash": "17798712786547243184"
+        },
+        {
+          "file": "apps/frontend/src/components/stats/Heatmap.tsx",
+          "hash": "9609468587800755279"
+        },
+        {
+          "file": "apps/frontend/src/components/stats/LongestStreakCard.tsx",
+          "hash": "1960906278063610209"
+        },
+        {
+          "file": "apps/frontend/src/components/stats/MonthlyOverviewChart.tsx",
+          "hash": "7514293693345504721",
+          "deps": [
+            "npm:recharts"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/stats/YearlyOverviewChart.tsx",
+          "hash": "5833151659825510944",
+          "deps": [
+            "npm:recharts"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/stats/boolean/BooleanHeatmap.tsx",
+          "hash": "3397752042820431063",
+          "deps": [
+            "npm:cal-heatmap",
+            "npm:moment",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/stats/counter/CounterHeatmap.tsx",
+          "hash": "7540589478707961006",
+          "deps": [
+            "npm:cal-heatmap",
+            "npm:moment",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/stats/index.ts",
+          "hash": "91785047507706979"
+        },
+        {
+          "file": "apps/frontend/src/components/theme-provider.tsx",
+          "hash": "2099711461742908018",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/top-bar.tsx",
+          "hash": "7528020631616466282",
+          "deps": [
+            "npm:lucide-react",
+            "npm:@icons-pack/react-simple-icons",
+            "npm:react",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/alert-dialog.tsx",
+          "hash": "5585576857993870640",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-alert-dialog"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/alert.tsx",
+          "hash": "7317990078770239904",
+          "deps": [
+            "npm:react",
+            "npm:class-variance-authority"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/animated-gradient-text.tsx",
+          "hash": "9274572155762200887",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/bento-grid.tsx",
+          "hash": "15053700052074580656",
+          "deps": [
+            "npm:@radix-ui/react-icons",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/button.tsx",
+          "hash": "9267699881977892517",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-slot",
+            "npm:class-variance-authority"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/calendar.tsx",
+          "hash": "6787416583221909955",
+          "deps": [
+            "npm:react",
+            "npm:lucide-react",
+            "npm:react-day-picker"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/card.tsx",
+          "hash": "13020415022962293373",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/chart.tsx",
+          "hash": "8882641728700038694",
+          "deps": [
+            "npm:react",
+            "npm:recharts"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/dialog.tsx",
+          "hash": "7755375973925996779",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-dialog",
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/dropdown-menu.tsx",
+          "hash": "4571242179031149448",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-dropdown-menu",
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/flickering-grid.tsx",
+          "hash": "3487267202150454275",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/form.tsx",
+          "hash": "7279110871505488781",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-label",
+            "npm:@radix-ui/react-slot",
+            "npm:react-hook-form"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/input.tsx",
+          "hash": "10270228290145902228",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/label.tsx",
+          "hash": "575553755677390382",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-label",
+            "npm:class-variance-authority"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/number-ticker.tsx",
+          "hash": "6271262250328794632",
+          "deps": [
+            "npm:react",
+            "npm:motion"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/period-select.tsx",
+          "hash": "5184420160194827728",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/popover.tsx",
+          "hash": "1239358951831244042",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-popover"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/progress.tsx",
+          "hash": "16003150628414737276",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-progress"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/radio-group.tsx",
+          "hash": "11253721217064623089",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-radio-group",
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/select.tsx",
+          "hash": "11131509269934797175",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-select",
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/separator.tsx",
+          "hash": "9152929968593344539",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-separator"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/sheet.tsx",
+          "hash": "6306057074302798346",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-dialog",
+            "npm:class-variance-authority",
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/skeleton.tsx",
+          "hash": "8682262600359381656"
+        },
+        {
+          "file": "apps/frontend/src/components/ui/time-picker-input.tsx",
+          "hash": "9459793399519803101",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/time-picker-utils.tsx",
+          "hash": "17376503523016333949"
+        },
+        {
+          "file": "apps/frontend/src/components/ui/time-picker.tsx",
+          "hash": "4934450160372818286",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/toast.tsx",
+          "hash": "8776325038179715669",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-toast",
+            "npm:class-variance-authority",
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/components/ui/toaster.tsx",
+          "hash": "10660638037006708513"
+        },
+        {
+          "file": "apps/frontend/src/components/ui/tooltip.tsx",
+          "hash": "8879210951239699807",
+          "deps": [
+            "npm:react",
+            "npm:@radix-ui/react-tooltip"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/contexts/AuthContext.tsx",
+          "hash": "10413536293016219519",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/hooks/use-toast.ts",
+          "hash": "8499014235844066475",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/index.css",
+          "hash": "4265000792048473579"
+        },
+        {
+          "file": "apps/frontend/src/lib/sound.ts",
+          "hash": "2350326825487011339"
+        },
+        {
+          "file": "apps/frontend/src/lib/utils.ts",
+          "hash": "7693891966047857635",
+          "deps": [
+            "npm:clsx",
+            "npm:tailwind-merge"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/main.tsx",
+          "hash": "3541832862459365875",
+          "deps": [
+            "npm:react",
+            "npm:react-dom",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/pages/Account.tsx",
+          "hash": "4683122905805786505",
+          "deps": [
+            "npm:react",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/pages/Auth.tsx",
+          "hash": "14130441625888372656",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/pages/HabitList.tsx",
+          "hash": "6156341819948154101",
+          "deps": [
+            "npm:react",
+            "npm:react-router-dom",
+            "npm:js-confetti"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/pages/Home.tsx",
+          "hash": "3071126814092242250",
+          "deps": [
+            "npm:react-router-dom",
+            "npm:react",
+            "npm:js-confetti",
+            "npm:moment",
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/pages/NewHabit.tsx",
+          "hash": "11707941077499760597",
+          "deps": [
+            "npm:react",
+            "npm:react-router-dom",
+            "npm:lucide-react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/pages/PrivacyPolicy.tsx",
+          "hash": "9948282960773313947"
+        },
+        {
+          "file": "apps/frontend/src/pages/ResetPassword.tsx",
+          "hash": "17021756000036647631",
+          "deps": [
+            "npm:react",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/pages/StatsPage.css",
+          "hash": "8883344989384825234"
+        },
+        {
+          "file": "apps/frontend/src/pages/StatsPage.tsx",
+          "hash": "16615638851690045418",
+          "deps": [
+            "npm:cal-heatmap",
+            "npm:lucide-react",
+            "npm:react",
+            "npm:react-day-picker",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/pages/TermsOfUse.tsx",
+          "hash": "2996362333771734359"
+        },
+        {
+          "file": "apps/frontend/src/providers/AuthProvider.tsx",
+          "hash": "18063985578219140849",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/frontend/src/services/auth.ts",
+          "hash": "11029614640074873343"
+        },
+        {
+          "file": "apps/frontend/src/services/stats.ts",
+          "hash": "3777388576651886645"
+        },
+        {
+          "file": "apps/frontend/src/vite-env.d.ts",
+          "hash": "12917595312912016608"
+        },
+        {
+          "file": "apps/frontend/tailwind.config.js",
+          "hash": "6115921651261375303",
+          "deps": [
+            [
+              "npm:tailwindcss-animate",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "apps/frontend/tsconfig.app.json",
+          "hash": "14537410299736066200"
+        },
+        {
+          "file": "apps/frontend/tsconfig.js",
+          "hash": "18027719143571928554"
+        },
+        {
+          "file": "apps/frontend/tsconfig.json",
+          "hash": "1048694001195511004"
+        },
+        {
+          "file": "apps/frontend/tsconfig.node.json",
+          "hash": "4200375265648421840"
+        },
+        {
+          "file": "apps/frontend/vite.config.ts",
+          "hash": "658955361834391242",
+          "deps": [
+            "npm:@vitejs/plugin-react",
+            "npm:vite"
+          ]
         }
       ]
     }

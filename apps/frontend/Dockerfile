@@ -6,16 +6,15 @@ RUN corepack enable
 
 FROM base AS build
 WORKDIR /app
-# Copy workspace configuration files
+# Copy workspace configuration files (only what's needed for frontend)
 COPY pnpm-lock.yaml package.json pnpm-workspace.yaml ./
 COPY nx.json ./
-# Copy all app package.json files to ensure proper workspace dependency resolution
-COPY apps/backend/package.json ./apps/backend/
+# Copy only frontend package.json
 COPY apps/frontend/package.json ./apps/frontend/
-# Install ALL dependencies (including devDependencies)
-RUN pnpm install --frozen-lockfile
-# Copy all files including the public directory
-COPY . .
+# Install dependencies for frontend only
+RUN pnpm install --filter=minihabits-frontend --frozen-lockfile
+# Copy frontend source files only
+COPY apps/frontend/ ./apps/frontend/
 
 # Define build arguments for environment variables (with defaults for development)
 ARG VITE_API_BASE_URL=http://localhost:3000

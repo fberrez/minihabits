@@ -6,30 +6,29 @@ RUN corepack enable
 
 FROM base AS build
 WORKDIR /app
-# Copy workspace configuration files
+# Copy workspace configuration files (only what's needed for backend)
 COPY pnpm-lock.yaml package.json pnpm-workspace.yaml ./
 COPY nx.json ./
-# Copy all app package.json files to ensure proper workspace dependency resolution
+# Copy only backend package.json
 COPY apps/backend/package.json ./apps/backend/
-COPY apps/frontend/package.json ./apps/frontend/
-# Install build tools needed for native dependencies like bcrypt
+# Install build tools needed for native dependencies like bcryptjs
 RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
-# Install ALL dependencies (including devDependencies)
-RUN pnpm install --frozen-lockfile
-# Copy all source files
-COPY . .
+# Install dependencies for backend only
+RUN pnpm install --filter=minihabits-backend --frozen-lockfile
+# Copy backend source files only
+COPY apps/backend/ ./apps/backend/
+# Build backend
 RUN pnpm nx build backend
 
 FROM base AS prod
 WORKDIR /app
-# Install build tools needed for native dependencies like bcrypt
+# Install build tools needed for native dependencies like bcryptjs
 RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
 # Copy workspace files for proper dependency resolution
 COPY pnpm-lock.yaml package.json pnpm-workspace.yaml ./
 COPY apps/backend/package.json ./apps/backend/
-COPY apps/frontend/package.json ./apps/frontend/
-# Install ALL dependencies (dev + prod) to ensure everything is available
-RUN pnpm install --frozen-lockfile
+# Install production dependencies for backend only
+RUN pnpm install --filter=minihabits-backend --frozen-lockfile --prod
 
 COPY --from=build /app/apps/backend/dist ./dist
 

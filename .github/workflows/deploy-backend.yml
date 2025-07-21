@@ -6,7 +6,7 @@ on:
     paths:
       - 'apps/backend/**'
       - 'package.json'
-      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
       - '.github/workflows/deploy-backend.yml'
   workflow_dispatch:
 
@@ -25,7 +25,7 @@ jobs:
       - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
-          version: 10.4.1
+          version: 10.13.1
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -33,8 +33,8 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Install backend dependencies only
+        run: pnpm install --filter=minihabits-backend --frozen-lockfile
 
       - name: Build backend
         run: pnpm nx build backend
