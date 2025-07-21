@@ -13,11 +13,11 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagg
 import { BillingService } from './billing.service';
 import { CreateSubscriptionDto } from './dto/create-subscription.dto';
 import { CompleteSubscriptionDto } from './dto/complete-subscription.dto';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { AuthGuard } from '../auth/auth.guard';
 
 @ApiTags('billing')
 @Controller('billing')
-@UseGuards(JwtAuthGuard)
+@UseGuards(AuthGuard)
 @ApiBearerAuth()
 export class BillingController {
   constructor(private readonly billingService: BillingService) {}
