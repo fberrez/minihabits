@@ -1,9 +1,11 @@
-name: Deploy Monorepo to VPS
+name: Deploy Monorepo to VPS (DISABLED)
 
+# DISABLED: This workflow has been replaced by separate deploy-backend.yml and deploy-frontend.yml
+# Remove this file once the new deployments are confirmed working
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+  # push:
+  #   branches: [ main ]
+  # workflow_dispatch:
 
 jobs:
   build-and-deploy:
