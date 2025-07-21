@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument, SubscriptionTier, SubscriptionStatus } from '../users/users.schema';
 import { GoCardlessService } from './gocardless.service';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class BillingService {
@@ -11,6 +12,7 @@ export class BillingService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private goCardlessService: GoCardlessService,
+    private emailService: EmailService,
   ) {}
 
   async getPlans() {
@@ -110,6 +112,13 @@ export class BillingService {
 
       this.logger.log(`Completed subscription for user ${userId} with tier ${subscriptionTier}`);
       
+      // Send welcome email
+      try {
+        await this.emailService.sendSubscriptionWelcome(user.email, planId);
+      } catch (error) {
+        this.logger.error(`Failed to send subscription welcome email to ${user.email}: ${error.message}`);
+      }
+      
       return {
         user: updatedUser,
         subscriptionTier,
@@ -144,6 +153,14 @@ export class BillingService {
         },
         { new: true },
       );
+
+      // Send cancellation email
+      try {
+        const endDate = user.subscriptionEndDate || new Date();
+        await this.emailService.sendSubscriptionCancelled(user.email, user.subscriptionTier, endDate);
+      } catch (error) {
+        this.logger.error(`Failed to send subscription cancellation email to ${user.email}: ${error.message}`);
+      }
 
       this.logger.log(`Cancelled subscription for user ${userId}`);
       return updatedUser;

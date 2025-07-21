@@ -21,6 +21,8 @@ import { useHabits } from "../api/hooks/useHabits";
 import "./StatsPage.css";
 import { useToast } from "../hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { SubscriptionBadge } from "../components/SubscriptionBadge";
+import { useSubscription } from "../hooks/useSubscription";
 import {
   Calendar,
   Heatmap,
@@ -43,6 +45,7 @@ export function StatsPage() {
   const [isLoadingStats, setIsLoadingStats] = useState(true);
 
   const { toast } = useToast();
+  const { subscriptionInfo } = useSubscription();
   const updateHabit = useHabits().updateHabit;
 
   useEffect(() => {
@@ -163,6 +166,9 @@ export function StatsPage() {
             >
               {habitTitle}
             </h1>
+          )}
+          {subscriptionInfo && (
+            <SubscriptionBadge tier={subscriptionInfo.subscriptionTier} />
           )}
         </div>
         <div className="flex gap-4">

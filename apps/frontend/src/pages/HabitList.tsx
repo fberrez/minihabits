@@ -8,6 +8,8 @@ import { HabitType } from "../api/types/appTypes";
 import { BooleanHabitCard } from "../components/habits/boolean-habit-card";
 import { CounterHabitCard } from "../components/habits/counter-habit-card";
 import { AddNewButtons } from "../components/add-new-buttons";
+import { SubscriptionBadge } from "../components/SubscriptionBadge";
+import { useSubscription } from "../hooks/useSubscription";
 
 export function HabitList() {
   const {
@@ -19,6 +21,7 @@ export function HabitList() {
     decrementHabit: decrementHabitApi,
     refreshHabits,
   } = useHabits();
+  const { subscriptionInfo } = useSubscription();
   const navigate = useNavigate();
   const jsConfettiRef = useRef<JSConfetti | null>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -113,7 +116,14 @@ export function HabitList() {
   return (
     <>
       <div className="max-w-5xl mx-auto px-4 py-8 space-y-8">
-        <div className="flex justify-end mb-4">
+        {/* Header with subscription badge */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold">Your Habits</h1>
+            {subscriptionInfo && (
+              <SubscriptionBadge tier={subscriptionInfo.subscriptionTier} />
+            )}
+          </div>
           <div className="w-48">
             <AddNewButtons />
           </div>

@@ -18,6 +18,8 @@ import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
 import { Alert, AlertDescription } from "../components/ui/alert";
 import { Lightbulb } from "lucide-react";
 import { ColorPicker } from "../components/color-picker";
+import { SubscriptionBadge } from "../components/SubscriptionBadge";
+import { useSubscription } from "../hooks/useSubscription";
 
 const habitSuggestions = [
   "Read for 5 minutes",
@@ -43,6 +45,7 @@ export function NewHabit() {
   const [targetCounter, setTargetCounter] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
   const { createHabit } = useHabits();
+  const { subscriptionInfo } = useSubscription();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -103,11 +106,18 @@ export function NewHabit() {
     <div className="max-w-[2000px] mx-auto px-8 py-8">
       <Card className="max-w-[600px] mx-auto">
         <CardHeader>
-          <CardTitle>Create a new habit</CardTitle>
-          <CardDescription>
-            Start with a tiny habit - something so easy you can't say no. The
-            key is consistency, not intensity.
-          </CardDescription>
+          <div className="flex items-center justify-between">
+            <div>
+              <CardTitle>Create a new habit</CardTitle>
+              <CardDescription>
+                Start with a tiny habit - something so easy you can't say no. The
+                key is consistency, not intensity.
+              </CardDescription>
+            </div>
+            {subscriptionInfo && (
+              <SubscriptionBadge tier={subscriptionInfo.subscriptionTier} />
+            )}
+          </div>
         </CardHeader>
         <CardContent>
           <Alert className="mb-6">

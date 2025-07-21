@@ -31,11 +31,21 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Skeleton } from "@/components/ui/skeleton";
+import { 
+  CrownIcon, 
+  CalendarIcon, 
+  CreditCardIcon, 
+  MailIcon,
+  ShieldCheckIcon,
+  ExternalLinkIcon 
+} from "lucide-react";
+import { api } from "../api/generated";
 
 interface AccountState {
   showEmailDialog: boolean;
   showPasswordDialog: boolean;
   showDeleteDialog: boolean;
+  showCancelSubscriptionDialog: boolean;
   isLoading: boolean;
   newEmail: string;
   currentPassword: string;
@@ -46,16 +56,27 @@ interface UserData {
   email: string;
 }
 
+interface SubscriptionInfo {
+  subscriptionTier: string;
+  subscriptionStatus: string;
+  subscriptionStartDate?: string;
+  subscriptionEndDate?: string;
+  habitLimit: number;
+  canCreateHabits: boolean;
+}
+
 export default function Account() {
   const { signOut, authenticatedFetch } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [userData, setUserData] = useState<UserData | null>(null);
+  const [subscriptionInfo, setSubscriptionInfo] = useState<SubscriptionInfo | null>(null);
   const [isPageLoading, setIsPageLoading] = useState(true);
   const [state, setState] = useState<AccountState>({
     showEmailDialog: false,
     showPasswordDialog: false,
     showDeleteDialog: false,
+    showCancelSubscriptionDialog: false,
     isLoading: false,
     newEmail: "",
     currentPassword: "",
@@ -63,18 +84,34 @@ export default function Account() {
   });
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchData = async () => {
       try {
-        const response = await authenticatedFetch(
+        // Fetch user data
+        const userResponse = await authenticatedFetch(
           `${import.meta.env.VITE_API_BASE_URL}/users/me`
         );
 
-        if (!response.ok) {
+        if (!userResponse.ok) {
           throw new Error("Failed to fetch user data");
         }
 
-        const data = await response.json();
-        setUserData(data);
+        const userData = await userResponse.json();
+        setUserData(userData);
+
+        // Fetch subscription info
+        try {
+          const subscriptionData = await api.billing.billingControllerGetSubscriptionInfo();
+          setSubscriptionInfo(subscriptionData);
+        } catch (error) {
+          console.error("Failed to fetch subscription info:", error);
+          // Set default free tier if subscription fetch fails
+          setSubscriptionInfo({
+            subscriptionTier: 'free',
+            subscriptionStatus: 'inactive',
+            habitLimit: 3,
+            canCreateHabits: true
+          });
+        }
       } catch {
         toast({
           title: "Error",
@@ -86,7 +123,7 @@ export default function Account() {
       }
     };
 
-    fetchUserData();
+    fetchData();
   }, [authenticatedFetch, toast]);
 
   const resetState = () => {
@@ -217,6 +254,54 @@ export default function Account() {
     } finally {
       resetState();
     }
+  };
+
+  const handleCancelSubscription = async () => {
+    setState((prev) => ({ ...prev, isLoading: true }));
+    
+    try {
+      await api.billing.billingControllerCancelSubscription();
+      
+      toast({
+        title: "Subscription Cancelled",
+        description: "Your subscription has been cancelled successfully. You'll continue to have access until the end of your billing period.",
+      });
+
+      // Refresh subscription info
+      const subscriptionData = await api.billing.billingControllerGetSubscriptionInfo();
+      setSubscriptionInfo(subscriptionData);
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to cancel subscription. Please try again or contact support.",
+        variant: "destructive",
+      });
+    } finally {
+      setState((prev) => ({ 
+        ...prev, 
+        isLoading: false, 
+        showCancelSubscriptionDialog: false 
+      }));
+    }
+  };
+
+  const getTierDisplayName = (tier: string) => {
+    const names = {
+      free: "Free",
+      monthly: "Monthly",
+      yearly: "Yearly", 
+      lifetime: "Lifetime"
+    };
+    return names[tier as keyof typeof names] || tier;
+  };
+
+  const getTierIcon = (tier: string) => {
+    if (tier === 'free') return null;
+    return <CrownIcon className="w-4 h-4 text-yellow-500" />;
+  };
+
+  const contactSupport = () => {
+    window.open('mailto:support@minihabits.com?subject=Subscription Support Request', '_blank');
   };
 
   const renderEmailDialog = () => (
@@ -415,6 +500,41 @@ export default function Account() {
     </AlertDialog>
   );
 
+  const renderCancelSubscriptionDialog = () => (
+    <AlertDialog
+      open={state.showCancelSubscriptionDialog}
+      onOpenChange={(open) =>
+        setState((prev) => ({ ...prev, showCancelSubscriptionDialog: open }))
+      }
+    >
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Cancel Subscription</AlertDialogTitle>
+          <AlertDialogDescription>
+            Are you sure you want to cancel your subscription? You'll continue to have access to premium features until the end of your current billing period.
+            {subscriptionInfo?.subscriptionEndDate && (
+              <span className="block mt-2 font-medium">
+                Your access will continue until {new Date(subscriptionInfo.subscriptionEndDate).toLocaleDateString()}
+              </span>
+            )}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel disabled={state.isLoading}>
+            Keep Subscription
+          </AlertDialogCancel>
+          <AlertDialogAction
+            onClick={handleCancelSubscription}
+            disabled={state.isLoading}
+            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+          >
+            {state.isLoading ? "Cancelling..." : "Cancel Subscription"}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+
   if (state.isLoading || isPageLoading) {
     return (
       <div className="flex items-center justify-center">
@@ -451,7 +571,146 @@ export default function Account() {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="w-full max-w-2xl p-4">
+      <div className="w-full max-w-2xl p-4 space-y-6">
+        {/* Subscription Management Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              {subscriptionInfo && getTierIcon(subscriptionInfo.subscriptionTier)}
+              Subscription Management
+            </CardTitle>
+            <CardDescription>
+              Manage your subscription and billing settings
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {subscriptionInfo ? (
+              <>
+                {/* Current Plan */}
+                <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    {getTierIcon(subscriptionInfo.subscriptionTier)}
+                    <div>
+                      <h3 className="font-semibold text-lg">
+                        {getTierDisplayName(subscriptionInfo.subscriptionTier)} Plan
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Status: <span className="capitalize">{subscriptionInfo.subscriptionStatus}</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-medium">
+                      {subscriptionInfo.habitLimit === 999999 ? "Unlimited" : subscriptionInfo.habitLimit} habits
+                    </p>
+                    {subscriptionInfo.subscriptionEndDate && (
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {subscriptionInfo.subscriptionTier === 'lifetime' 
+                          ? 'Forever' 
+                          : `Until ${new Date(subscriptionInfo.subscriptionEndDate).toLocaleDateString()}`}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Subscription Details */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3 p-3 border rounded-lg">
+                    <CalendarIcon className="w-5 h-5 text-blue-500" />
+                    <div>
+                      <p className="text-sm font-medium">Started</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {subscriptionInfo.subscriptionStartDate 
+                          ? new Date(subscriptionInfo.subscriptionStartDate).toLocaleDateString()
+                          : 'N/A'}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 p-3 border rounded-lg">
+                    <ShieldCheckIcon className="w-5 h-5 text-green-500" />
+                    <div>
+                      <p className="text-sm font-medium">Status</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 capitalize">
+                        {subscriptionInfo.subscriptionStatus}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  {subscriptionInfo.subscriptionTier === 'free' ? (
+                    <Button 
+                      onClick={() => navigate('/pricing')}
+                      className="flex items-center gap-2"
+                    >
+                      <CrownIcon className="w-4 h-4" />
+                      Upgrade Plan
+                    </Button>
+                  ) : (
+                    <>
+                      <Button 
+                        variant="outline"
+                        onClick={() => navigate('/pricing')}
+                        className="flex items-center gap-2"
+                      >
+                        <CreditCardIcon className="w-4 h-4" />
+                        Change Plan
+                      </Button>
+                      
+                      {subscriptionInfo.subscriptionTier !== 'lifetime' && 
+                       subscriptionInfo.subscriptionStatus === 'active' && (
+                        <Button 
+                          variant="destructive"
+                          onClick={() => setState(prev => ({ ...prev, showCancelSubscriptionDialog: true }))}
+                          disabled={state.isLoading}
+                        >
+                          Cancel Subscription
+                        </Button>
+                      )}
+                    </>
+                  )}
+                  
+                  <Button 
+                    variant="outline"
+                    onClick={contactSupport}
+                    className="flex items-center gap-2"
+                  >
+                    <MailIcon className="w-4 h-4" />
+                    Contact Support
+                    <ExternalLinkIcon className="w-3 h-3" />
+                  </Button>
+                </div>
+
+                {/* Support Info */}
+                <div className="p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+                  <p className="text-sm text-blue-800 dark:text-blue-200">
+                    <strong>Need help?</strong> Our support team is here to assist you with any subscription questions or issues.
+                    Email us at{" "}
+                    <button 
+                      onClick={contactSupport}
+                      className="underline hover:no-underline"
+                    >
+                      support@minihabits.com
+                    </button>
+                  </p>
+                </div>
+              </>
+            ) : (
+              <div className="space-y-3">
+                <Skeleton className="h-20 w-full" />
+                <div className="grid grid-cols-2 gap-4">
+                  <Skeleton className="h-16 w-full" />
+                  <Skeleton className="h-16 w-full" />
+                </div>
+                <Skeleton className="h-10 w-full" />
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Account Settings Card */}
         <Card>
           <CardHeader>
             <CardTitle>Account Settings</CardTitle>
@@ -523,6 +782,7 @@ export default function Account() {
         {renderEmailDialog()}
         {renderPasswordDialog()}
         {renderDeleteDialog()}
+        {renderCancelSubscriptionDialog()}
       </div>
     </div>
   );
