@@ -780,6 +780,144 @@ export function Home() {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section className="py-24 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950/20 dark:to-indigo-950/20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto text-center space-y-12">
+            <div>
+              <h2 className="text-4xl font-bold tracking-tight mb-4">
+                Simple, Transparent Pricing
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Start free, upgrade when you're ready for more habits and advanced features.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {/* Free Plan */}
+              <Card className="relative border-2 border-gray-200 dark:border-gray-700">
+                <CardContent className="p-8">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold mb-2">Free</h3>
+                    <div className="text-4xl font-bold mb-4">€0</div>
+                    <p className="text-muted-foreground mb-6">Perfect to get started</p>
+                    <ul className="space-y-3 text-left mb-8">
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Up to 3 habits
+                      </li>
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Basic statistics
+                      </li>
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Mobile responsive
+                      </li>
+                    </ul>
+                    <Button 
+                      variant="outline" 
+                      className="w-full"
+                      onClick={() => navigate('/auth')}
+                    >
+                      Get Started Free
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Yearly Plan - Most Popular */}
+              <Card className="relative border-2 border-indigo-500 scale-105">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-indigo-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                    Most Popular
+                  </span>
+                </div>
+                <CardContent className="p-8">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold mb-2">Yearly</h3>
+                    <div className="text-4xl font-bold mb-1">€8.99</div>
+                    <div className="text-sm text-green-600 font-medium mb-4">Save 2 months!</div>
+                    <p className="text-muted-foreground mb-6">Best value for committed users</p>
+                    <ul className="space-y-3 text-left mb-8">
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Unlimited habits
+                      </li>
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Advanced statistics
+                      </li>
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Data export
+                      </li>
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Premium support
+                      </li>
+                    </ul>
+                    <Button 
+                      className="w-full"
+                      onClick={() => navigate('/pricing')}
+                    >
+                      Choose Yearly
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Lifetime Plan */}
+              <Card className="relative border-2 border-purple-500">
+                <CardContent className="p-8">
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold mb-2">Lifetime</h3>
+                    <div className="text-4xl font-bold mb-1">€17.99</div>
+                    <div className="text-sm text-purple-600 font-medium mb-4">One-time payment</div>
+                    <p className="text-muted-foreground mb-6">Pay once, use forever</p>
+                    <ul className="space-y-3 text-left mb-8">
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Unlimited habits
+                      </li>
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Advanced statistics
+                      </li>
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Data export
+                      </li>
+                      <li className="flex items-center">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                        Lifetime updates
+                      </li>
+                    </ul>
+                    <Button 
+                      variant="outline"
+                      className="w-full border-purple-500 text-purple-600 hover:bg-purple-50"
+                      onClick={() => navigate('/pricing')}
+                    >
+                      Choose Lifetime
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="text-center">
+              <Button 
+                variant="link" 
+                onClick={() => navigate('/pricing')}
+                className="text-indigo-600 hover:text-indigo-800"
+              >
+                View all pricing options →
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Call to Action Section */}
       <section className="py-24">
         <div className="container mx-auto px-4">
@@ -802,7 +940,7 @@ export function Home() {
               </Button>
             </div>
             <div className="pt-8 text-sm text-muted-foreground">
-              No credit card required • 100% free forever
+              No credit card required • Start with 3 free habits
             </div>
           </div>
         </div>

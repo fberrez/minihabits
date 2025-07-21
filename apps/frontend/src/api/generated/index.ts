@@ -29,3 +29,50 @@ export { HealthcheckService } from './services/HealthcheckService';
 export { PublicService } from './services/PublicService';
 export { StatsService } from './services/StatsService';
 export { UsersService } from './services/UsersService';
+
+export * from './BillingService';
+
+// Temporary API structure until backend is running
+export const api = {
+  billing: {
+    billingControllerGetPlans: () => Promise.resolve([
+      {
+        id: 'monthly',
+        name: 'Monthly Plan',
+        price: 1.99,
+        currency: 'EUR',
+        interval: 'monthly',
+        features: ['Unlimited habits', 'All statistics', 'Data export', 'Premium support']
+      },
+      {
+        id: 'yearly', 
+        name: 'Yearly Plan',
+        price: 8.99,
+        currency: 'EUR',
+        interval: 'yearly',
+        features: ['Unlimited habits', 'All statistics', 'Data export', 'Premium support', '2 months free']
+      },
+      {
+        id: 'lifetime',
+        name: 'Lifetime Plan', 
+        price: 17.99,
+        currency: 'EUR',
+        interval: 'one_off',
+        features: ['Unlimited habits', 'All statistics', 'Data export', 'Premium support', 'One-time payment', 'Lifetime updates']
+      }
+    ]),
+    billingControllerGetSubscriptionInfo: () => Promise.resolve({
+      subscriptionTier: 'free',
+      subscriptionStatus: 'inactive',
+      habitLimit: 3,
+      canCreateHabits: true
+    }),
+    billingControllerCreateSubscription: (data: any) => Promise.resolve({
+      redirectUrl: 'https://pay.gocardless.com/flow/...',
+      flowId: 'RF123456'
+    }),
+    billingControllerCompleteSubscription: (data: any) => Promise.resolve({
+      success: true
+    })
+  }
+};

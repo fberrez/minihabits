@@ -3,6 +3,7 @@ import {
   Inject,
   Injectable,
   NotFoundException,
+  forwardRef,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -13,6 +14,7 @@ import { HabitsCounterService } from './services/habits.counter';
 import { HabitsBooleanService } from './services/habits.boolean';
 import { HabitService } from './interfaces/habit-service.interface';
 import { HabitStatsOutput } from './dto/habits';
+import { BillingService } from '../billing/billing.service';
 
 @Injectable()
 export class HabitsService {
@@ -22,6 +24,8 @@ export class HabitsService {
     private readonly counterService: HabitsCounterService,
     @Inject(HabitsBooleanService)
     private readonly booleanService: HabitsBooleanService,
+    @Inject(forwardRef(() => BillingService))
+    private readonly billingService: BillingService,
   ) {}
 
   async getHabitById(id: string, userId: string) {
@@ -37,6 +41,14 @@ export class HabitsService {
   }
 
   async createHabit(createHabitDto: CreateHabitDto, userId: string) {
+    // Check habit limit before creating
+    const currentHabitCount = await this.habitModel.countDocuments({ userId });
+    const canCreateHabit = await this.billingService.checkUserHabitLimit(userId, currentHabitCount);
+    
+    if (!canCreateHabit) {
+      throw new BadRequestException('Habit limit reached. Please upgrade your subscription to create more habits.');
+    }
+
     const habit = new this.habitModel({
       ...createHabitDto,
       userId,

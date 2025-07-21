@@ -10,6 +10,9 @@ import Account from "./pages/Account";
 import ResetPassword from "./pages/ResetPassword";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
+import Pricing from "./pages/Pricing";
+import Payment from "./pages/Payment";
+import PaymentSuccess from "./pages/PaymentSuccess";
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -21,9 +24,12 @@ function App() {
         <Route path="/stats/:habitId" element={<StatsPage />} />
         <Route path="/new" element={<NewHabit />} />
         <Route path="/account" element={<Account />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment/success" element={<PaymentSuccess />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     );
   }
@@ -33,9 +39,10 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="/pricing" element={<Pricing />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/terms-of-use" element={<TermsOfUse />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
