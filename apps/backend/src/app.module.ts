@@ -9,17 +9,21 @@ import { HabitsModule } from './habits/habits.module';
 import { HealthcheckModule } from './healthcheck/healthcheck.module';
 import { StatsModule } from './stats/stats.module';
 import { EmailModule } from './email/email.module';
+import { BillingModule } from './billing/billing.module';
+import { MollieModule } from './mollie/mollie.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.MONGODB_URI!),
+    MollieModule.forRootAsync(),
     AuthModule,
     UsersModule,
     HabitsModule,
     HealthcheckModule,
     StatsModule,
     EmailModule,
+    BillingModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: AuthGuard }],
 })

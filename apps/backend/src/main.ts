@@ -18,6 +18,7 @@ async function bootstrap() {
     .addTag('users', 'User management endpoints')
     .addTag('habits', 'Habit tracking endpoints')
     .addTag('stats', 'Statistics endpoints')
+    .addTag('billing', 'Subscription and billing endpoints')
     .addTag('public', 'Endpoints that do not require authentication')
     .addBearerAuth(
       {
