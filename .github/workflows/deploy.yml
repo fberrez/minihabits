@@ -90,9 +90,6 @@ jobs:
           build-args: |
             VITE_API_BASE_URL=${{ vars.VITE_API_BASE_URL }}
             VITE_CONTACT_EMAIL=${{ vars.VITE_CONTACT_EMAIL }}
-            VITE_STRIPE_PRICE_MONTHLY_ID=${{ vars.VITE_STRIPE_PRICE_MONTHLY_ID }}
-            VITE_STRIPE_PRICE_YEARLY_ID=${{ vars.VITE_STRIPE_PRICE_YEARLY_ID }}
-            VITE_STRIPE_PRICE_LIFETIME_ID=${{ vars.VITE_STRIPE_PRICE_LIFETIME_ID }}
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master

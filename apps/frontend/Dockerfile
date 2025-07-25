@@ -20,17 +20,11 @@ COPY . .
 # Define build arguments for environment variables (with defaults for development)
 ARG VITE_API_BASE_URL=http://localhost:3000
 ARG VITE_CONTACT_EMAIL=contact@example.com
-ARG VITE_STRIPE_PRICE_MONTHLY_ID=""
-ARG VITE_STRIPE_PRICE_YEARLY_ID=""
-ARG VITE_STRIPE_PRICE_LIFETIME_ID=""
 
 # Set environment variables for the build process
 ENV NODE_ENV=production
 ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
 ENV VITE_CONTACT_EMAIL=${VITE_CONTACT_EMAIL}
-ENV VITE_STRIPE_PRICE_MONTHLY_ID=${VITE_STRIPE_PRICE_MONTHLY_ID}
-ENV VITE_STRIPE_PRICE_YEARLY_ID=${VITE_STRIPE_PRICE_YEARLY_ID}
-ENV VITE_STRIPE_PRICE_LIFETIME_ID=${VITE_STRIPE_PRICE_LIFETIME_ID}
 
 # Build the application with environment variables
 RUN pnpm nx build frontend
