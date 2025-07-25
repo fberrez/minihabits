@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useHabits } from "../api/hooks/useHabits";
+import { useSubscription } from "../api/hooks/useSubscription";
 import { Button } from "../components/ui/button";
 import {
   Card,
@@ -14,9 +15,10 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { useToast } from "../hooks/use-toast";
 import { HabitColor, HabitType } from "../api/types/appTypes";
+import { SubscriptionPlan } from "../api/types/billing";
 import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
 import { Alert, AlertDescription } from "../components/ui/alert";
-import { Lightbulb } from "lucide-react";
+import { Lightbulb, Crown, AlertTriangle } from "lucide-react";
 import { ColorPicker } from "../components/color-picker";
 
 const habitSuggestions = [
@@ -43,6 +45,15 @@ export function NewHabit() {
   const [targetCounter, setTargetCounter] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
   const { createHabit } = useHabits();
+  const { 
+    canCreateHabits, 
+    habitLimit, 
+    currentHabits, 
+    currentPlan,
+    isUnlimited,
+    createSubscription,
+    isCreatingSubscription 
+  } = useSubscription();
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -70,6 +81,16 @@ export function NewHabit() {
       return;
     }
 
+    // Check subscription limits
+    if (!canCreateHabits) {
+      toast({
+        title: "Habit limit reached",
+        description: `You've reached your limit of ${habitLimit} habits. Please upgrade your subscription to create more habits.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -84,12 +105,21 @@ export function NewHabit() {
         description: "Your new habit has been created successfully.",
       });
       navigate("/");
-    } catch {
-      toast({
-        title: "Error",
-        description: "Failed to create habit. Please try again.",
-        variant: "destructive",
-      });
+    } catch (error: any) {
+      // Check if it's a subscription limit error
+      if (error.message?.includes('habit limit')) {
+        toast({
+          title: "Habit limit reached",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to create habit. Please try again.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -98,6 +128,22 @@ export function NewHabit() {
   const handleSuggestionClick = (suggestion: string) => {
     setName(suggestion);
   };
+
+  const handleUpgrade = async (plan: SubscriptionPlan) => {
+    try {
+      await createSubscription(plan);
+      // User will be redirected to Mollie checkout
+    } catch (error) {
+      toast({
+        title: "Upgrade Error",
+        description: "Failed to start upgrade process. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Show upgrade prompt if at limit
+  const showUpgradePrompt = !canCreateHabits && currentPlan === SubscriptionPlan.FREE;
 
   return (
     <div className="max-w-[2000px] mx-auto px-8 py-8">
@@ -110,6 +156,49 @@ export function NewHabit() {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {/* Subscription Status Alert */}
+          {!isUnlimited && (
+            <Alert className={`mb-6 ${showUpgradePrompt ? 'border-orange-200 bg-orange-50' : ''}`}>
+              {showUpgradePrompt ? (
+                <AlertTriangle className="h-4 w-4 text-orange-500" />
+              ) : (
+                <Crown className="h-4 w-4" />
+              )}
+              <AlertDescription>
+                {showUpgradePrompt ? (
+                  <div className="space-y-3">
+                    <p className="text-orange-700">
+                      <strong>Habit limit reached!</strong> You've created {currentHabits} out of {habitLimit} habits on the free plan.
+                    </p>
+                    <div className="flex gap-2">
+                      <Button 
+                        size="sm" 
+                        onClick={() => handleUpgrade(SubscriptionPlan.MONTHLY)}
+                        disabled={isCreatingSubscription}
+                      >
+                        {isCreatingSubscription ? 'Processing...' : 'Upgrade to Monthly (€1.99)'}
+                      </Button>
+                      <Button 
+                        size="sm" 
+                        variant="outline"
+                        onClick={() => navigate('/pricing')}
+                      >
+                        View All Plans
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <p>
+                    <strong>Habits used:</strong> {currentHabits} / {habitLimit === -1 ? '∞' : habitLimit}
+                    {currentPlan !== SubscriptionPlan.FREE && (
+                      <span className="ml-2 text-sm text-muted-foreground">({currentPlan.toLowerCase()} plan)</span>
+                    )}
+                  </p>
+                )}
+              </AlertDescription>
+            </Alert>
+          )}
+
           <Alert className="mb-6">
             <Lightbulb className="h-4 w-4" />
             <AlertDescription>
@@ -127,7 +216,7 @@ export function NewHabit() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g., Read for 10 minute"
-                disabled={isLoading}
+                disabled={isLoading || showUpgradePrompt}
                 required
               />
               <div className="space-y-2 flex flex-col items-center">
@@ -143,6 +232,7 @@ export function NewHabit() {
                       size="sm"
                       onClick={() => handleSuggestionClick(suggestion)}
                       className="text-sm"
+                      disabled={showUpgradePrompt}
                     >
                       {suggestion}
                     </Button>
@@ -157,13 +247,14 @@ export function NewHabit() {
                 value={type}
                 onValueChange={(value: HabitType) => setType(value)}
                 className="grid grid-cols-2 gap-4"
+                disabled={showUpgradePrompt}
               >
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value={HabitType.BOOLEAN} id="boolean" />
+                  <RadioGroupItem value={HabitType.BOOLEAN} id="boolean" disabled={showUpgradePrompt} />
                   <Label htmlFor="boolean">Daily Check</Label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value={HabitType.COUNTER} id="counter" />
+                  <RadioGroupItem value={HabitType.COUNTER} id="counter" disabled={showUpgradePrompt} />
                   <Label htmlFor="counter">Counter</Label>
                 </div>
               </RadioGroup>
@@ -185,7 +276,7 @@ export function NewHabit() {
                       ? "e.g., 8 glasses of water"
                       : "e.g., max 2 hours of social media"
                   }
-                  disabled={isLoading}
+                  disabled={isLoading || showUpgradePrompt}
                   required
                 />
               </div>
@@ -194,7 +285,7 @@ export function NewHabit() {
             <ColorPicker
               value={color}
               onChange={(value: HabitColor) => setColor(value)}
-              disabled={isLoading}
+              disabled={isLoading || showUpgradePrompt}
             />
           </form>
         </CardContent>
@@ -207,7 +298,11 @@ export function NewHabit() {
           >
             Cancel
           </Button>
-          <Button type="submit" disabled={isLoading} onClick={handleSubmit}>
+          <Button 
+            type="submit" 
+            disabled={isLoading || showUpgradePrompt} 
+            onClick={handleSubmit}
+          >
             {isLoading ? "Creating..." : "Create Habit"}
           </Button>
         </CardFooter>

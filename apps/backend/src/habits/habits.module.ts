@@ -6,11 +6,13 @@ import { Habit, HabitSchema } from './habits.schema';
 import { HabitsCounterService } from './services/habits.counter';
 import { HabitsBooleanService } from './services/habits.boolean';
 import { StatsModule } from '../stats/stats.module';
+import { BillingModule } from '../billing/billing.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Habit.name, schema: HabitSchema }]),
     StatsModule,
+    BillingModule,
   ],
   providers: [HabitsService, HabitsCounterService, HabitsBooleanService],
   controllers: [HabitsController],
