@@ -34,6 +34,9 @@ export class HabitsService {
     public static habitsControllerCreateHabit({
         requestBody,
     }: {
+        /**
+         * Habit data to create
+         */
         requestBody: CreateHabitDto,
     }): CancelablePromise<Habit> {
         return __request(OpenAPI, {
@@ -71,7 +74,7 @@ export class HabitsService {
         /**
          * Habit ID
          */
-        id: string,
+        id: any,
     }): CancelablePromise<Habit> {
         return __request(OpenAPI, {
             method: 'GET',
@@ -95,7 +98,7 @@ export class HabitsService {
         /**
          * Habit ID
          */
-        id: string,
+        id: any,
     }): CancelablePromise<Habit> {
         return __request(OpenAPI, {
             method: 'DELETE',
@@ -120,7 +123,10 @@ export class HabitsService {
         /**
          * Habit ID
          */
-        id: string,
+        id: any,
+        /**
+         * Habit data to update
+         */
         requestBody: UpdateHabitDto,
     }): CancelablePromise<Habit> {
         return __request(OpenAPI, {
@@ -147,7 +153,7 @@ export class HabitsService {
         /**
          * Habit ID
          */
-        id: string,
+        id: any,
     }): CancelablePromise<HabitStatsOutput> {
         return __request(OpenAPI, {
             method: 'GET',
@@ -172,7 +178,10 @@ export class HabitsService {
         /**
          * Habit ID
          */
-        id: string,
+        id: any,
+        /**
+         * Date to track the habit
+         */
         requestBody: TrackHabitDto,
     }): CancelablePromise<Habit> {
         return __request(OpenAPI, {
@@ -200,7 +209,10 @@ export class HabitsService {
         /**
          * Habit ID
          */
-        id: string,
+        id: any,
+        /**
+         * Date to untrack the habit
+         */
         requestBody: TrackHabitDto,
     }): CancelablePromise<Habit> {
         return __request(OpenAPI, {

@@ -8,7 +8,7 @@ FROM base AS build
 WORKDIR /app
 # Copy workspace configuration files (only what's needed for frontend)
 COPY pnpm-lock.yaml package.json pnpm-workspace.yaml ./
-COPY nx.json ./
+COPY turbo.json ./
 # Copy only frontend package.json
 COPY apps/frontend/package.json ./apps/frontend/
 # Install dependencies for frontend only
@@ -26,7 +26,7 @@ ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
 ENV VITE_CONTACT_EMAIL=${VITE_CONTACT_EMAIL}
 
 # Build the application with environment variables
-RUN pnpm nx build frontend
+RUN pnpm run build:frontend
 
 FROM node:20-alpine AS prod
 

@@ -1,0 +1,13 @@
+{
+  "watch": ["dist"],
+  "ext": "js",
+  "ignore": ["*.spec.js", "*.test.js"],
+  "exec": "node --enable-source-maps dist/main.js",
+  "delay": 500,
+  "restartable": "rs",
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "signal": "SIGTERM",
+  "verbose": true
+} 

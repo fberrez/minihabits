@@ -10,14 +10,10 @@ node_modules/
 *.tsbuildinfo
 
 # Cache directories
-.nx/
-nx-cache/
 .cache/
 .temp/
 .tmp/
 
-# Generated/API files
-apps/frontend/src/api/generated/
 
 # Logs
 *.log
@@ -44,10 +40,6 @@ coverage/
 # Documentation (focus on code)
 *.md
 !README.md
-
-# Configuration that changes frequently
-.nx/workspace-data/
-.nx/cache/
 
 # Bruno API collection (not code)
 bruno/ 

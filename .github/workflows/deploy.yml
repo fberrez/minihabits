@@ -37,7 +37,7 @@ jobs:
         run: pnpm install --filter=minihabits-backend --frozen-lockfile
 
       - name: 🏗️ Build backend
-        run: pnpm nx build backend
+        run: pnpm run build:backend
 
       - name: 🐳 Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -166,7 +166,7 @@ jobs:
         run: pnpm install --filter=minihabits-frontend --frozen-lockfile
 
       - name: 🏗️ Build frontend
-        run: pnpm nx build frontend
+        run: pnpm run build:frontend
 
       - name: 🐳 Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

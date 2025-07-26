@@ -1,10 +1,10 @@
 # minihabits
 
-A minimalist habit tracking app built with NestJS (backend) and React + Vite (frontend) in an Nx monorepo, designed to help users build and maintain daily habits with a clean, intuitive interface.
+A minimalist habit tracking app built with NestJS (backend) and React + Vite (frontend) in an Turborepo monorepo, designed to help users build and maintain daily habits with a clean, intuitive interface.
 
 ## Architecture
 
-This is an Nx monorepo containing:
+This is an Turborepo monorepo containing:
 - **Backend** (`apps/backend/`) - NestJS API with MongoDB, JWT authentication, and SWC for fast compilation
 - **Frontend** (`apps/frontend/`) - React + Vite SPA with TypeScript and Tailwind CSS
 
@@ -52,82 +52,16 @@ cd minihabits
 pnpm install
 ```
 
-3. Create a `.env` file in the `apps/backend/` directory with the following variables:
-
-```bash
-CORS_ORIGIN="http://localhost:5173"
-FRONTEND_URL="http://localhost:5173"
-JWT_EXPIRATION_TIME="7d"
-JWT_REFRESH_EXPIRATION_TIME="30d"
-JWT_REFRESH_SECRET="refresh_secret"
-JWT_SECRET="secret"
-MONGODB_URI="mongodb://admin:password@localhost:27017/minihabits"
-NODE_ENV="development"
-PORT="3000"
-RESEND_API_KEY="re_11234"
-RESEND_FROM="Minihabits <youraddres@host.co>"
-RESEND_AUDIENCE_ID="your-audience-id"
-```
+3. Create a `.env` file in both `apps/backend/` and `apps/frontend` directories using `.env.example`
 
 ### Development
 
 #### Start both applications:
 
 ```bash
-# Start backend with hot reload (SWC + nodemon on :3000)
-pnpm nx dev backend
-
-# Start frontend (Vite dev server on :5173)  
-pnpm nx serve frontend
-
-# Or start both simultaneously from root
+# Start backend and frontend with hot reload
 pnpm run dev
 ```
-
-#### Backend-specific development commands:
-
-```bash
-# Development with hot reload (recommended)
-pnpm nx dev backend
-
-# Build once with SWC
-pnpm nx build backend
-
-# Production start (after build)
-pnpm nx serve backend
-
-# Type check only (no compilation)
-pnpm nx type-check backend
-
-# Clean build artifacts
-pnpm nx clean backend
-
-# Direct package.json script usage
-cd apps/backend
-pnpm run dev          # Hot reload development
-pnpm run build        # Build with SWC
-pnpm run type-check   # TypeScript type checking
-```
-
-#### Other useful commands:
-
-```bash
-# Build applications
-pnpm nx build backend
-pnpm nx build frontend
-
-# Run tests
-pnpm nx test backend
-pnpm nx test frontend
-
-# Lint code
-pnpm nx lint backend
-pnpm nx lint frontend
-
-# Generate OpenAPI client for frontend (after API changes)
-pnpm nx run frontend:generate-api
-```
-
 ## Project Structure
 
 ```
@@ -141,7 +75,6 @@ minihabits/
 │   │   │   ├── users/     # User management
 │   │   │   └── ...
 │   │   ├── .swcrc         # SWC compiler configuration
-│   │   ├── project.json   # Nx project configuration
 │   │   └── Dockerfile
 │   └── frontend/          # React + Vite SPA
 │       ├── src/
@@ -151,7 +84,6 @@ minihabits/
 │       │   └── ...
 │       └── Dockerfile
 ├── bruno/                 # API testing collection
-├── nx.json               # Nx workspace configuration
 └── docker-compose.yml    # Development containers
 ```
 
@@ -164,7 +96,7 @@ The backend uses **SWC** instead of the traditional TypeScript compiler or Nest 
 - 🗺️ **Source maps enabled** - errors point to TypeScript files
 - 🔄 **Hot reload** with nodemon + concurrently
 - 🔧 **Path mapping support** for absolute imports
-- 📦 **Nx integration** with build caching
+- 📦 **Turborepo integration** with build caching
 - 🎯 **No Nest CLI dependency** - streamlined toolchain
 
 ### Build Configuration
@@ -182,8 +114,6 @@ The backend uses **SWC** instead of the traditional TypeScript compiler or Nest 
 
 ## Production Deployment
 
-This Nx monorepo is configured for automated deployment using GitHub Actions, Docker, and Traefik.
-
 ### Infrastructure
 
 - **Hosting**: VPS - OVH
@@ -191,18 +121,7 @@ This Nx monorepo is configured for automated deployment using GitHub Actions, Do
 - **Backend Compilation**: SWC for fast production builds
 - **Reverse Proxy**: Traefik
 - **SSL**: Let's Encrypt via Traefik
-- **Monorepo**: Nx for build optimization and caching
-
-### Deployment Process
-
-1. Push changes to the `main` branch
-2. GitHub Actions workflow:
-   - Uses Nx to determine what changed
-   - Builds only affected applications with SWC
-   - Creates optimized Docker images
-   - Pushes to GitHub Container Registry
-3. Deploys to VPS using SSH
-4. Traefik handles routing and SSL certificates
+- **Monorepo**: Turborepo for build optimization and caching
 
 ### Docker Usage
 
@@ -238,7 +157,7 @@ docker build -f apps/frontend/Dockerfile -t minihabits-frontend .
 - **State Management**: React Query (TanStack Query)
 
 ### DevOps & Tools
-- **Monorepo**: Nx
+- **Monorepo**: Turborepo
 - **Package Manager**: pnpm
 - **Containerization**: Docker
 - **API Testing**: Bruno
@@ -258,31 +177,6 @@ This project uses SWC instead of the traditional Nest CLI or TypeScript compiler
 | Dependencies | @nestjs/cli | @swc/cli |
 | Configuration | nest-cli.json | .swcrc |
 
-### Critical API Development Workflow
-
-⚠️ **IMPORTANT**: When making API changes (controllers, DTOs, endpoints):
-
-```bash
-# 1. Make your backend changes
-# 2. Start backend to generate new OpenAPI spec
-pnpm nx dev backend
-
-# 3. In another terminal, regenerate frontend client
-cd apps/frontend
-pnpm run generate-api
-
-# 4. Now make frontend changes with proper types
-```
-
-This ensures type safety across the full stack.
-
-### Common Issues & Solutions
-
-- **Dependency injection errors**: Add explicit `@Inject()` decorators
-- **Swagger circular dependencies**: Use explicit `type` parameters in `@ApiProperty`
-- **Path mapping issues**: Check `.swcrc` configuration
-- **Missing source maps**: Ensure `--enable-source-maps` is used
-
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the GNU License - see the LICENSE file for details.

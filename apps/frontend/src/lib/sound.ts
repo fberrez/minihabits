@@ -1,7 +1,6 @@
 // Import the audio file using a relative path
-import successSoundUrl from "../../public/success.mp3";
 
-const successSound = new Audio(successSoundUrl);
+const successSound = new Audio('/success.mp3');
 
 export const playSuccessSound = () => {
   successSound.currentTime = 0; // Reset the sound to start

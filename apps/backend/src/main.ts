@@ -51,11 +51,37 @@ async function bootstrap() {
     credentials: true,
   });
 
+  // Enable graceful shutdown
+  app.enableShutdownHooks();
+
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
   logger.log(`Application is running on: http://localhost:${port}`);
   logger.log(
     `Swagger documentation is available at: http://localhost:${port}/api`,
   );
+
+  // Graceful shutdown handling
+  const gracefulShutdown = async (signal: string) => {
+    logger.log(`Received ${signal}, shutting down gracefully...`);
+    try {
+      await app.close();
+      logger.log('Application has been shut down gracefully');
+      process.exit(0);
+    } catch (error) {
+      logger.error('Error during shutdown:', error);
+      process.exit(1);
+    }
+  };
+
+  // Handle different termination signals
+  process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+  process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+  process.on('SIGUSR2', () => gracefulShutdown('SIGUSR2')); // For nodemon
 }
-bootstrap();
+
+bootstrap().catch((error) => {
+  const logger = new Logger('Bootstrap');
+  logger.error('Failed to start application:', error);
+  process.exit(1);
+});

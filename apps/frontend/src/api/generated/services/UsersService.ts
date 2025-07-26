@@ -2,10 +2,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ForgotPasswordDto } from '../models/ForgotPasswordDto';
-import type { ResetPasswordDto } from '../models/ResetPasswordDto';
-import type { UpdateEmailDto } from '../models/UpdateEmailDto';
-import type { UpdatePasswordDto } from '../models/UpdatePasswordDto';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
@@ -29,16 +25,10 @@ export class UsersService {
      * @returns any Email updated successfully
      * @throws ApiError
      */
-    public static usersControllerUpdateEmail({
-        requestBody,
-    }: {
-        requestBody: UpdateEmailDto,
-    }): CancelablePromise<any> {
+    public static usersControllerUpdateEmail(): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PATCH',
             url: '/users/email',
-            body: requestBody,
-            mediaType: 'application/json',
             errors: {
                 401: `Unauthorized - Invalid or missing token`,
                 409: `Email already exists`,
@@ -50,16 +40,10 @@ export class UsersService {
      * @returns any Password updated successfully
      * @throws ApiError
      */
-    public static usersControllerUpdatePassword({
-        requestBody,
-    }: {
-        requestBody: UpdatePasswordDto,
-    }): CancelablePromise<any> {
+    public static usersControllerUpdatePassword(): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'PATCH',
             url: '/users/password',
-            body: requestBody,
-            mediaType: 'application/json',
             errors: {
                 401: `Unauthorized - Invalid or missing token`,
             },
@@ -95,16 +79,10 @@ export class UsersService {
      * @returns any Password reset email sent
      * @throws ApiError
      */
-    public static usersControllerForgotPassword({
-        requestBody,
-    }: {
-        requestBody: ForgotPasswordDto,
-    }): CancelablePromise<any> {
+    public static usersControllerForgotPassword(): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/users/forgot-password',
-            body: requestBody,
-            mediaType: 'application/json',
         });
     }
     /**
@@ -112,16 +90,10 @@ export class UsersService {
      * @returns any Password reset successful
      * @throws ApiError
      */
-    public static usersControllerResetPassword({
-        requestBody,
-    }: {
-        requestBody: ResetPasswordDto,
-    }): CancelablePromise<any> {
+    public static usersControllerResetPassword(): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/users/reset-password',
-            body: requestBody,
-            mediaType: 'application/json',
             errors: {
                 401: `Invalid or expired token`,
             },

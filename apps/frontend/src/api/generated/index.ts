@@ -9,19 +9,15 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { AuthResponse } from './models/AuthResponse';
 export type { CreateHabitDto } from './models/CreateHabitDto';
-export type { ForgotPasswordDto } from './models/ForgotPasswordDto';
 export type { Habit } from './models/Habit';
 export type { HabitStatsOutput } from './models/HabitStatsOutput';
 export type { HabitTypeOutput } from './models/HabitTypeOutput';
-export type { ResetPasswordDto } from './models/ResetPasswordDto';
 export type { SignInDto } from './models/SignInDto';
 export type { SignUpDto } from './models/SignUpDto';
 export type { Stats } from './models/Stats';
 export type { StatsOutput } from './models/StatsOutput';
 export type { TrackHabitDto } from './models/TrackHabitDto';
-export type { UpdateEmailDto } from './models/UpdateEmailDto';
 export type { UpdateHabitDto } from './models/UpdateHabitDto';
-export type { UpdatePasswordDto } from './models/UpdatePasswordDto';
 
 export { AuthService } from './services/AuthService';
 export { HabitsService } from './services/HabitsService';

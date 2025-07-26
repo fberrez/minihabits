@@ -1,0 +1,14 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "outputs": ["dist/**"],
+      "inputs": ["src/**", "package.json", "tsconfig.json", "vite.config.ts", "index.html"]
+    },
+    "generate-api": {
+      "cache": true,
+      "inputs": ["src/api/openapi-config.ts"],
+      "outputs": ["src/api/generated/**"]
+    }
+  }
+} 

@@ -1,3 +1,0 @@
-> tsc -p apps/backend/tsconfig.build.json --outputPath=dist/apps/backend
-
-sh: tsc: command not found

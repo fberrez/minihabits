@@ -3,8 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { AuthResponse } from '../models/AuthResponse';
-import type { ForgotPasswordDto } from '../models/ForgotPasswordDto';
-import type { ResetPasswordDto } from '../models/ResetPasswordDto';
 import type { SignInDto } from '../models/SignInDto';
 import type { SignUpDto } from '../models/SignUpDto';
 import type { StatsOutput } from '../models/StatsOutput';
@@ -20,6 +18,9 @@ export class PublicService {
     public static authControllerSignUp({
         requestBody,
     }: {
+        /**
+         * User data to register
+         */
         requestBody: SignUpDto,
     }): CancelablePromise<AuthResponse> {
         return __request(OpenAPI, {
@@ -40,6 +41,9 @@ export class PublicService {
     public static authControllerSignIn({
         requestBody,
     }: {
+        /**
+         * User data to sign in
+         */
         requestBody: SignInDto,
     }): CancelablePromise<AuthResponse> {
         return __request(OpenAPI, {
@@ -57,16 +61,10 @@ export class PublicService {
      * @returns any Password reset email sent
      * @throws ApiError
      */
-    public static usersControllerForgotPassword({
-        requestBody,
-    }: {
-        requestBody: ForgotPasswordDto,
-    }): CancelablePromise<any> {
+    public static usersControllerForgotPassword(): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/users/forgot-password',
-            body: requestBody,
-            mediaType: 'application/json',
         });
     }
     /**
@@ -74,16 +72,10 @@ export class PublicService {
      * @returns any Password reset successful
      * @throws ApiError
      */
-    public static usersControllerResetPassword({
-        requestBody,
-    }: {
-        requestBody: ResetPasswordDto,
-    }): CancelablePromise<any> {
+    public static usersControllerResetPassword(): CancelablePromise<any> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/users/reset-password',
-            body: requestBody,
-            mediaType: 'application/json',
             errors: {
                 401: `Invalid or expired token`,
             },

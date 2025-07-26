@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
     "build": "tsc -b && vite build",
+    "dev": "vite",
+    "start": "vite preview",
     "lint": "eslint .",
-    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
     "generate-api": "tsx src/api/openapi-config.ts"
   },
   "dependencies": {

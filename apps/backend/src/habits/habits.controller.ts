@@ -20,6 +20,7 @@ import {
   ApiResponse,
   ApiParam,
   ApiOkResponse,
+  ApiBody,
 } from '@nestjs/swagger';
 import { Habit } from './habits.schema';
 import { HabitStatsOutput, HabitTypeOutput } from './dto/habits';
@@ -88,6 +89,10 @@ export class HabitsController {
   @Post()
   @ProtectedRoute()
   @ApiOperation({ summary: 'Create a new habit' })
+  @ApiBody({
+    type: CreateHabitDto,
+    description: 'Habit data to create',
+  })
   @ApiResponse({
     status: 201,
     description: 'Habit created successfully',
@@ -116,6 +121,10 @@ export class HabitsController {
   @ProtectedRoute()
   @ApiOperation({ summary: 'Update a habit' })
   @ApiParam({ name: 'id', description: 'Habit ID' })
+  @ApiBody({
+    type: UpdateHabitDto,
+    description: 'Habit data to update',
+  })
   @ApiOkResponse({
     description: 'Habit updated successfully',
     type: Habit,
@@ -132,6 +141,10 @@ export class HabitsController {
   @ProtectedRoute()
   @ApiOperation({ summary: 'Track a habit for a specific date' })
   @ApiParam({ name: 'id', description: 'Habit ID' })
+  @ApiBody({
+    type: TrackHabitDto,
+    description: 'Date to track the habit',
+  })
   @ApiOkResponse({
     description: 'Habit tracked successfully',
     type: Habit,
@@ -148,6 +161,10 @@ export class HabitsController {
   @ProtectedRoute()
   @ApiOperation({ summary: 'Untrack a habit for a specific date' })
   @ApiParam({ name: 'id', description: 'Habit ID' })
+  @ApiBody({
+    type: TrackHabitDto,
+    description: 'Date to untrack the habit',
+  })
   @ApiOkResponse({
     description: 'Habit untracked successfully',
     type: Habit,

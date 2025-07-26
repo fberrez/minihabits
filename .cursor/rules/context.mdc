@@ -33,7 +33,7 @@ You are working on **MiniHabits**, a minimalist habit tracking application desig
 
 ## Technical Architecture
 
-### Monorepo Structure (Nx)
+### Monorepo Structure (Turborepo)
 ```
 apps/
 ├── backend/     # NestJS API server
@@ -139,11 +139,11 @@ apps/
 
 ```bash
 # 1. After making API changes in backend
-pnpm nx serve backend        # Start backend to generate new OpenAPI spec
+pnpm run serve:backend        # Start backend to generate new OpenAPI spec
 
 # 2. Regenerate frontend API client (REQUIRED STEP)
 cd apps/frontend
-pnpm run generate-api       # or: pnpm nx run frontend:generate-api
+pnpm run generate-api
 
 # 3. Then proceed with frontend changes
 ```
@@ -158,9 +158,9 @@ pnpm run generate-api       # or: pnpm nx run frontend:generate-api
 
 ## Current State & Important Notes
 
-### Recent Migration to Nx:
-- Project recently migrated from standalone apps to Nx monorepo
-- Build optimization and caching through Nx
+### Recent Migration to Turborepo:
+- Project recently migrated from standalone apps to Turborepo monorepo
+- Build optimization and caching through Turborepo
 - Shared dependencies and configuration
 
 ### Key Technical Decisions:
@@ -180,23 +180,19 @@ pnpm run generate-api       # or: pnpm nx run frontend:generate-api
 
 ```bash
 # Start development servers
-pnpm nx serve backend    # NestJS API
-pnpm nx serve frontend   # React dev server
+pnpm run serve:backend    # NestJS API
+pnpm run serve:frontend   # React dev server
 
 # ⚠️ CRITICAL: Generate API client after backend changes
-pnpm nx run frontend:generate-api
+cd apps/frontend
+pnpm run generate-api
 
 # Build applications
-pnpm nx build backend
-pnpm nx build frontend
-
-# Run tests
-pnpm nx test backend
-pnpm nx test frontend
+pnpm run build:backend
+pnpm run build:frontend
 
 # Lint and format
-pnpm nx lint backend
-pnpm nx lint frontend
+pnpm run lint
 ```
 
 ## Important Implementation Notes

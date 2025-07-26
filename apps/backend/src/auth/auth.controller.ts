@@ -20,6 +20,7 @@ import {
   ApiOperation,
   ApiResponse,
   ApiOkResponse,
+  ApiBody,
 } from '@nestjs/swagger';
 
 @ApiTags('auth')
@@ -40,6 +41,10 @@ export class AuthController {
     status: 409,
     description: 'Email already exists',
   })
+  @ApiBody({
+    type: SignUpDto,
+    description: 'User data to register',
+  })
   signUp(@Body() signUpDto: SignUpDto): Promise<AuthResponse> {
     return this.authService.signUp(signUpDto);
   }
@@ -55,6 +60,10 @@ export class AuthController {
   @ApiResponse({
     status: 401,
     description: 'Invalid credentials',
+  })
+  @ApiBody({
+    type: SignInDto,
+    description: 'User data to sign in',
   })
   signIn(@Body() signInDto: SignInDto): Promise<AuthResponse> {
     return this.authService.signIn(signInDto.email, signInDto.password);

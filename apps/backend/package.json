@@ -7,13 +7,14 @@
   "license": "MIT",
   "scripts": {
     "build": "swc src -d dist --copy-files --strip-leading-paths",
-    "build:watch": "swc src -d dist --watch --copy-files --strip-leading-paths",
+    "dev": "concurrently --kill-others --kill-others-on-fail \"swc src -d dist --watch --copy-files --strip-leading-paths\" \"nodemon\"",
+    "start": "node --enable-source-maps dist/main.js",
     "type-check": "tsc --noEmit",
-    "dev": "npm run build && npm run start:dev",
-    "start:dev": "concurrently \"npm run build:watch\" \"npm run serve:dev\"",
-    "start:prod": "node --enable-source-maps dist/main.js",
-    "serve:dev": "nodemon --enable-source-maps --delay 500ms dist/main.js",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "lint": "eslint src --ext .ts --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",

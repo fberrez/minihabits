@@ -9,29 +9,26 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "nx run-many --target=build --projects=backend,frontend",
-    "serve": "nx run-many --target=serve --projects=backend,frontend --parallel",
-    "dev": "nx run-many --target=serve --projects=backend,frontend --parallel",
-    "lint": "nx run-many --target=lint --projects=backend,frontend",
-    "test": "nx run-many --target=test --projects=backend,frontend",
-    "format": "nx run-many --target=format --projects=backend,frontend",
-    "build:backend": "nx build backend",
-    "build:frontend": "nx build frontend",
-    "serve:backend": "nx serve backend",
-    "serve:frontend": "nx serve frontend"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "start": "turbo start",
+    "lint": "turbo lint",
+    "test": "turbo test",
+    "type-check": "turbo type-check",
+    "clean": "turbo clean",
+    "dev:backend": "pnpm dev --filter=minihabits-backend",
+    "dev:frontend": "pnpm dev --filter=minihabits-frontend",
+    "start:backend": "pnpm start --filter=minihabits-backend",
+    "start:frontend": "pnpm start --filter=minihabits-frontend",
+    "build:backend": "pnpm build --filter=minihabits-backend",
+    "build:frontend": "pnpm build --filter=minihabits-frontend",
+    "generate-api:frontend": "pnpm generate-api --filter=minihabits-frontend"
   },
-
   "devDependencies": {
-    "@nx/nest": "^21.3.0",
-    "@nx/react": "^21.3.0",
-    "@nx/vite": "^21.3.0",
-    "@nx/webpack": "^21.3.0",
-    "@nx/workspace": "^21.3.0",
-    "nx": "^21.3.0",
+    "turbo": "^2.5.5",
     "typescript": "^5.1.3",
     "webpack-cli": "^6.0.1"
   },
-
   "engines": {
     "node": ">=20.0.0"
   },

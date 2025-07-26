@@ -1,3 +1,0 @@
-> ./node_modules/.bin/tsc -p apps/backend/tsconfig.build.json --outputPath=dist/apps/backend
-
-sh: ./node_modules/.bin/tsc: No such file or directory

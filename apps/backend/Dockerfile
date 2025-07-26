@@ -8,7 +8,7 @@ FROM base AS build
 WORKDIR /app
 # Copy workspace configuration files (only what's needed for backend)
 COPY pnpm-lock.yaml package.json pnpm-workspace.yaml ./
-COPY nx.json ./
+COPY turbo.json ./
 # Copy only backend package.json
 COPY apps/backend/package.json ./apps/backend/
 # Install build tools needed for native dependencies like bcryptjs
@@ -18,7 +18,7 @@ RUN pnpm install --filter=minihabits-backend --frozen-lockfile
 # Copy backend source files only
 COPY apps/backend/ ./apps/backend/
 # Build backend
-RUN pnpm nx build backend
+RUN pnpm run build:backend
 
 FROM base AS prod
 WORKDIR /app

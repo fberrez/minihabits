@@ -17,6 +17,9 @@ export class AuthService {
     public static authControllerSignUp({
         requestBody,
     }: {
+        /**
+         * User data to register
+         */
         requestBody: SignUpDto,
     }): CancelablePromise<AuthResponse> {
         return __request(OpenAPI, {
@@ -37,6 +40,9 @@ export class AuthService {
     public static authControllerSignIn({
         requestBody,
     }: {
+        /**
+         * User data to sign in
+         */
         requestBody: SignInDto,
     }): CancelablePromise<AuthResponse> {
         return __request(OpenAPI, {
