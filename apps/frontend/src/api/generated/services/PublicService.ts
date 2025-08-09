@@ -3,6 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { AuthResponse } from '../models/AuthResponse';
+import type { PlanOutput } from '../models/PlanOutput';
 import type { SignInDto } from '../models/SignInDto';
 import type { SignUpDto } from '../models/SignUpDto';
 import type { StatsOutput } from '../models/StatsOutput';
@@ -90,6 +91,28 @@ export class PublicService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/stats/home',
+        });
+    }
+    /**
+     * List active plans
+     * @returns PlanOutput
+     * @throws ApiError
+     */
+    public static billingControllerGetPlans(): CancelablePromise<Array<PlanOutput>> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/billing/plans',
+        });
+    }
+    /**
+     * Mollie webhook endpoint
+     * @returns any
+     * @throws ApiError
+     */
+    public static billingControllerWebhook(): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/billing/webhook',
         });
     }
     /**

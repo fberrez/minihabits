@@ -10,39 +10,42 @@ async function bootstrap() {
   });
   app.useGlobalPipes(new ValidationPipe());
 
-  const config = new DocumentBuilder()
-    .setTitle('MiniHabits API')
-    .setDescription('The MiniHabits API documentation')
-    .setVersion('1.0')
-    .addTag('auth', 'Authentication endpoints')
-    .addTag('users', 'User management endpoints')
-    .addTag('habits', 'Habit tracking endpoints')
-    .addTag('stats', 'Statistics endpoints')
-    .addTag('public', 'Endpoints that do not require authentication')
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-        name: 'JWT',
-        description: 'Enter JWT token',
-        in: 'header',
-      },
-      'access-token', // This is the key used for the @ApiBearerAuth() decorator
-    )
-    .addApiKey(
-      {
-        type: 'apiKey',
-        name: 'x-no-auth',
-        in: 'header',
-        description: 'No authentication required for these endpoints',
-      },
-      'no-auth', // This is the key used for the @ApiSecurity('no-auth') decorator
-    )
-    .build();
+  if (process.env.DISABLE_SWAGGER !== 'true') {
+    const config = new DocumentBuilder()
+      .setTitle('MiniHabits API')
+      .setDescription('The MiniHabits API documentation')
+      .setVersion('1.0')
+      .addTag('auth', 'Authentication endpoints')
+      .addTag('users', 'User management endpoints')
+      .addTag('habits', 'Habit tracking endpoints')
+      .addTag('stats', 'Statistics endpoints')
+      .addTag('billing', 'Billing and subscription endpoints')
+      .addTag('public', 'Endpoints that do not require authentication')
+      .addBearerAuth(
+        {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          name: 'JWT',
+          description: 'Enter JWT token',
+          in: 'header',
+        },
+        'access-token',
+      )
+      .addApiKey(
+        {
+          type: 'apiKey',
+          name: 'x-no-auth',
+          in: 'header',
+          description: 'No authentication required for these endpoints',
+        },
+        'no-auth',
+      )
+      .build();
 
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api', app, document);
+  }
 
   // Configure CORS
   app.enableCors({

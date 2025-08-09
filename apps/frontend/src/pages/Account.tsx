@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/providers/AuthProvider";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/providers/AuthProvider';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
 import {
   Dialog,
   DialogContent,
@@ -19,7 +19,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,8 +29,10 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { Skeleton } from "@/components/ui/skeleton";
+} from '@/components/ui/alert-dialog';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useBilling } from '@/api/hooks/useBilling';
+import { SubscriptionBadge } from '@/components/subscription-badge';
 
 interface AccountState {
   showEmailDialog: boolean;
@@ -48,6 +50,7 @@ interface UserData {
 
 export default function Account() {
   const { signOut, authenticatedFetch } = useAuth();
+  const { status, cancelAutoRenew, isCanceling } = useBilling();
   const navigate = useNavigate();
   const { toast } = useToast();
   const [userData, setUserData] = useState<UserData | null>(null);
@@ -57,29 +60,29 @@ export default function Account() {
     showPasswordDialog: false,
     showDeleteDialog: false,
     isLoading: false,
-    newEmail: "",
-    currentPassword: "",
-    newPassword: "",
+    newEmail: '',
+    currentPassword: '',
+    newPassword: '',
   });
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await authenticatedFetch(
-          `${import.meta.env.VITE_API_BASE_URL}/users/me`
+          `${import.meta.env.VITE_API_BASE_URL}/users/me`,
         );
 
         if (!response.ok) {
-          throw new Error("Failed to fetch user data");
+          throw new Error('Failed to fetch user data');
         }
 
         const data = await response.json();
         setUserData(data);
       } catch {
         toast({
-          title: "Error",
-          description: "Failed to load user data. Please try again.",
-          variant: "destructive",
+          title: 'Error',
+          description: 'Failed to load user data. Please try again.',
+          variant: 'destructive',
         });
       } finally {
         setIsPageLoading(false);
@@ -96,9 +99,9 @@ export default function Account() {
       showPasswordDialog: false,
       showDeleteDialog: false,
       isLoading: false,
-      newEmail: "",
-      currentPassword: "",
-      newPassword: "",
+      newEmail: '',
+      currentPassword: '',
+      newPassword: '',
     }));
   };
 
@@ -110,34 +113,34 @@ export default function Account() {
       const response = await authenticatedFetch(
         `${import.meta.env.VITE_API_BASE_URL}/users/email`,
         {
-          method: "PATCH",
+          method: 'PATCH',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             newEmail: state.newEmail,
             password: state.currentPassword,
           }),
-        }
+        },
       );
 
       if (!response.ok) {
-        throw new Error("Failed to update email");
+        throw new Error('Failed to update email');
       }
 
       const data = await response.json();
       setUserData(data);
       toast({
-        title: "Email updated",
-        description: "Your email has been successfully updated.",
+        title: 'Email updated',
+        description: 'Your email has been successfully updated.',
       });
       resetState();
     } catch {
       toast({
-        title: "Error",
+        title: 'Error',
         description:
-          "Failed to update email. Please check your password and try again.",
-        variant: "destructive",
+          'Failed to update email. Please check your password and try again.',
+        variant: 'destructive',
       });
       setState((prev) => ({ ...prev, isLoading: false }));
     }
@@ -151,32 +154,32 @@ export default function Account() {
       const response = await authenticatedFetch(
         `${import.meta.env.VITE_API_BASE_URL}/users/password`,
         {
-          method: "PATCH",
+          method: 'PATCH',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             currentPassword: state.currentPassword,
             newPassword: state.newPassword,
           }),
-        }
+        },
       );
 
       if (!response.ok) {
-        throw new Error("Failed to update password");
+        throw new Error('Failed to update password');
       }
 
       toast({
-        title: "Password updated",
-        description: "Your password has been successfully updated.",
+        title: 'Password updated',
+        description: 'Your password has been successfully updated.',
       });
       resetState();
     } catch {
       toast({
-        title: "Error",
+        title: 'Error',
         description:
-          "Failed to update password. Please check your current password and try again.",
-        variant: "destructive",
+          'Failed to update password. Please check your current password and try again.',
+        variant: 'destructive',
       });
       setState((prev) => ({ ...prev, isLoading: false }));
     }
@@ -189,30 +192,30 @@ export default function Account() {
       const response = await authenticatedFetch(
         `${import.meta.env.VITE_API_BASE_URL}/users`,
         {
-          method: "DELETE",
+          method: 'DELETE',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ password: state.currentPassword }),
-        }
+        },
       );
 
       if (!response.ok) {
-        throw new Error("Failed to delete account");
+        throw new Error('Failed to delete account');
       }
 
       await signOut();
-      navigate("/auth");
+      navigate('/auth');
       toast({
-        title: "Account deleted",
-        description: "Your account has been permanently deleted.",
+        title: 'Account deleted',
+        description: 'Your account has been permanently deleted.',
       });
     } catch {
       toast({
-        title: "Error",
+        title: 'Error',
         description:
-          "Failed to delete account. Please check your password and try again.",
-        variant: "destructive",
+          'Failed to delete account. Please check your password and try again.',
+        variant: 'destructive',
       });
     } finally {
       resetState();
@@ -284,7 +287,7 @@ export default function Account() {
               Cancel
             </Button>
             <Button type="submit" disabled={state.isLoading} tabIndex={3}>
-              {state.isLoading ? "Updating..." : "Update Email"}
+              {state.isLoading ? 'Updating...' : 'Update Email'}
             </Button>
           </DialogFooter>
         </form>
@@ -355,7 +358,7 @@ export default function Account() {
               Cancel
             </Button>
             <Button type="submit" disabled={state.isLoading} tabIndex={3}>
-              {state.isLoading ? "Updating..." : "Update Password"}
+              {state.isLoading ? 'Updating...' : 'Update Password'}
             </Button>
           </DialogFooter>
         </form>
@@ -408,7 +411,7 @@ export default function Account() {
             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             tabIndex={2}
           >
-            {state.isLoading ? "Deleting..." : "Delete Account"}
+            {state.isLoading ? 'Deleting...' : 'Delete Account'}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -460,11 +463,58 @@ export default function Account() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            {/* Subscription section */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label>Subscription</Label>
+                <SubscriptionBadge planCode={status?.planCode} />
+              </div>
+              <div className="flex items-center gap-4">
+                <Input
+                  value={
+                    status?.isPremium ? status?.planCode ?? 'premium' : 'free'
+                  }
+                  disabled
+                  className="flex-1 capitalize"
+                  tabIndex={-1}
+                />
+                {status?.isPremium &&
+                  status?.canCancel &&
+                  !status?.cancelAtPeriodEnd && (
+                    <Button
+                      variant="outline"
+                      onClick={() => cancelAutoRenew()}
+                      disabled={isCanceling}
+                    >
+                      {isCanceling ? 'Cancelling…' : 'Cancel auto-renew'}
+                    </Button>
+                  )}
+                {!status?.isPremium && (
+                  <Button
+                    variant="outline"
+                    onClick={() => (window.location.href = '/pricing')}
+                  >
+                    Upgrade
+                  </Button>
+                )}
+              </div>
+              {status?.currentPeriodEnd && (
+                <p className="text-xs text-muted-foreground">
+                  Renews on{' '}
+                  {new Date(status.currentPeriodEnd).toLocaleDateString()}
+                </p>
+              )}
+              {status?.cancelAtPeriodEnd && (
+                <p className="text-xs text-muted-foreground">
+                  Your subscription will end at period end.
+                </p>
+              )}
+            </div>
             <div className="space-y-2">
               <Label>Email</Label>
               <div className="flex items-center gap-4">
                 <Input
-                  value={userData?.email || ""}
+                  value={userData?.email || ''}
                   disabled
                   className="flex-1"
                   tabIndex={-1}

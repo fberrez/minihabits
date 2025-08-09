@@ -1,8 +1,8 @@
-import { generate } from "openapi-typescript-codegen";
-import * as path from "path";
+import { generate } from 'openapi-typescript-codegen';
+import * as path from 'path';
 
 // URL to your OpenAPI specification
-const OPENAPI_URL = "http://localhost:3000/api-json";
+const OPENAPI_URL = 'http://localhost:3000/api-json';
 
 async function generateApiClient() {
   try {
@@ -12,8 +12,8 @@ async function generateApiClient() {
     // Generate the API client directly from the URL
     await generate({
       input: OPENAPI_URL,
-      output: path.resolve(process.cwd(), "src/api/generated"),
-      httpClient: "fetch",
+      output: path.resolve(process.cwd(), 'src/api/generated'),
+      httpClient: 'fetch',
       useOptions: true,
       useUnionTypes: true,
       exportCore: true,
@@ -23,10 +23,10 @@ async function generateApiClient() {
     });
 
     // eslint-disable-next-line no-console
-    console.log("API client generated successfully!");
+    console.log('API client generated successfully!');
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.error("Error generating API client:", error);
+    console.error('Error generating API client:', error);
     process.exit(1);
   }
 }

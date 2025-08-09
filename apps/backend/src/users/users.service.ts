@@ -16,8 +16,8 @@ import { HabitsService } from '../habits/habits.service';
 export class UsersService {
   constructor(
     @InjectModel(User.name) private userModel: Model<User>,
-    @Inject(HabitsService) private habitsService: HabitsService,
-    @Inject(EmailService) private emailService: EmailService,
+    @Inject(HabitsService) private readonly habitsService: HabitsService,
+    @Inject(EmailService) private readonly emailService: EmailService,
   ) {}
 
   async create(createUserDto: { email: string; password: string }) {
