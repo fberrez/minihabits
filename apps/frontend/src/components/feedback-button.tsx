@@ -3,8 +3,9 @@ import { Button } from './ui/button';
 
 export function FeedbackButton() {
   const handleClick = () => {
-    window.location.href =
-      'mailto:contact@fberrez.co?subject=MiniHabits%20Feedback';
+    window.location.href = `mailto:${
+      import.meta.env.VITE_CONTACT_EMAIL
+    }?subject=MiniHabits%20Feedback`;
   };
 
   return (

@@ -15,7 +15,7 @@ This project now uses separate deployment workflows for backend and frontend ser
 - **Triggers**: Changes to `apps/frontend/**`, `package.json`, `pnpm-lock.yaml`, or the workflow file itself
 - **Deploys to**: `~/minihabits-web/` on VPS
 - **Container**: `minihabits-web`
-- **Domain**: `minihabits.co`
+- **Domain**: `www.minihabits.co`
 - **Port**: 80
 
 ## Key Improvements
