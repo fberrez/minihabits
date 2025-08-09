@@ -1,6 +1,5 @@
 import {
   ConflictException,
-  forwardRef,
   Inject,
   Injectable,
   UnauthorizedException,
@@ -15,9 +14,9 @@ import { AuthResponse } from './interfaces/request.interface';
 export class AuthService {
   constructor(
     @Inject(UsersService)
-    private usersService: UsersService,
+    private readonly usersService: UsersService,
     @Inject(JwtService)
-    private jwtService: JwtService,
+    private readonly jwtService: JwtService,
   ) {}
 
   async signUp(signUpDto: SignUpDto): Promise<AuthResponse> {

@@ -8,10 +8,14 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { AuthResponse } from './models/AuthResponse';
+export type { BillingStatusOutput } from './models/BillingStatusOutput';
+export type { CheckoutDto } from './models/CheckoutDto';
+export type { CheckoutOutput } from './models/CheckoutOutput';
 export type { CreateHabitDto } from './models/CreateHabitDto';
 export type { Habit } from './models/Habit';
 export type { HabitStatsOutput } from './models/HabitStatsOutput';
 export type { HabitTypeOutput } from './models/HabitTypeOutput';
+export type { PlanOutput } from './models/PlanOutput';
 export type { SignInDto } from './models/SignInDto';
 export type { SignUpDto } from './models/SignUpDto';
 export type { Stats } from './models/Stats';
@@ -20,6 +24,7 @@ export type { TrackHabitDto } from './models/TrackHabitDto';
 export type { UpdateHabitDto } from './models/UpdateHabitDto';
 
 export { AuthService } from './services/AuthService';
+export { BillingService } from './services/BillingService';
 export { HabitsService } from './services/HabitsService';
 export { HealthcheckService } from './services/HealthcheckService';
 export { PublicService } from './services/PublicService';

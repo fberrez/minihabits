@@ -1,15 +1,17 @@
-import { useAuth } from "./providers/AuthProvider";
-import "./App.css";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { HabitList } from "./pages/HabitList";
-import { StatsPage } from "./pages/StatsPage";
-import { NewHabit } from "./pages/NewHabit";
-import { Home } from "./pages/Home";
-import { Auth } from "./pages/Auth";
-import Account from "./pages/Account";
-import ResetPassword from "./pages/ResetPassword";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfUse from "./pages/TermsOfUse";
+import { useAuth } from './providers/AuthProvider';
+import './App.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { HabitList } from './pages/HabitList';
+import { StatsPage } from './pages/StatsPage';
+import { NewHabit } from './pages/NewHabit';
+import { Home } from './pages/Home';
+import { Auth } from './pages/Auth';
+import Account from './pages/Account';
+import ResetPassword from './pages/ResetPassword';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfUse from './pages/TermsOfUse';
+import Pricing from './pages/Pricing';
+import BillingReturn from './pages/BillingReturn';
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -21,6 +23,8 @@ function App() {
         <Route path="/stats/:habitId" element={<StatsPage />} />
         <Route path="/new" element={<NewHabit />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/billing/return" element={<BillingReturn />} />
         <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
@@ -31,6 +35,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/pricing" element={<Pricing />} />
+      <Route path="/billing/return" element={<BillingReturn />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="*" element={<Navigate to="/" replace />} />

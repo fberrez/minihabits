@@ -64,6 +64,20 @@ export class HabitsService {
         });
     }
     /**
+     * Get habit limit and usage for current user
+     * @returns any Limit information
+     * @throws ApiError
+     */
+    public static habitsControllerGetHabitLimit(): CancelablePromise<any> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/habits/limit',
+            errors: {
+                401: `Unauthorized - Invalid or missing token`,
+            },
+        });
+    }
+    /**
      * Get a habit by ID
      * @returns Habit Habit details
      * @throws ApiError

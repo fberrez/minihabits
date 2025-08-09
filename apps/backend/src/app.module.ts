@@ -9,6 +9,7 @@ import { HabitsModule } from './habits/habits.module';
 import { HealthcheckModule } from './healthcheck/healthcheck.module';
 import { StatsModule } from './stats/stats.module';
 import { EmailModule } from './email/email.module';
+import { BillingModule } from './billing/billing.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { EmailModule } from './email/email.module';
     HealthcheckModule,
     StatsModule,
     EmailModule,
+    BillingModule,
   ],
   providers: [{ provide: APP_GUARD, useClass: AuthGuard }],
 })

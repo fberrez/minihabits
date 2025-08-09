@@ -55,6 +55,36 @@ export class HabitsController {
     return this.habitsService.getHabitTypes();
   }
 
+  @Get('limit')
+  @ProtectedRoute()
+  @ApiOperation({ summary: 'Get habit limit and usage for current user' })
+  @ApiOkResponse({
+    description: 'Limit information',
+    schema: {
+      properties: {
+        maxHabits: { type: 'integer', nullable: true },
+        currentHabitsCount: { type: 'integer' },
+        canCreateMore: { type: 'boolean' },
+        isPremium: { type: 'boolean' },
+      },
+    },
+  })
+  async getHabitLimit(@Req() req: AuthRequest) {
+    const habits = await this.habitsService.getHabits(req.user.sub);
+    const count = habits.length;
+    const entitlements = await (
+      this.habitsService as any
+    ).entitlementsService.getUserEntitlements(req.user.sub);
+    const max = entitlements.isPremium ? null : 3;
+    const canCreateMore = entitlements.isPremium || count < 3;
+    return {
+      maxHabits: max,
+      currentHabitsCount: count,
+      canCreateMore,
+      isPremium: entitlements.isPremium,
+    };
+  }
+
   @Get(':id')
   @ProtectedRoute()
   @ApiOperation({ summary: 'Get a habit by ID' })
