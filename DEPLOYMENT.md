@@ -8,14 +8,14 @@ This project now uses separate deployment workflows for backend and frontend ser
 - **Triggers**: Changes to `apps/backend/**`, `package.json`, `pnpm-lock.yaml`, or the workflow file itself
 - **Deploys to**: `~/minihabits-backend/` on VPS
 - **Container**: `minihabits-backend`
-- **Domain**: `minihabits-api.fberrez.co`
+- **Domain**: `api.minihabits.co`
 - **Port**: 3000
 
 ### Frontend Deployment (`.github/workflows/deploy-frontend.yml`)
 - **Triggers**: Changes to `apps/frontend/**`, `package.json`, `pnpm-lock.yaml`, or the workflow file itself
 - **Deploys to**: `~/minihabits-web/` on VPS
 - **Container**: `minihabits-web`
-- **Domain**: `minihabits.fberrez.co`
+- **Domain**: `minihabits.co`
 - **Port**: 80
 
 ## Key Improvements

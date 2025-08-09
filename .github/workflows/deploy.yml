@@ -2,7 +2,7 @@ name: 🚀 Deploy MiniHabits
 
 on:
   push:
-    branches: [ main ]
+    branches: [ ]
     paths:
       - 'apps/**'
       - 'package.json'
