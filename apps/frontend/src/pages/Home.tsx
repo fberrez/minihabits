@@ -497,7 +497,8 @@ export function Home() {
                   Get Started
                 </Button>
                 <p className="text-sm text-gray-600 mt-4">
-                  Free to use. No credit card required
+                  Free forever for up to 3 habits. No credit card required.
+                  Upgrade anytime.
                 </p>
               </div>
             </div>
@@ -802,7 +803,8 @@ export function Home() {
               </Button>
             </div>
             <div className="pt-8 text-sm text-muted-foreground">
-              No credit card required • 100% free forever
+              Free forever up to 3 habits • Premium from €2.99/mo • Cancel
+              anytime • Lifetime available
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useHabits } from "../api/hooks/useHabits";
-import { Button } from "../components/ui/button";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useHabits } from '../api/hooks/useHabits';
+import { Button } from '../components/ui/button';
 import {
   Card,
   CardContent,
@@ -9,26 +9,35 @@ import {
   CardHeader,
   CardTitle,
   CardFooter,
-} from "../components/ui/card";
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
-import { useToast } from "../hooks/use-toast";
-import { HabitColor, HabitType } from "../api/types/appTypes";
-import { RadioGroup, RadioGroupItem } from "../components/ui/radio-group";
-import { Alert, AlertDescription } from "../components/ui/alert";
-import { Lightbulb } from "lucide-react";
-import { ColorPicker } from "../components/color-picker";
+} from '../components/ui/card';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
+import { useToast } from '../hooks/use-toast';
+import { useBilling } from '@/api/hooks/useBilling';
+import { HabitColor, HabitType } from '../api/types/appTypes';
+import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
+import { Alert, AlertDescription } from '../components/ui/alert';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { Lightbulb } from 'lucide-react';
+import { ColorPicker } from '../components/color-picker';
 
 const habitSuggestions = [
-  "Read for 5 minutes",
-  "Meditate for 5 minutes",
-  "Do 10 pushups",
-  "Write 10 sentences",
-  "Do not pick up phone before 9am",
-  "Drink a glass of water",
-  "Take a 5-minute walk",
-  "Stretch for 5 minutes",
-  "Plan your day",
+  'Read for 5 minutes',
+  'Meditate for 5 minutes',
+  'Do 10 pushups',
+  'Write 10 sentences',
+  'Do not pick up phone before 9am',
+  'Drink a glass of water',
+  'Take a 5-minute walk',
+  'Stretch for 5 minutes',
+  'Plan your day',
 ];
 
 const getRandomColor = () => {
@@ -37,35 +46,37 @@ const getRandomColor = () => {
 };
 
 export function NewHabit() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [color, setColor] = useState<HabitColor>(getRandomColor());
   const [type, setType] = useState<HabitType>(HabitType.BOOLEAN);
   const [targetCounter, setTargetCounter] = useState<number>(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPaywallOpen, setIsPaywallOpen] = useState(false);
   const { createHabit } = useHabits();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { status } = useBilling();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!name.trim() || !color) {
       toast({
-        title: "Missing required fields",
-        description: "Please provide both a habit name and select a color.",
-        variant: "destructive",
+        title: 'Missing required fields',
+        description: 'Please provide both a habit name and select a color.',
+        variant: 'destructive',
       });
       return;
     }
 
     if (type === HabitType.COUNTER && (!targetCounter || targetCounter <= 0)) {
       toast({
-        title: "Invalid target counter",
+        title: 'Invalid target counter',
         description:
           type === HabitType.COUNTER
-            ? "Please provide a target counter greater than 0 for counter type habits."
-            : "Please provide a limit counter greater than 0 for limit type habits.",
-        variant: "destructive",
+            ? 'Please provide a target counter greater than 0 for counter type habits.'
+            : 'Please provide a limit counter greater than 0 for limit type habits.',
+        variant: 'destructive',
       });
       return;
     }
@@ -73,23 +84,31 @@ export function NewHabit() {
     setIsLoading(true);
 
     try {
+      // Optional UX: show upgrade suggestion if at limit
+      if (!status?.isPremium) {
+        // backend will enforce; here we can give a friendlier message
+      }
       await createHabit(
         name,
         color,
         type,
-        type === HabitType.COUNTER ? targetCounter : undefined
+        type === HabitType.COUNTER ? targetCounter : undefined,
       );
       toast({
-        title: "Habit created",
-        description: "Your new habit has been created successfully.",
+        title: 'Habit created',
+        description: 'Your new habit has been created successfully.',
       });
-      navigate("/");
-    } catch {
-      toast({
-        title: "Error",
-        description: "Failed to create habit. Please try again.",
-        variant: "destructive",
-      });
+      navigate('/');
+    } catch (e: any) {
+      if (e?.body?.code === 'PAYWALL_LIMIT_REACHED') {
+        setIsPaywallOpen(true);
+      } else {
+        toast({
+          title: 'Error',
+          description: 'Failed to create habit. Please try again.',
+          variant: 'destructive',
+        });
+      }
     } finally {
       setIsLoading(false);
     }
@@ -172,7 +191,7 @@ export function NewHabit() {
             {type === HabitType.COUNTER && (
               <div className="space-y-2">
                 <Label htmlFor="targetCounter">
-                  {type === HabitType.COUNTER ? "Daily Target" : "Daily Limit"}
+                  {type === HabitType.COUNTER ? 'Daily Target' : 'Daily Limit'}
                 </Label>
                 <Input
                   id="targetCounter"
@@ -182,8 +201,8 @@ export function NewHabit() {
                   onChange={(e) => setTargetCounter(parseInt(e.target.value))}
                   placeholder={
                     type === HabitType.COUNTER
-                      ? "e.g., 8 glasses of water"
-                      : "e.g., max 2 hours of social media"
+                      ? 'e.g., 8 glasses of water'
+                      : 'e.g., max 2 hours of social media'
                   }
                   disabled={isLoading}
                   required
@@ -202,16 +221,35 @@ export function NewHabit() {
           <Button
             type="button"
             variant="outline"
-            onClick={() => navigate("/")}
+            onClick={() => navigate('/')}
             disabled={isLoading}
           >
             Cancel
           </Button>
           <Button type="submit" disabled={isLoading} onClick={handleSubmit}>
-            {isLoading ? "Creating..." : "Create Habit"}
+            {isLoading ? 'Creating...' : 'Create Habit'}
           </Button>
         </CardFooter>
       </Card>
+      <Dialog open={isPaywallOpen} onOpenChange={setIsPaywallOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Upgrade to add more habits</DialogTitle>
+            <DialogDescription>
+              You have reached the free plan limit of 3 habits. Upgrade to
+              Premium to create unlimited habits and support MiniHabits.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsPaywallOpen(false)}>
+              Not now
+            </Button>
+            <Button onClick={() => navigate('/pricing')}>
+              View Premium plans
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

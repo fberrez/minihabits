@@ -1,28 +1,36 @@
-import { Menu } from "lucide-react";
-import { SiGithub, SiReddit } from "@icons-pack/react-simple-icons";
-import { Button } from "./ui/button";
+import { Menu } from 'lucide-react';
+import { SiGithub, SiReddit } from '@icons-pack/react-simple-icons';
+import { Button } from './ui/button';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "./ui/sheet";
-import { useAuth } from "@/providers/AuthProvider";
-import { ModeToggle } from "./mode-toggle";
-import { FeedbackButton } from "./feedback-button";
-import { useState } from "react";
-import { SignOutButton } from "./sign-out-button";
-import { AccountSettingsButton } from "./account-settings-button";
-import { Link } from "react-router-dom";
+} from './ui/sheet';
+import { useAuth } from '@/providers/AuthProvider';
+import { ModeToggle } from './mode-toggle';
+import { FeedbackButton } from './feedback-button';
+import { useState } from 'react';
+import { SignOutButton } from './sign-out-button';
+import { AccountSettingsButton } from './account-settings-button';
+import { Link } from 'react-router-dom';
+import { useBilling } from '@/api/hooks/useBilling';
+import { SubscriptionBadge } from './subscription-badge';
 
 export function TopBar() {
   const { isAuthenticated } = useAuth();
+  const { status } = useBilling();
   const [open, setOpen] = useState(false);
 
   const menuItems = (
     <div className="flex flex-col gap-4 mt-4">
       <div className="flex flex-col gap-2">
+        <Button asChild>
+          <Link to="/pricing" onClick={() => setOpen(false)}>
+            Pricing
+          </Link>
+        </Button>
         {isAuthenticated && (
           <>
             <AccountSettingsButton onSelect={() => setOpen(false)} />
@@ -38,9 +46,12 @@ export function TopBar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="flex items-center justify-between h-14 px-4 max-w-5xl mx-auto">
-        <h1 className="text-xl font-bold">
-          <Link to="/">minihabits.</Link>
-        </h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl font-bold">
+            <Link to="/">minihabits.</Link>
+          </h1>
+          {isAuthenticated && <SubscriptionBadge planCode={status?.planCode} />}
+        </div>
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon">
@@ -59,8 +70,8 @@ export function TopBar() {
                 className="rounded-full h-10 w-10"
                 onClick={() =>
                   window.open(
-                    "https://github.com/fberrez/minihabits-web",
-                    "_blank"
+                    'https://github.com/fberrez/minihabits-web',
+                    '_blank',
                   )
                 }
               >
@@ -71,7 +82,7 @@ export function TopBar() {
                 size="icon"
                 className="rounded-full h-10 w-10"
                 onClick={() =>
-                  window.open("https://reddit.com/r/minihabits", "_blank")
+                  window.open('https://reddit.com/r/minihabits', '_blank')
                 }
               >
                 <SiReddit size={20} />
