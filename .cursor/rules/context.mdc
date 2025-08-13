@@ -132,6 +132,14 @@ apps/
 - Type safety across full-stack
 - Automatic API documentation
 
+#### Swagger Decorator Convention (Required)
+- Always specify explicit types on Swagger decorators to avoid circular metadata in NestJS.
+- For every DTO/output property, use `@ApiProperty({ type: <Type>, required: <bool>, description: '<desc>' })`.
+- Example:
+  - `@ApiProperty({ type: String, required: true, description: 'Plan code' })`
+  - `@ApiProperty({ type: Number, required: true, description: 'Price in cents' })`
+  - For enums: `@ApiProperty({ enum: ['month', 'year', 'lifetime'] })`
+
 ## Critical Development Workflow
 
 ### API Changes Protocol

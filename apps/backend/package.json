@@ -31,6 +31,7 @@
     "moment": "^2.30.1",
     "mongoose": "^8.9.3",
     "reflect-metadata": "^0.2.0",
+    "@mollie/api-client": "^4.3.3",
     "resend": "^4.1.1",
     "rxjs": "^7.8.1",
     "swagger-ui-express": "^5.0.1",

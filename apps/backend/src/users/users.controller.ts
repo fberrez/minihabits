@@ -23,7 +23,9 @@ import { ProtectedRoute } from '../auth/protected-route.decorator';
 @ApiTags('users')
 @Controller('users')
 export class UsersController {
-  constructor(@Inject(UsersService) private usersService: UsersService) {}
+  constructor(
+    @Inject(UsersService) private readonly usersService: UsersService,
+  ) {}
 
   @Get('me')
   @ProtectedRoute()

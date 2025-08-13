@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../providers/AuthProvider';
 import { Button } from './ui/button';
 import { LogOut } from 'lucide-react';
@@ -10,10 +11,12 @@ export function SignOutButton({
   compact?: boolean;
 }) {
   const { signOut } = useAuth();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     onSelect();
     signOut();
+    navigate('/');
   };
 
   return (

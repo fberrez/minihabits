@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export function Footer() {
   return (
@@ -10,6 +10,9 @@ export function Footer() {
           </Link>
           <Link to="/terms-of-use" className="hover:underline">
             Terms of Use
+          </Link>
+          <Link to="/pricing" className="hover:underline">
+            Pricing
           </Link>
         </div>
         <div className="flex items-center gap-2">

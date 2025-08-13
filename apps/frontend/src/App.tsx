@@ -16,6 +16,8 @@ import ProductivityEntrepreneur from './pages/use-cases/ProductivityEntrepreneur
 import Gym from './pages/use-cases/Gym';
 import Parent from './pages/use-cases/Parent';
 import Mindfulness from './pages/use-cases/Mindfulness';
+import Pricing from './pages/Pricing';
+import BillingReturn from './pages/BillingReturn';
 
 function App() {
   const { isAuthenticated } = useAuth();
@@ -38,6 +40,9 @@ function App() {
         <Route path="/use-cases/mindfulness" element={<Mindfulness />} />
         <Route path="/" element={<Navigate to="/habits" replace />} />
         <Route path="*" element={<Navigate to="/habits" replace />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/billing/return" element={<BillingReturn />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
       </Routes>
@@ -47,6 +52,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/pricing" element={<Pricing />} />
+      <Route path="/billing/return" element={<BillingReturn />} />
       <Route path="/auth" element={<Auth />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/use-cases" element={<UseCases />} />

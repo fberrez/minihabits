@@ -12,6 +12,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
+import { SubscriptionBadge } from './subscription-badge';
+import { useBilling } from '@/api/hooks/useBilling';
 
 export function TopBar() {
   const { isAuthenticated } = useAuth();
@@ -19,14 +21,17 @@ export function TopBar() {
   const isHome = location.pathname === '/';
   const isOnUseCase = location.pathname.startsWith('/use-cases');
   const showUseCases = isHome || isOnUseCase;
+  const { status } = useBilling();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/70 backdrop-blur glass-surface supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="flex items-center justify-between h-14 px-4 max-w-5xl mx-auto">
-        <h1 className="text-xl font-normal tracking-tight">
-          <Link to={isAuthenticated ? '/habits' : '/'}>🌱 minihabits.</Link>
-        </h1>
-
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl font-bold">
+            <Link to={isAuthenticated ? '/habits' : '/'}>🌱 minihabits.</Link>
+          </h1>
+          {isAuthenticated && <SubscriptionBadge planCode={status?.planCode} />}
+        </div>
         <nav className="flex items-center gap-2">
           {showUseCases && (
             <DropdownMenu>
@@ -54,6 +59,10 @@ export function TopBar() {
               </DropdownMenuContent>
             </DropdownMenu>
           )}
+
+          <Button variant="ghost" asChild>
+            <Link to="/pricing">Pricing</Link>
+          </Button>
 
           {!isAuthenticated && (
             <Button variant="outline" asChild>

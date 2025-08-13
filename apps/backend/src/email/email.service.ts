@@ -88,4 +88,90 @@ export class EmailService {
       console.error(error);
     }
   }
+
+  async sendPasswordChanged(email: string) {
+    return this.resend.emails.send({
+      from: this.from,
+      to: email,
+      subject: 'Your MiniHabits password was changed',
+      html: `
+        <p>Hello,</p>
+        <p>This is a confirmation that your password was successfully changed.</p>
+        <p>If you did not perform this change, please contact support immediately.</p>
+      `,
+    });
+  }
+
+  async sendPasswordResetSuccessful(email: string) {
+    return this.resend.emails.send({
+      from: this.from,
+      to: email,
+      subject: 'Your MiniHabits password has been reset',
+      html: `
+        <p>Hello,</p>
+        <p>Your password was successfully reset. If this wasn't you, contact support immediately.</p>
+      `,
+    });
+  }
+
+  async sendSubscriptionActivated(email: string, planName: string) {
+    return this.resend.emails.send({
+      from: this.from,
+      to: email,
+      subject: 'Premium activated – Welcome to MiniHabits Premium',
+      html: `
+        <p>Hello,</p>
+        <p>Your subscription (<strong>${planName}</strong>) is now active. Enjoy Premium features!</p>
+      `,
+    });
+  }
+
+  async sendSubscriptionRenewed(
+    email: string,
+    planName: string,
+    nextRenewalDate?: Date | null,
+  ) {
+    const suffix = nextRenewalDate
+      ? ` Your next renewal date is ${nextRenewalDate.toLocaleDateString()}.`
+      : '';
+    return this.resend.emails.send({
+      from: this.from,
+      to: email,
+      subject: 'Subscription renewed',
+      html: `
+        <p>Hello,</p>
+        <p>Your subscription (<strong>${planName}</strong>) has been renewed.${suffix}</p>
+      `,
+    });
+  }
+
+  async sendSubscriptionCancellationScheduled(
+    email: string,
+    periodEnd?: Date | null,
+  ) {
+    const suffix = periodEnd
+      ? ` It will remain active until ${periodEnd.toLocaleDateString()}.`
+      : '';
+    return this.resend.emails.send({
+      from: this.from,
+      to: email,
+      subject: 'Subscription cancellation scheduled',
+      html: `
+        <p>Hello,</p>
+        <p>Your subscription will be canceled at the end of the current period.${suffix}</p>
+      `,
+    });
+  }
+
+  async sendSubscriptionExpired(email: string) {
+    return this.resend.emails.send({
+      from: this.from,
+      to: email,
+      subject: 'Subscription expired',
+      html: `
+        <p>Hello,</p>
+        <p>Your subscription has expired. You can re-subscribe anytime from the Pricing page.</p>
+      `,
+    });
+  }
 }

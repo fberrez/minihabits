@@ -13,6 +13,9 @@ import { HabitsCounterService } from './services/habits.counter';
 import { HabitsBooleanService } from './services/habits.boolean';
 import { HabitService } from './interfaces/habit-service.interface';
 import { HabitStatsOutput } from './dto/habits';
+import { EntitlementsService } from '../billing/entitlements.service';
+import { ForbiddenException } from '@nestjs/common';
+import { APP_ERROR_CODES } from '../billing/constants';
 
 @Injectable()
 export class HabitsService {
@@ -22,6 +25,8 @@ export class HabitsService {
     private readonly counterService: HabitsCounterService,
     @Inject(HabitsBooleanService)
     private readonly booleanService: HabitsBooleanService,
+    @Inject(EntitlementsService)
+    private readonly entitlementsService: EntitlementsService,
   ) {}
 
   async getHabitById(id: string, userId: string) {
@@ -37,6 +42,20 @@ export class HabitsService {
   }
 
   async createHabit(createHabitDto: CreateHabitDto, userId: string) {
+    const entitlements =
+      await this.entitlementsService.getUserEntitlements(userId);
+    if (!entitlements.isPremium) {
+      const currentCount = await this.habitModel
+        .countDocuments({ userId })
+        .exec();
+      if (currentCount >= 3) {
+        const err: any = new ForbiddenException(
+          'Habit limit reached. Upgrade to Premium to add more.',
+        );
+        (err as any).code = APP_ERROR_CODES.PAYWALL_LIMIT_REACHED;
+        throw err;
+      }
+    }
     const habit = new this.habitModel({
       ...createHabitDto,
       userId,
