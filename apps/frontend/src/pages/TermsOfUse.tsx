@@ -15,7 +15,7 @@ export default function TermsOfUse() {
           <Card className="text-left">
             <CardHeader>
               <CardTitle>Terms of Use</CardTitle>
-              <CardDescription>Last updated: January 21, 2025</CardDescription>
+              <CardDescription>Last updated: August 13, 2025</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <section>
@@ -44,6 +44,14 @@ export default function TermsOfUse() {
                   <li>Statistics and progress monitoring</li>
                   <li>Dark/Light mode support</li>
                 </ul>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-semibold mb-2">Hosting</h2>
+                <p>
+                  The application servers and database are hosted on Railway
+                  (railway.app) in European Union regions.
+                </p>
               </section>
 
               <section>

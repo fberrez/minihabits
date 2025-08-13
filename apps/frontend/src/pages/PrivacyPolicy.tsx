@@ -1,11 +1,11 @@
-import { FeedbackButton } from "@/components/feedback-button";
+import { FeedbackButton } from '@/components/feedback-button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 
 export default function PrivacyPolicy() {
   return (
@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
           <Card className="text-left">
             <CardHeader>
               <CardTitle>Privacy Policy</CardTitle>
-              <CardDescription>Last updated: March 9, 2025</CardDescription>
+              <CardDescription>Last updated: August 13, 2025</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <section>
@@ -70,9 +70,10 @@ export default function PrivacyPolicy() {
                 </h2>
                 <p>
                   Your data is stored on secure servers located in the European
-                  Union through our hosting provider, OVH and MongoDB Atlas. We
-                  implement appropriate security measures to protect your
-                  personal information.
+                  Union via Railway (railway.app). Both the application and the
+                  database are hosted on Railway in EU regions. We implement
+                  appropriate security measures to protect your personal
+                  information.
                 </p>
               </section>
 
@@ -81,10 +82,11 @@ export default function PrivacyPolicy() {
                   Third-Party Services
                 </h2>
                 <p>
-                  We use Plausible Analytics, a privacy-focused analytics
-                  service based in the EU, to collect anonymous usage
-                  statistics. We do not share your personal information with any
-                  other third parties.
+                  We use Railway (railway.app) to host our application and
+                  database in EU regions. We also use Plausible Analytics, a
+                  privacy-focused analytics service based in the EU, to collect
+                  anonymous usage statistics. We do not share your personal
+                  information with any other third parties.
                 </p>
               </section>
 
