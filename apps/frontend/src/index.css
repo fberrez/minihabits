@@ -35,13 +35,9 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  letter-spacing: 0.01em;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -50,57 +46,70 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    /* Zen minimalist palette */
+    /* Cream background #f8f6f3 -> approx hsl(42 38% 96%) */
+    --background: 42 38% 96%;
+    /* Soft text #6b5b54 -> approx hsl(18 12% 37%) */
+    --foreground: 18 12% 37%;
+    /* Card/popover glass surfaces */
+    --card: 42 38% 96%;
+    --card-foreground: 18 12% 37%;
+    --popover: 42 38% 96%;
+    --popover-foreground: 18 12% 37%;
+    /* Sage primary #9db596 -> approx hsl(95 25% 60%) */
+    --primary: 95 25% 60%;
+    --primary-foreground: 0 0% 100%;
+    /* Warm beige secondary */
+    --secondary: 35 30% 90%;
+    --secondary-foreground: 18 12% 37%;
+    /* Muted earth tones */
+    --muted: 30 25% 92%;
+    --muted-foreground: 20 10% 45%;
+    /* Accent terracotta #d7a98c -> approx hsl(24 45% 70%) */
+    --accent: 24 45% 70%;
+    --accent-foreground: 18 12% 30%;
+    --destructive: 6 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+    /* Soft borders */
+    --border: 35 30% 88%;
+    --input: 35 30% 88%;
+    /* Ring follows primary */
+    --ring: 95 25% 40%;
+    /* Charts slightly desaturated */
+    --chart-1: 95 25% 60%;
+    --chart-2: 24 45% 70%;
+    --chart-3: 30 20% 55%;
+    --chart-4: 42 30% 72%;
+    --chart-5: 197 25% 45%;
+    /* Softer, rounder corners ~20px */
+    --radius: 1.25rem;
   }
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    /* Keep dark mode softer than pure black */
+    --background: 24 14% 10%;
+    --foreground: 30 14% 92%;
+    --card: 24 14% 12%;
+    --card-foreground: 30 14% 92%;
+    --popover: 24 14% 12%;
+    --popover-foreground: 30 14% 92%;
+    --primary: 95 25% 58%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 24 14% 18%;
+    --secondary-foreground: 30 14% 92%;
+    --muted: 24 14% 18%;
+    --muted-foreground: 30 10% 65%;
+    --accent: 24 45% 60%;
+    --accent-foreground: 30 14% 92%;
+    --destructive: 6 70% 45%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: 24 10% 22%;
+    --input: 24 10% 22%;
+    --ring: 95 25% 50%;
+    --chart-1: 95 25% 58%;
+    --chart-2: 24 45% 60%;
+    --chart-3: 30 20% 50%;
+    --chart-4: 42 30% 62%;
+    --chart-5: 197 25% 40%;
   }
 }
 
@@ -110,14 +119,48 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Subtle radial gradient for depth */
+    background-image: radial-gradient(1200px 800px at 20% -10%, rgba(255,255,255,0.7), transparent), radial-gradient(1000px 600px at 120% 10%, rgba(157,181,150,0.12), transparent);
   }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
+/* Zen utilities */
+@layer utilities {
+  .transition-zen {
+    transition: all 300ms cubic-bezier(.22,.61,.36,1);
   }
-  body {
-    @apply bg-background text-foreground;
+  .hover-float:hover {
+    transform: translateY(-2px) scale(1.01);
   }
+  .shadow-zen {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  }
+  .dark .shadow-zen {
+    box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+  }
+  .glass-surface {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  .dark .glass-surface {
+    background: rgba(18,18,18,0.6);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+}
+
+/* Dark mode background treatment */
+.dark body {
+  background-image: radial-gradient(1000px 600px at 20% -10%, rgba(255,255,255,0.06), transparent), radial-gradient(900px 500px at 120% 10%, rgba(157,181,150,0.10), transparent);
+}
+
+@keyframes gentleScale {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.animate-gentle-scale {
+  animation: gentleScale 600ms cubic-bezier(.22,.61,.36,1);
 }

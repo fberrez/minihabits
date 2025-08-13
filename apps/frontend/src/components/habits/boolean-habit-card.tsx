@@ -1,24 +1,24 @@
-import { Button } from "../ui/button";
-import { Card, CardContent } from "../ui/card";
-import { Check, MoreHorizontal } from "lucide-react";
+import { Button } from '../ui/button';
+import { Card, CardContent } from '../ui/card';
+import { MoreHorizontal } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../ui/tooltip";
+} from '../ui/tooltip';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import JSConfetti from "js-confetti";
-import { useNavigate } from "react-router-dom";
-import { cn } from "../../lib/utils";
-import { playSuccessSound } from "../../lib/sound";
-import { Habit } from "@/api/generated";
-import { ExtendedHabit } from "@/api/types/appTypes";
+} from '../ui/dropdown-menu';
+import JSConfetti from 'js-confetti';
+import { useNavigate } from 'react-router-dom';
+import { cn } from '../../lib/utils';
+import { playSuccessSound } from '../../lib/sound';
+import { Habit } from '@/api/generated';
+import { ExtendedHabit } from '@/api/types/appTypes';
 
 interface BooleanHabitCardProps {
   habit: Habit | ExtendedHabit;
@@ -26,7 +26,7 @@ interface BooleanHabitCardProps {
   formatDate: (date: Date) => string;
   localCompletionStatus: Record<string, Record<string, number>>;
   setLocalCompletionStatus: (
-    value: React.SetStateAction<Record<string, Record<string, number>>>
+    value: React.SetStateAction<Record<string, Record<string, number>>>,
   ) => void;
   onTrack: (habitId: string, date: string) => Promise<void>;
   onUntrack: (habitId: string, date: string) => Promise<void>;
@@ -52,7 +52,7 @@ export function BooleanHabitCard({
   glowEffect = false,
 }: BooleanHabitCardProps) {
   const navigate = useNavigate();
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date().toISOString().split('T')[0];
   const isCompleted = localCompletionStatus[habit._id]?.[today] > 0;
 
   return (
@@ -92,7 +92,7 @@ export function BooleanHabitCard({
           </div>
           <div className="flex gap-6 flex-grow justify-end">
             {dates.map((date) => {
-              const formattedDate = date.toISOString().split("T")[0];
+              const formattedDate = date.toISOString().split('T')[0];
               const isCompleted =
                 (localCompletionStatus[habit._id]?.[formattedDate] ??
                   habit.completedDates[formattedDate] ??
@@ -108,20 +108,24 @@ export function BooleanHabitCard({
                         </span>
                         <Button
                           size="icon"
-                          variant={isCompleted ? "default" : "outline"}
+                          variant={isCompleted ? 'default' : 'outline'}
                           className={cn(
-                            "rounded-full w-8 h-8 p-0",
-                            glowEffect && !isCompleted && "animate-glow"
+                            'rounded-full w-8 h-8 p-0 transition-zen',
+                            isCompleted && 'animate-gentle-scale',
+                            glowEffect && !isCompleted && 'animate-glow',
                           )}
                           style={{
                             backgroundColor: isCompleted
                               ? habit.color
                               : undefined,
                             borderColor: habit.color,
+                            boxShadow: isCompleted
+                              ? `${habit.color}40 0px 6px 16px`
+                              : undefined,
                             ...(glowEffect &&
                               !isCompleted &&
                               ({
-                                "--habit-color": habit.color,
+                                '--habit-color': habit.color,
                               } as React.CSSProperties)),
                           }}
                           onClick={(e) => {
@@ -180,12 +184,18 @@ export function BooleanHabitCard({
                             }
                           }}
                         >
-                          <Check className="h-4 w-4" />
+                          {/* Organic circular indicator */}
+                          <span
+                            className={cn(
+                              'block w-3 h-3 rounded-full',
+                              isCompleted ? 'bg-white/70' : 'bg-transparent',
+                            )}
+                          />
                         </Button>
                       </div>
                     </TooltipTrigger>
                     <TooltipContent>
-                      {isCompleted ? "Completed" : "Not completed"}
+                      {isCompleted ? 'Completed' : 'Not completed'}
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>

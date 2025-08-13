@@ -1,24 +1,24 @@
-import { Button } from "../ui/button";
-import { Card, CardContent } from "../ui/card";
-import { Minus, MoreHorizontal, Plus } from "lucide-react";
+import { Button } from '../ui/button';
+import { Card, CardContent } from '../ui/card';
+import { Minus, MoreHorizontal, Plus } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../ui/tooltip";
+} from '../ui/tooltip';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import JSConfetti from "js-confetti";
-import { useNavigate } from "react-router-dom";
-import { cn } from "../../lib/utils";
-import { playSuccessSound } from "../../lib/sound";
-import { Habit } from "@/api/generated";
-import { ExtendedHabit } from "@/api/types/appTypes";
+} from '../ui/dropdown-menu';
+import JSConfetti from 'js-confetti';
+import { useNavigate } from 'react-router-dom';
+import { cn } from '../../lib/utils';
+import { playSuccessSound } from '../../lib/sound';
+import { Habit } from '@/api/generated';
+import { ExtendedHabit } from '@/api/types/appTypes';
 
 interface CounterHabitCardProps {
   habit: Habit | ExtendedHabit;
@@ -26,7 +26,7 @@ interface CounterHabitCardProps {
   formatDate: (date: Date) => string;
   localCompletionStatus: Record<string, Record<string, number>>;
   setLocalCompletionStatus: (
-    value: React.SetStateAction<Record<string, Record<string, number>>>
+    value: React.SetStateAction<Record<string, Record<string, number>>>,
   ) => void;
   onIncrement: (habitId: string, date: string) => Promise<void>;
   onDecrement: (habitId: string, date: string) => Promise<void>;
@@ -52,7 +52,7 @@ export function CounterHabitCard({
   glowEffect = false,
 }: CounterHabitCardProps) {
   const navigate = useNavigate();
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date().toISOString().split('T')[0];
   const completionValue =
     localCompletionStatus[habit._id]?.[today] ??
     habit.completedDates[today] ??
@@ -96,7 +96,7 @@ export function CounterHabitCard({
           </div>
           <div className="flex gap-6 flex-grow justify-end">
             {dates.map((date) => {
-              const formattedDate = date.toISOString().split("T")[0];
+              const formattedDate = date.toISOString().split('T')[0];
               const completionValue =
                 localCompletionStatus[habit._id]?.[formattedDate] ??
                 habit.completedDates[formattedDate] ??
@@ -123,22 +123,22 @@ export function CounterHabitCard({
                               size="icon"
                               variant="outline"
                               className={cn(
-                                "rounded-full w-6 h-6 p-0",
-                                glowEffect && !isCompleted && "animate-glow"
+                                'rounded-full w-6 h-6 p-0 transition-zen',
+                                glowEffect && !isCompleted && 'animate-glow',
                               )}
                               style={{
                                 borderColor: habit.color,
                                 ...(glowEffect &&
                                   !isCompleted &&
                                   ({
-                                    "--habit-color": habit.color,
+                                    '--habit-color': habit.color,
                                   } as React.CSSProperties)),
                               }}
                               onClick={(e) => {
                                 e.stopPropagation();
                                 const newValue = Math.max(
                                   0,
-                                  completionValue - 1
+                                  completionValue - 1,
                                 );
 
                                 if (isHomePage) {
@@ -166,7 +166,7 @@ export function CounterHabitCard({
                                         [formattedDate]: completionValue,
                                       },
                                     }));
-                                  }
+                                  },
                                 );
                               }}
                             >
@@ -176,18 +176,22 @@ export function CounterHabitCard({
                               size="icon"
                               variant="outline"
                               className={cn(
-                                "rounded-full w-6 h-6 p-0",
-                                glowEffect && !isCompleted && "animate-glow"
+                                'rounded-full w-6 h-6 p-0 transition-zen',
+                                glowEffect && !isCompleted && 'animate-glow',
+                                isCompleted && 'animate-gentle-scale',
                               )}
                               style={{
                                 backgroundColor: isCompleted
                                   ? habit.color
                                   : undefined,
                                 borderColor: habit.color,
+                                boxShadow: isCompleted
+                                  ? `${habit.color}40 0px 6px 16px`
+                                  : undefined,
                                 ...(glowEffect &&
                                   !isCompleted &&
                                   ({
-                                    "--habit-color": habit.color,
+                                    '--habit-color': habit.color,
                                   } as React.CSSProperties)),
                               }}
                               onClick={(e) => {
@@ -226,7 +230,7 @@ export function CounterHabitCard({
                                         [formattedDate]: completionValue,
                                       },
                                     }));
-                                  }
+                                  },
                                 );
                                 if (newValue >= habit.targetCounter) {
                                   jsConfettiRef.current?.addConfetti({

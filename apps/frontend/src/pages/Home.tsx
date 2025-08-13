@@ -9,7 +9,7 @@ import { HabitColor, HabitType, ExtendedHabit } from '../api/types/appTypes';
 import moment from 'moment';
 import { Card, CardContent } from '../components/ui/card';
 import { AddNewButtons } from '@/components/add-new-buttons';
-import { ChevronDown, Lock, Shield, CirclePlus } from 'lucide-react';
+import { ChevronDown, CirclePlus, Lock, Shield } from 'lucide-react';
 import FlickeringGrid from '@/components/ui/flickering-grid';
 import { useTheme } from '@/components/theme-provider';
 import {
@@ -18,6 +18,7 @@ import {
   LongestStreakCard,
 } from '@/components/stats';
 import CounterHeatmap from '@/components/stats/counter/CounterHeatmap';
+//
 
 export function Home() {
   const navigate = useNavigate();
@@ -32,6 +33,16 @@ export function Home() {
   const { theme } = useTheme();
   const [showScrollButton, setShowScrollButton] = useState(true);
   const heroSectionRef = useRef<HTMLElement>(null);
+  const quotes: readonly string[] = [
+    'Small steps, often.',
+    'Return to the present.',
+    'One gentle action today.',
+    'Consistency over intensity.',
+    'Breathe. Begin.',
+  ] as const;
+  const selectedQuoteRef = useRef<string>(
+    quotes[Math.floor(Math.random() * quotes.length)],
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -447,10 +458,8 @@ export function Home() {
   const dates = [new Date()];
 
   const descriptions = {
-    boolean:
-      'Start with simple yes/no habits. Perfect for daily routines like meditation or reading.',
-    counter:
-      'Track habits with specific targets. Great for water intake, steps, or any countable goal.',
+    boolean: 'Mark the day as done. A small step is enough.',
+    counter: 'Add a simple count for the day. Nothing more is needed.',
   };
 
   const scrollToNextSection = () => {
@@ -485,7 +494,10 @@ export function Home() {
                   minihabits.
                 </h1>
                 <p className="text-lg text-gray-600 max-w-md mx-auto md:mx-0">
-                  Track your habits and build lasting habits
+                  A quiet helper for steady routines
+                </p>
+                <p className="text-sm text-muted-foreground mt-2 italic">
+                  {selectedQuoteRef.current}
                 </p>
               </div>
               <div className="flex flex-col items-center md:items-start">
@@ -494,10 +506,10 @@ export function Home() {
                   onClick={() => navigate('/auth')}
                   className="relative"
                 >
-                  Get Started
+                  Begin
                 </Button>
                 <p className="text-sm text-gray-600 mt-4">
-                  Free to use. No credit card required
+                  Free to use. No card required.
                 </p>
               </div>
             </div>
@@ -509,7 +521,7 @@ export function Home() {
                   {/* Arrow and text */}
                   <div className="hidden md:flex justify-end mb-2">
                     <div className="flex items-center gap-1 rounded-full bg-muted px-3 py-1">
-                      <p className="text-sm font-medium">Try it!</p>
+                      <p className="text-sm font-medium">Try softly</p>
                       <svg
                         className="w-4 h-4 text-primary transform rotate-90 animated-bounce"
                         fill="none"
@@ -614,22 +626,22 @@ export function Home() {
             className="rounded-full animate-bounce backdrop-blur-sm bg-background/50 flex flex-col gap-1 h-auto py-2 px-4 w-auto"
             onClick={scrollToNextSection}
           >
-            <p className="text-sm font-medium">Scroll Down</p>
+            <p className="text-sm font-medium">Scroll softly</p>
             <ChevronDown className="h-6 w-6" />
           </Button>
         </div>
       </section>
 
-      {/* Life Challenges Section */}
+      {/* Gentle reflections section */}
       <section className="py-24 mb-24">
         <div className="container mx-auto px-4">
           <div className="space-y-12">
             <div className="text-center">
               <h2 className="text-3xl font-bold tracking-tight">
-                Why is it so hard to stick to your habits?
+                Gentle reflections
               </h2>
               <p className="text-muted-foreground mt-2">
-                Understanding the challenges of building a better life
+                Noticing with kindness
               </p>
             </div>
 
@@ -638,14 +650,14 @@ export function Home() {
                 <CardContent className="pt-6 text-center">
                   <div className="text-4xl mb-4">🎯</div>
                   <h3 className="font-semibold text-xl mb-4">
-                    Lack of Direction
+                    Unclear direction
                   </h3>
                   <div className="space-y-1">
                     <p className="text-muted-foreground">
-                      How to identify what truly matters?
+                      It is okay to pause and choose
                     </p>
                     <p className="text-muted-foreground">
-                      Where to focus your energy?
+                      Let one small priority lead
                     </p>
                   </div>
                 </CardContent>
@@ -657,10 +669,10 @@ export function Home() {
                   <h3 className="font-semibold text-xl mb-4">Inconsistency</h3>
                   <div className="space-y-1">
                     <p className="text-muted-foreground">
-                      Watching productivity videos
+                      Attention drifts; this is natural
                     </p>
                     <p className="text-muted-foreground">
-                      Hard to stay focused on your goals
+                      Return gently to a single step
                     </p>
                   </div>
                 </CardContent>
@@ -672,10 +684,10 @@ export function Home() {
                   <h3 className="font-semibold text-xl mb-4">Overwhelm</h3>
                   <div className="space-y-1">
                     <p className="text-muted-foreground">
-                      Burnout from too many changes
+                      When much feels heavy, lighten the load
                     </p>
                     <p className="text-muted-foreground">
-                      Giving up on your goals
+                      Rest, then a small return
                     </p>
                   </div>
                 </CardContent>
@@ -685,16 +697,16 @@ export function Home() {
         </div>
       </section>
 
-      {/* Stats and Habit Tracking Section */}
+      {/* Today's Practice Section */}
       <section className="py-24 mb-24">
         <div className="container mx-auto px-4">
           <div className="space-y-6">
             <div className="text-center mb-20">
               <h2 className="text-3xl font-bold tracking-tight">
-                Track Your Life
+                Today's Practice
               </h2>
               <p className="text-muted-foreground mt-2">
-                Beautiful visualizations to keep you motivated
+                A simple view of the day
               </p>
             </div>
 
@@ -748,11 +760,10 @@ export function Home() {
           <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10">
             <div className="text-left space-y-5 flex-1">
               <h2 className="text-3xl font-bold tracking-tight text-blue-800 dark:text-blue-300">
-                Your Data is Safe with Us
+                Your data is respected
               </h2>
               <p className="text-muted-foreground text-lg">
-                All your habit data is securely stored in European data centers,
-                complying with GDPR and the highest privacy standards.
+                Data is stored in European data centers and follows GDPR.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
                 <div className="flex items-center gap-3 bg-white dark:bg-blue-950/40 p-3 rounded-lg shadow-sm">
@@ -785,12 +796,10 @@ export function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h2 className="text-4xl font-bold tracking-tight">
-              Start Building Better Habits Today
+              Begin with one small step
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join hundreds of users who have transformed their lives with
-              small, consistent changes. Your journey to a better you starts
-              with a single habit.
+              Change grows from steady practice. You can start small.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
               <Button
@@ -798,11 +807,11 @@ export function Home() {
                 className="text-lg px-8"
                 onClick={() => navigate('/auth')}
               >
-                Get Started for Free
+                Begin
               </Button>
             </div>
             <div className="pt-8 text-sm text-muted-foreground">
-              No credit card required • 100% free forever
+              Free to use
             </div>
           </div>
         </div>
