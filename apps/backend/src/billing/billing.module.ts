@@ -9,6 +9,8 @@ import {
 } from './schemas/subscription.schema';
 import { Payment, PaymentSchema } from './schemas/payment.schema';
 import { EntitlementsService } from './entitlements.service';
+import { User, UserSchema } from '../users/users.schema';
+import { EmailModule } from '../email/email.module';
 
 @Module({
   imports: [
@@ -16,7 +18,9 @@ import { EntitlementsService } from './entitlements.service';
       { name: Plan.name, schema: PlanSchema },
       { name: Subscription.name, schema: SubscriptionSchema },
       { name: Payment.name, schema: PaymentSchema },
+      { name: User.name, schema: UserSchema },
     ]),
+    EmailModule,
   ],
   controllers: [BillingController],
   providers: [BillingService, EntitlementsService],

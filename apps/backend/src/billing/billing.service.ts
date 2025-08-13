@@ -12,6 +12,8 @@ import { Plan } from './schemas/plan.schema';
 import { Payment } from './schemas/payment.schema';
 import { Subscription } from './schemas/subscription.schema';
 import { PLAN_CODES, PlanCode } from './constants';
+import { User } from '../users/users.schema';
+import { EmailService } from '../email/email.service';
 import { computeNextPeriodEnd } from './utils/date';
 import { CheckoutDto } from './dto/checkout.dto';
 
@@ -31,6 +33,8 @@ export class BillingService implements OnModuleInit {
     @InjectModel(Payment.name) private readonly paymentModel: Model<Payment>,
     @InjectModel(Subscription.name)
     private readonly subscriptionModel: Model<Subscription>,
+    @InjectModel(User.name) private readonly userModel: Model<User>,
+    private readonly emailService: EmailService,
   ) {}
 
   async onModuleInit(): Promise<void> {
@@ -109,6 +113,14 @@ export class BillingService implements OnModuleInit {
     }
 
     const mollie = await createMollieClient();
+    // Get user email
+    const user = await this.userModel
+      .findById(new Types.ObjectId(userId))
+      .lean()
+      .exec();
+    if (!user?.email) {
+      throw new BadRequestException('User email not found');
+    }
     const redirectUrl = `${process.env.FRONTEND_URL}/billing/return`;
     const webhookUrlBase = `${process.env.APP_PUBLIC_URL}/billing/webhook`;
     const webhookUrl = process.env.MOLLIE_WEBHOOK_SECRET
@@ -132,20 +144,51 @@ export class BillingService implements OnModuleInit {
     }
 
     // Recurring: first payment via checkout
-    const customer = await mollie.customers.create({
-      name: userId,
-      email: undefined,
-    });
+    // Try to find existing customer by email; if not found, create
+    let customer = null as any;
+    try {
+      const search = await mollie.customers.list({ limit: 250 });
+      customer =
+        search._embedded?.customers?.find((c: any) => c.email === user.email) ??
+        null;
+    } catch (err) {
+      this.logger.warn(`Failed to search customers: ${String(err)}`);
+    }
+    if (!customer) {
+      customer = await mollie.customers.create({
+        name: user.email,
+        email: user.email,
+      });
+    }
 
-    console.log({
-      amount,
-      description: `MiniHabits ${plan.name}`,
-      redirectUrl,
-      webhookUrl,
-      sequenceType: 'first',
-      customerId: customer.id,
-      metadata: { userId, planCode: plan.code, intent: 'recurring_first' },
-    });
+    // If customer exists, check existing subscriptions on Mollie
+    try {
+      const subs = await mollie.customers_subscriptions.all({
+        customerId: customer.id,
+      });
+      const activeSub = subs._embedded?.subscriptions?.find(
+        (s: any) => s.status === 'active',
+      );
+      if (activeSub) {
+        // Compare with desired plan
+        const interval = plan.interval === 'month' ? '1 month' : '1 year';
+        const value = (plan.priceCents / 100).toFixed(2);
+        const isSame =
+          activeSub.interval === interval &&
+          activeSub.amount?.currency === plan.currency &&
+          activeSub.amount?.value === value;
+        if (isSame) {
+          throw new BadRequestException(
+            'You already have an active subscription for this plan',
+          );
+        }
+      }
+    } catch (err) {
+      this.logger.warn(
+        `Unable to verify existing subscriptions: ${String(err)}`,
+      );
+    }
+
     const payment = await mollie.payments.create({
       amount,
       description: `MiniHabits ${plan.name}`,
@@ -216,6 +259,18 @@ export class BillingService implements OnModuleInit {
           },
           { upsert: true },
         );
+        // Send activation email for lifetime
+        try {
+          const user = await this.userModel.findById(userId).lean().exec();
+          if (user?.email) {
+            await this.emailService.sendSubscriptionActivated(
+              user.email,
+              plan.name,
+            );
+          }
+        } catch (e) {
+          this.logger.warn(`Failed to send subscription email: ${String(e)}`);
+        }
         return;
       }
 
@@ -255,6 +310,17 @@ export class BillingService implements OnModuleInit {
           },
           { upsert: true },
         );
+        try {
+          const user = await this.userModel.findById(userId).lean().exec();
+          if (user?.email) {
+            await this.emailService.sendSubscriptionActivated(
+              user.email,
+              plan.name,
+            );
+          }
+        } catch (e) {
+          this.logger.warn(`Failed to send subscription email: ${String(e)}`);
+        }
         return;
       }
 
@@ -270,6 +336,18 @@ export class BillingService implements OnModuleInit {
         subDoc.currentPeriodEnd = next;
         subDoc.status = 'active';
         await subDoc.save();
+        try {
+          const user = await this.userModel.findById(userId).lean().exec();
+          if (user?.email) {
+            await this.emailService.sendSubscriptionRenewed(
+              user.email,
+              plan.name,
+              subDoc.currentPeriodEnd,
+            );
+          }
+        } catch (e) {
+          this.logger.warn(`Failed to send renewal email: ${String(e)}`);
+        }
       }
       return;
     }
@@ -289,6 +367,27 @@ export class BillingService implements OnModuleInit {
           },
         },
       );
+      try {
+        const user = await this.userModel.findById(userId).lean().exec();
+        if (user?.email) {
+          if (payment.status === 'canceled') {
+            const sub = await this.subscriptionModel
+              .findOne({ userId: new Types.ObjectId(userId) })
+              .lean()
+              .exec();
+            await this.emailService.sendSubscriptionCancellationScheduled(
+              user.email,
+              sub?.currentPeriodEnd ?? null,
+            );
+          } else {
+            await this.emailService.sendSubscriptionExpired(user.email);
+          }
+        }
+      } catch (e) {
+        this.logger.warn(
+          `Failed to send subscription status email: ${String(e)}`,
+        );
+      }
     }
   }
 

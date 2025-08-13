@@ -16,8 +16,8 @@ import { HabitsService } from '../habits/habits.service';
 export class UsersService {
   constructor(
     @InjectModel(User.name) private userModel: Model<User>,
-    @Inject(HabitsService) private readonly habitsService: HabitsService,
-    @Inject(EmailService) private readonly emailService: EmailService,
+    @Inject(HabitsService) private habitsService: HabitsService,
+    @Inject(EmailService) private emailService: EmailService,
   ) {}
 
   async create(createUserDto: { email: string; password: string }) {
@@ -80,7 +80,9 @@ export class UsersService {
     }
 
     user.password = await bcrypt.hash(newPassword, 10);
-    return user.save();
+    await user.save();
+    await this.emailService.sendPasswordChanged(user.email);
+    return { message: 'Password updated successfully' };
   }
 
   async deleteAccount(userId: string, password: string) {
@@ -102,6 +104,7 @@ export class UsersService {
 
   async createPasswordResetToken(email: string) {
     const user = await this.findOne(email);
+    console.log('user', user);
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -137,7 +140,7 @@ export class UsersService {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save();
-
+    await this.emailService.sendPasswordResetSuccessful(user.email);
     return { message: 'Password reset successful' };
   }
 }

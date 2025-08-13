@@ -2,11 +2,14 @@ import { useEffect, useRef } from 'react';
 import { useBilling } from '@/api/hooks/useBilling';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import JSConfetti from 'js-confetti';
 
 export default function BillingReturn() {
   const { status, refreshStatus } = useBilling();
   const navigate = useNavigate();
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const jsConfettiRef = useRef<JSConfetti | null>(null);
+  const didShowConfettiRef = useRef<boolean>(false);
 
   useEffect(() => {
     if (status?.isPremium) {
@@ -27,12 +30,31 @@ export default function BillingReturn() {
     };
   }, [refreshStatus, status?.isPremium]);
 
+  useEffect(() => {
+    jsConfettiRef.current = new JSConfetti();
+    return () => {
+      jsConfettiRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (status?.isPremium && !didShowConfettiRef.current) {
+      didShowConfettiRef.current = true;
+      jsConfettiRef.current?.addConfetti({
+        confettiColors: ['#22c55e', '#16a34a', '#3b82f6', '#fbbf24'],
+        confettiNumber: 200,
+      });
+    }
+  }, [status?.isPremium]);
+
   const isDone = status?.isPremium || status?.status === 'cancel_at_period_end';
 
   return (
     <div className="flex items-center justify-center p-8">
       <div className="max-w-md text-center space-y-4">
-        <h1 className="text-2xl font-bold">Processing your request…</h1>
+        <h1 className="text-2xl font-bold">
+          {isDone ? 'All set!' : 'Processing your request…'}
+        </h1>
         {isDone ? (
           <p>
             {status?.isPremium

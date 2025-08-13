@@ -7,7 +7,8 @@ import { Check, Crown, X } from 'lucide-react';
 type Column = 'free' | 'monthly' | 'yearly' | 'lifetime';
 
 export default function Pricing() {
-  const { plans, isLoadingPlans, createCheckout } = useBilling();
+  const { plans, isLoadingPlans, createCheckout, status, isLoadingStatus } =
+    useBilling();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<Column | null>(null);
@@ -53,6 +54,12 @@ export default function Pricing() {
       navigate('/auth?next=/pricing');
       return;
     }
+    // If user selects the current plan, redirect to Account to manage
+    const currentColumn = mapPlanCodeToColumn(status?.planCode);
+    if (currentColumn && selected === currentColumn) {
+      navigate('/account');
+      return;
+    }
     const { checkoutUrl } = await createCheckout(chosen.code);
     window.location.href = checkoutUrl;
   };
@@ -82,6 +89,18 @@ export default function Pricing() {
           </p>
         </div>
 
+        {!isLoadingStatus && status ? (
+          <div className="mb-6 text-sm text-muted-foreground">
+            Current plan: <strong>{humanizePlanCode(status.planCode)}</strong>
+            {status.currentPeriodEnd
+              ? ` · Renews on ${new Date(
+                  status.currentPeriodEnd,
+                ).toLocaleDateString()}`
+              : ''}
+            {status.cancelAtPeriodEnd ? ' · Canceling at period end' : ''}
+          </div>
+        ) : null}
+
         {isLoadingPlans ? (
           <div>Loading pricing…</div>
         ) : (
@@ -102,6 +121,7 @@ export default function Pricing() {
                 interval="/mo"
                 selected={selected === 'monthly'}
                 onSelect={() => setSelected('monthly')}
+                isCurrent={mapPlanCodeToColumn(status?.planCode) === 'monthly'}
               />
               <PlanHeader
                 title="Yearly"
@@ -110,6 +130,7 @@ export default function Pricing() {
                 interval="/yr"
                 selected={selected === 'yearly'}
                 onSelect={() => setSelected('yearly')}
+                isCurrent={mapPlanCodeToColumn(status?.planCode) === 'yearly'}
               />
               <PlanHeader
                 title="Lifetime"
@@ -118,6 +139,7 @@ export default function Pricing() {
                 interval="one-time"
                 selected={selected === 'lifetime'}
                 onSelect={() => setSelected('lifetime')}
+                isCurrent={mapPlanCodeToColumn(status?.planCode) === 'lifetime'}
               />
             </div>
 
@@ -190,9 +212,19 @@ function PlanHeader(props: {
   badge?: string;
   icon?: boolean;
   muted?: boolean;
+  isCurrent?: boolean;
 }) {
-  const { title, price, interval, selected, onSelect, badge, icon, muted } =
-    props;
+  const {
+    title,
+    price,
+    interval,
+    selected,
+    onSelect,
+    badge,
+    icon,
+    muted,
+    isCurrent,
+  } = props;
   return (
     <div
       className={
@@ -226,11 +258,11 @@ function PlanHeader(props: {
           </Button>
         ) : (
           <Button
-            variant={selected ? 'default' : 'outline'}
+            variant={selected ? 'default' : isCurrent ? 'secondary' : 'outline'}
             size="sm"
             onClick={onSelect}
           >
-            {selected ? 'Selected' : 'Select'}
+            {selected ? 'Selected' : isCurrent ? 'Current' : 'Select'}
           </Button>
         )}
       </div>
@@ -296,4 +328,22 @@ function No() {
 
 function Text({ children }: { children: React.ReactNode }) {
   return <span className="text-xs text-muted-foreground">{children}</span>;
+}
+
+function mapPlanCodeToColumn(planCode?: string): Column | null {
+  if (!planCode) return null;
+  if (planCode === 'free') return 'free';
+  if (planCode.includes('monthly')) return 'monthly';
+  if (planCode.includes('yearly')) return 'yearly';
+  if (planCode.includes('lifetime')) return 'lifetime';
+  return null;
+}
+
+function humanizePlanCode(planCode?: string): string {
+  if (!planCode) return 'Free';
+  if (planCode === 'free') return 'Free';
+  if (planCode.includes('monthly')) return 'Premium Monthly';
+  if (planCode.includes('yearly')) return 'Premium Yearly';
+  if (planCode.includes('lifetime')) return 'Premium Lifetime';
+  return planCode;
 }
